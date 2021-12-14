@@ -1,0 +1,78 @@
+.container {
+    border: 3px solid #f44646;
+    border-radius: 30px;
+    margin-top: 5px;
+}
+
+.root {
+    display: flex;
+    justify-content: center;
+}
+
+.root ul, .root li {
+    margin: 0;
+    padding: 0;
+}
+
+.root li::marker {
+    content: '';
+}
+
+.team-buttons {
+    margin: 1rem 0.2rem;
+    padding: 1rem 0.2rem;
+}
+
+.btn.btn-light {
+    border: 1px solid black;
+}
+
+.row.team-buttons button {
+    width: inherit !important;
+}
+
+.row.team-buttons .col.main-col {
+    margin-bottom: 1rem
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 98vw;
+        padding: 0;
+    }
+}
+
+
+.player-entry {
+    display: flex;
+    max-height: 2rem;
+    position: relative;
+    border: 1px solid rgb(68, 68, 68);
+}
+
+.team-player-list {
+    height: inherit;
+    margin-top: 1rem;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    background-color: #f44646;
+    color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+
+.team-action-button {
+    font-size: 1.7rem;
+}
+
+.player-entry, .player-entry.row {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+}

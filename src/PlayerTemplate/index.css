@@ -1,0 +1,76 @@
+.container {
+    border: 3px solid #f44646;
+    border-radius: 30px;
+    width: 90vw;
+    
+}
+
+.root {
+    display: flex;
+    justify-content: center;
+}
+.player-info {
+    margin: 1rem;
+}
+
+.player-info .info-row {
+    margin-bottom: 1rem;
+    /* line-height: 2rem; */
+    font-family: 'Secular One', sans-serif;;
+}
+
+
+.name {
+    color: #f44646;
+    
+}
+
+.padding {
+    padding: 1em;
+}
+
+.player-image {
+    background-image: url('https://picsum.photos/200/300');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vw;
+    border: 2px solid rgb(68, 68, 68);
+    background-position: center;
+    margin: 1em;
+}
+
+.name {
+    font-size: 4rem;
+    line-height: 4rem;
+    border: 1px solid #f44646;
+    background-color: #f44646;
+    color: white;
+
+    border-radius: 20px;
+    white-space: break-spaces;
+}
+
+.name, .age, .number , .add-on-info{
+    padding: 10px;
+
+}
+
+.age, .number {
+    font-size: 3rem;
+    line-height: 3rem;
+    color: rgb(68, 68, 68);
+}
+.add-on-info {
+    font-size: 2rem;
+    line-height: 2rem;
+    color: rgb(68, 68, 68);
+
+}
+
+.info-row {
+    border-bottom: 1px solid #f44646;
+}
+
+.info-row:nth-last-child(1) {
+    border-bottom: transparent;
+}
