@@ -38,7 +38,7 @@ const players_array =
     },
     { 
         id: 7,
-        Name : 'Name7' ,
+        Name : 'Name7' , 
         Age : 32 ,
         Gender : 'M'
     },
