@@ -30,10 +30,10 @@
 }
 
 .player-image {
-    background-image: url('https://picsum.photos/200/300');
+    /* background-image: url('https://picsum.photos/200/300'); */
     background-repeat: no-repeat;
     background-size: cover;
-    height: 40vw;
+    height: 30vw;
     border: 2px solid rgb(68, 68, 68);
     background-position: center;
     margin: 1em;

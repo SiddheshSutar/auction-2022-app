@@ -1,15 +1,18 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./index.css";
 import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux'
+import { assignteamToPlayer } from '../redux/storeSlice'
 
 const ConfirmBuyPlayerModal = ({
+    show,
     handleYes,
-    handleNo
+    handleNo,setShowModal
 }) => {
     return <>
-        <Modal.Dialog>
-            <Modal.Header closeButton>
+        <Modal show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header>
                 <Modal.Title>Confirm ?</Modal.Title>
             </Modal.Header>
 
@@ -21,23 +24,44 @@ const ConfirmBuyPlayerModal = ({
                 <Button variant="primary" onClick={handleYes}>yes</Button>
                 <Button variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
-        </Modal.Dialog>
+        </Modal>
     </>
 }
 const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
+    const currentPlayer = useSelector((state) => state.store.currentPlayer)
+    const [teamClicked, setTeamClicked] = useState(null)
+    const dispatch = useDispatch()
 
     const handleClickBuyTeam = (e) => {
+        console.log('TEAM::', e.target)
+        setTeamClicked(e.target.value)
+        // console.log('Team player:',currentPlayer )
+
         setShowModal(true)
     }
+
+    const handleBuyPlayer = () => {
+        // alert('success: ', JSON.stringify(currentPlayer))
+        // console.log('Team player:',currentPlayer )
+        dispatch(assignteamToPlayer({teamClicked, currentPlayer}))
+        setShowModal(false)
+    }
+
+    useEffect(() => {
+        //reset team once player bought
+        if(!showModal) setTeamClicked(null)
+    }, [showModal])
 
     return (
         <div class="container team-buttons-cntr">
             {
                 showModal &&
                 <ConfirmBuyPlayerModal
-                    handleYes={() => alert('success')}
+                    show={showModal}
+                    handleYes={handleBuyPlayer}
                     handleNo={() => setShowModal(false)}
+                    setShowModal={setShowModal}
                 />
             }
             <div class="row title">Team Summary</div>
@@ -50,6 +74,7 @@ const TeamButtons = () => {
                                 <button
                                     type="button"
                                     class="btn btn-primary team-action-button"
+                                    name={team.Name}
                                     onClick={handleClickBuyTeam}
                                 >
                                     <div class="row">
