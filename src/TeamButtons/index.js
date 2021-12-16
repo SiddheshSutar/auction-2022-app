@@ -21,7 +21,7 @@ const ConfirmBuyPlayerModal = ({
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="primary" onClick={handleYes}>yes</Button>
+                <Button variant="primary" onClick={e => handleYes(e)}>yes</Button>
                 <Button variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
@@ -30,12 +30,13 @@ const ConfirmBuyPlayerModal = ({
 const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
+    const currentTeamList = useSelector((state) => state.store.initialTeamList)
     const [teamClicked, setTeamClicked] = useState(null)
     const dispatch = useDispatch()
 
-    const handleClickBuyTeam = (e) => {
+    const handleClickBuyTeam = (e, teamNamePassed) => {
         console.log('TEAM::', e.target)
-        setTeamClicked(e.target.value)
+        setTeamClicked(teamNamePassed)
         // console.log('Team player:',currentPlayer )
 
         setShowModal(true)
@@ -59,7 +60,7 @@ const TeamButtons = () => {
                 showModal &&
                 <ConfirmBuyPlayerModal
                     show={showModal}
-                    handleYes={handleBuyPlayer}
+                    handleYes={e => handleBuyPlayer(e)}
                     handleNo={() => setShowModal(false)}
                     setShowModal={setShowModal}
                 />
@@ -67,7 +68,7 @@ const TeamButtons = () => {
             <div class="row title">Team Summary</div>
             <div class="row team-buttons m-0 px-0">
                 
-                {teams.map((team) => (
+                {currentTeamList.map((team) => (
                     <div class="col col-3 main-col team-col pr-0">
                         <div class="row">
                             <div class="col">
@@ -75,7 +76,7 @@ const TeamButtons = () => {
                                     type="button"
                                     class="btn btn-primary team-action-button"
                                     name={team.Name}
-                                    onClick={handleClickBuyTeam}
+                                    onClick={e => handleClickBuyTeam(e, team.Name)}
                                 >
                                     <div class="row">
                                         <div class="team-name col col-8 text-left">
@@ -100,13 +101,11 @@ const TeamButtons = () => {
                         <div class="team-player-list row">
                             <div class="col">
                                 {
-                                    [
-                                        1, 2, 3, 4, 5, 6, 7, 8
-                                    ].map((player, index) => (
-                                        team.Players[index] ?
+                                    team.Players.map((player, index) => (
+                                        player ?
                                             <div class="player-entry row mx-1">
-                                                <div class="player-name col col-9 ">{team.Players[index].name}</div>
-                                                <div class="player-coins col col-3 text-right pl-0">{team.Players[index].soldFor}</div>
+                                                <div class="player-name col col-9 text-align-left">{player.Name}</div>
+                                                <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
                                             </div> :
                                             <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>
                                                 <div class="player-name col col-9 "></div>

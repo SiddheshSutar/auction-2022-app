@@ -46,7 +46,8 @@ const players_array =
         id: 7,
         Name : 'Name7' , 
         Age : 32 ,
-        Gender : 'M'
+        Gender : 'M',
+        Photo: 'https://picsum.photos/200/300'
     },
     { 
         id: 8,

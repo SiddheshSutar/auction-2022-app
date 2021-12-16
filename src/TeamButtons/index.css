@@ -35,6 +35,14 @@
     margin-bottom: 1rem
 }
 
+.team-player-list.row .player-name {
+    text-align: left;
+}
+
+.team-name.text-left {
+    text-align: left;
+}
+
 @media screen and (min-width: 1200px) {
     .container {
         max-width: 98vw;

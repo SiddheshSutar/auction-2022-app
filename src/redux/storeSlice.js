@@ -6,8 +6,11 @@ import cloneDeep from 'lodash/cloneDeep'
 const initialState = {
   value: 0,
   currentPlayer: players_array[0],
-  initialTeamList: teams,
-  initialPlayerList: players_array
+  initialTeamList: cloneDeep(teams),
+  initialPlayerList: cloneDeep(players_array),
+
+  currentBidPrice: 0,
+  lastPlayerRemoved: null
 }
 
 export const storeSlice = createSlice({
@@ -24,14 +27,16 @@ export const storeSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    setCurrentBidPrice: (state, action) => {
+      state.currentBidPrice = action.payload
     },
     setCurrentPlayerInRedux: (state, action) => {
         state.currentPlayer = action.payload
     },
     assignteamToPlayer: (state, action) => { // ({teamClicked, currentPlayer})
         // assign teamname in player obj in playerlist
+        // add player to team's playerlist
+
         // let currentPlayerList = [...state.initialPlayerList]
         let currentPlayerList = cloneDeep(state.initialPlayerList)
 
@@ -40,17 +45,41 @@ export const storeSlice = createSlice({
         currentPlayerList.map(playerObj => {
 
             if(playerBought.Name === playerObj.Name) {
-                // playerObj.TeamName = action.payload.teamClicked //To-DO
-                console.log('Player bought:: ', playerObj)
+                
+                // Push player to team
+                state.initialTeamList.map(team => {
+                  
+                  if(action.payload.teamClicked === team.Name){
+                    // console.log('Player bought:: ', playerObj)
+
+                    team.Players.push({
+                      ...playerObj,
+                      SoldFor: state.currentBidPrice
+                    })
+                    team.Amount_Used = team.Amount_Used + state.currentBidPrice
+                  }
+                })
+
+                // /remove this player from auction list
+                let newPlayerList = initialState.initialPlayerList.filter(playeritem => { //Doubtful access
+                  return playerObj.Name !== playeritem.Name
+                })
+
+                state.initialPlayerList = newPlayerList
+                // console.log('Playerremoved: ', playerObj, newPlayerList)
+
+                // assign lastPlyer got removed
+                state.lastPlayerRemoved = {...playerObj}
             }
         })
-    }
+    },
+
   },
 })
 
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount,
-        setCurrentPlayerInRedux, assignteamToPlayer
+        setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice
  } = storeSlice.actions
 
 export default storeSlice.reducer

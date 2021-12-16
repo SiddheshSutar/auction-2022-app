@@ -74,3 +74,17 @@
 .info-row:nth-last-child(1) {
     border-bottom: transparent;
 }
+
+.current-bid-price {
+    border: 2px solid #f44646;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.slider-btns .col button {
+    width: inherit;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 30px;
+}

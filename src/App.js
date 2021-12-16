@@ -4,6 +4,7 @@ import PlayerCard from './PlayerTemplate';
 import TeamButtons from './TeamButtons';
 import { store } from './store'
 import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
