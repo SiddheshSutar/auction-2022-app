@@ -3,7 +3,7 @@ import './index.css'
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import players_array from '../externalLists/ListOfPlayers';
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPlayerInRedux, setCurrentBidPrice } from '../redux/storeSlice'
+import { setCurrentPlayerInRedux, setCurrentBidPrice, nextPlayerAction } from '../redux/storeSlice'
 
 const PlayerCard = () => {
 
@@ -11,14 +11,17 @@ const PlayerCard = () => {
     const dispatch = useDispatch()
     // onClick={() => dispatch(increment())}
 
-    const [playersgenerated, setPlayersGenerated] = useState([])
-    const [player, setPlayer] = useState(players_array[0])
-    const [shouldStartPending, setshouldStartPending] = useState(false)
-    const [currentAuctionPlayerList, setcurrentAuctionPlayerList] = useState([])
-    const [playerIndexFromJson, setplayerIndexFromJson] = useState(0)
-
     const lastPlayerRemoved = useSelector((state) => state.store.lastPlayerRemoved)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
+    const currentPlayer = useSelector((state) => state.store.currentPlayer)
+    const playerIndexFromJsonRedux = useSelector((state) => state.store.playerIndexFromJson)
+    const shouldStartForPendingRedux = useSelector((state) => state.store.shouldStartForPending)
+
+    const [playersgenerated, setPlayersGenerated] = useState([])
+    const [player, setPlayer] = useState(currentPlayer)
+    const [shouldStartPending, setshouldStartPending] = useState(false)
+    const [currentAuctionPlayerList, setcurrentAuctionPlayerList] = useState([])
+    const [playerIndexFromJson, setplayerIndexFromJson] = useState(playerIndexFromJsonRedux)
 
 
     //didMount
@@ -41,30 +44,35 @@ const PlayerCard = () => {
     }, [lastPlayerRemoved])
 
     const handleNextPlayer = (e, playerList) => {
-        const localPlayerArr = playerList
+        // const localPlayerArr = playerList
 
-        // Check if next click has happened till length of layer json
-        if (playerIndexFromJson + 1 === playerList.length) {
-            setshouldStartPending(true)
-            return
-        }
+        // // Check if next click has happened till length of layer json
+        // if (playerIndexFromJson + 1 === playerList.length) {
+        //     setshouldStartPending(true)
+        //     return
+        // }
 
-        // Check if not already present in generated ones
-        let new_player_obj = localPlayerArr[playerIndexFromJson + 1]
-        if (playersgenerated.every(item => item.id !== new_player_obj.id)) {
-            setPlayersGenerated(state => {
-                let newArr = state
-                newArr.push(new_player_obj)
-                return newArr
-            })
-            // console.log('New Player: ', new_player_obj)
-            setPlayer(new_player_obj)
-            setplayerIndexFromJson(state => state + 1)
-        } else {
-            // console.log('already done: ', new_player_obj)
+        // // Check if not already present in generated ones
+        // let new_player_obj = localPlayerArr[playerIndexFromJson + 1]
+        // if (playersgenerated.every(item => item.id !== new_player_obj.id)) {
+        //     setPlayersGenerated(state => {
+        //         let newArr = state
+        //         newArr.push(new_player_obj)
+        //         return newArr
+        //     })
+        //     // console.log('New Player: ', new_player_obj)
+        //     setPlayer(new_player_obj)
+        //     setplayerIndexFromJson(state => state + 1)
 
-        }
+        //     //reset bid price being shown]
+        //     dispatch(setCurrentBidPrice(0))
+        // } else {
+        //     // console.log('already done: ', new_player_obj)
 
+        // }
+        dispatch(nextPlayerAction({
+            playerList
+        }))
     }
 
     const handlePendingListStartClick = (e) => {
@@ -121,7 +129,7 @@ const PlayerCard = () => {
                     </Row>
                     <Row className='slider-btns'>
                         <Col>
-                            <Button disabled={!shouldStartPending} onClick={e => handlePendingListStartClick(e)}>
+                            <Button disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
                                 Start pending player's auction
                             </Button>
                         </Col>
