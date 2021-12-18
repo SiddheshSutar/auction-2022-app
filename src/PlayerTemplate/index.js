@@ -51,6 +51,11 @@ const PlayerCard = () => {
         }
     }, [lastPlayerBought])
 
+    // assign latest list, if changed
+    useEffect(() => {
+        if(initialPlayerListRedux) setcurrentAuctionPlayerList(initialPlayerListRedux)
+    }, [initialPlayerListRedux])
+
     const handleNextPlayer = (e, playerList) => {
         e.preventDefault && e.preventDefault()
         // const localPlayerArr = playerList

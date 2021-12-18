@@ -183,6 +183,10 @@ export const storeSlice = createSlice({
     handlePendingList: (state, action) => {
       console.log('pen Player: ', parseStringifyArray(state.pendingPlayers))
 
+      //assigning pendig to initial to-do : have some diff list
+      state.initialPlayerList = state.pendingPlayers
+      state.shouldStartForPending = false
+      state.disableNext = false
     }
   },
 })
