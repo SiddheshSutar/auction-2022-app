@@ -15,7 +15,8 @@ const initialState = {
   shouldStartForPending: false,
   lastPlayerBought: null,
   playersGenerated: [players_array[0]],
-  pendingPlayers: []
+  pendingPlayers: [],
+  disableNext: false
 }
 
 export const storeSlice = createSlice({
@@ -90,7 +91,7 @@ export const storeSlice = createSlice({
         let arr = parseStringifyArray(state.pendingPlayers)
         // add to pending, only if not bought
         if(!state.lastPlayerBought && state.playerIndexFromJson === 0) {
-          state.pendingPlayers = [state.playersGenerated[0]]
+          state.pendingPlayers = [...arr, parseStringifyArray(state.playersGenerated[0])]
         } else if(state.lastPlayerBought) {
           if(state.lastPlayerBought.Name !== state.currentPlayer.Name) {
             // state.pendingPlayers = arr.concat(parseStringifyArray(state.currentPlayer))
@@ -103,28 +104,37 @@ export const storeSlice = createSlice({
           // state.pendingPlayers =  [...arr, ...parseStringifyArray(state.currentPlayer)]
           state.pendingPlayers =  [...arr, state.currentPlayer]
         }
+
+        console.log('Penddg Player: ', parseStringifyArray(state.pendingPlayers))
+
       }
 
       let { playerList } = action.payload
       const localPlayerArr = playerList
 
-      // fill in pending
-      addToPendingBlock()
-
+      if (state.playerIndexFromJson + 1 <= playerList.length) {
+        
+        // fill in pending
+        addToPendingBlock()
+      }
 
       // if counter exceeds this criteria, eit
       // helpful for last element
-      if (state.playerIndexFromJson + 1 >= playerList.length) {
-        return
-      }
-      
+      console.log('YESSS', state.currentPlayer)
 
+      // if (state.playerIndexFromJson + 1  === playerList.length) {
+        
+      //   return
+      // }
+      
+      console.log('afetr')
       // if player not bought by any team, push to pending
       // if(!checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList))) {
         // console.log('check Player: ', checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList)))
         // console.log('check Player: ', parseStringifyArray(state.currentPlayer))
         
       // }
+
 
 
       // Check if not already present in generated ones
@@ -157,6 +167,9 @@ export const storeSlice = createSlice({
       // console.log('TY: ', parseStringifyArray(state.playersGenerated), state.playerIndexFromJson)
       if (state.playersGenerated.length === playerList.length) {
         state.shouldStartForPending = true
+      }
+      if (state.playersGenerated.length  > playerList.length + 1) {
+        state.disableNext = true
         return
       }
 

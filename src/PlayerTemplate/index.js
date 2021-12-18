@@ -18,6 +18,7 @@ const PlayerCard = () => {
     const playerIndexFromJsonRedux = useSelector((state) => state.store.playerIndexFromJson)
     const shouldStartForPendingRedux = useSelector((state) => state.store.shouldStartForPending)
     const initialPlayerListRedux = useSelector((state) => state.store.initialPlayerList)
+    const disableNextRedux = useSelector((state) => state.store.disableNext)
 
     const [playersgenerated, setPlayersGenerated] = useState([])
     const [shouldStartPending, setshouldStartPending] = useState(false)
@@ -131,7 +132,8 @@ const PlayerCard = () => {
                     </Row>
                     <Row className='slider-btns mb-4 justify-content-end'>
                         <Col className="col col-lg-8">
-                            <Button disabled={shouldStartForPendingRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
+                            {/* <Button disabled={shouldStartForPendingRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+                            <Button disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
                                 Next Player
                             </Button>
                         </Col>
