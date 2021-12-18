@@ -23,18 +23,18 @@ export const storeSlice = createSlice({
   name: 'storeSlice',
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: (state) => {
+    // increment: (state) => {
+    //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
+    //   // doesn't actually mutate the state because it uses the Immer library,
+    //   // which detects changes to a "draft state" and produces a brand new
+    //   // immutable state based off those changes
+    //   state.value += 1
+    // },
+    // decrement: (state) => {
 
-      state.value -= 1
+    //   state.value -= 1
 
-    },
+    // },
     setCurrentBidPrice: (state, action) => {
       if (action.payload >= 0) state.currentBidPrice = action.payload
     },
@@ -112,29 +112,25 @@ export const storeSlice = createSlice({
       let { playerList } = action.payload
       const localPlayerArr = playerList
 
-      if (state.playerIndexFromJson + 1 <= playerList.length) {
-        
-        // fill in pending
-        addToPendingBlock()
-      }
-
       // if counter exceeds this criteria, eit
       // helpful for last element
-      console.log('YESSS', state.currentPlayer)
+      // console.log('before', parseStringifyArray(state.currentPlayer))
 
-      // if (state.playerIndexFromJson + 1  === playerList.length) {
+      if (state.playerIndexFromJson + 1  === playerList.length) {
+        console.log('before', parseStringifyArray(state.currentPlayer), parseStringifyArray(state.pendingPlayers))
         
-      //   return
-      // }
+        // if already currentPlayer is pushe at last, dont push again
+        if(parseStringifyArray(state.currentPlayer).Name !== parseStringifyArray(state.pendingPlayers)[state.pendingPlayers.length-1].Name) {
+          addToPendingBlock()
+        }
+        return
+      } else {
+
+      }
       
       console.log('afetr')
-      // if player not bought by any team, push to pending
-      // if(!checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList))) {
-        // console.log('check Player: ', checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList)))
-        // console.log('check Player: ', parseStringifyArray(state.currentPlayer))
-        
-      // }
 
+      addToPendingBlock()
 
 
       // Check if not already present in generated ones
@@ -168,15 +164,13 @@ export const storeSlice = createSlice({
       if (state.playersGenerated.length === playerList.length) {
         state.shouldStartForPending = true
       }
-      if (state.playersGenerated.length  > playerList.length + 1) {
-        state.disableNext = true
+      if (state.playerIndexFromJson  === playerList.length-1) {
+        // state.disableNext = true
         return
       }
 
     },
     addToPending: (state, action) => {
-      // let arr = parseStringifyArray(state.pendingPlayers)
-      // state.pendingPlayers = arr.concat(action.payload)
 
       // add to pending
       let arr = parseStringifyArray(state.pendingPlayers)

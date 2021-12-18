@@ -52,7 +52,7 @@ const PlayerCard = () => {
     }, [lastPlayerBought])
 
     const handleNextPlayer = (e, playerList) => {
-        e.preventDefault()
+        e.preventDefault && e.preventDefault()
         // const localPlayerArr = playerList
 
         // // Check if next click has happened till length of layer json
