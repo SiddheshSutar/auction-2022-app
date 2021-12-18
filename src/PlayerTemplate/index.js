@@ -97,7 +97,7 @@ const PlayerCard = () => {
         <div class="container">
             <div class="row">
                 <div class="col col-lg-6 padding pr-0">
-                    {currentPlayer.Photo && <div class="player-image" style={{
+                    {currentPlayer?.Photo && <div class="player-image" style={{
                         backgroundImage: `url(${currentPlayer.Photo})`
                     }}>
 
