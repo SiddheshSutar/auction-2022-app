@@ -27,35 +27,36 @@ const players_array =
         Age : 46 ,
         Gender : 'M',
         Photo: 'https://picsum.photos/200/300'
-    },
-    { 
-        id:5,
-        Name : 'Name5' ,
-        Age : 16 ,
-        Gender : 'M',
-        Photo: 'https://picsum.photos/200/300'
-    },
-    { 
-        id: 6,
-        Name : 'Name6' ,
-        Age : 27 ,
-        Gender : 'M',
-        Photo: 'https://picsum.photos/200/300'
-    },
-    { 
-        id: 7,
-        Name : 'Name7' , 
-        Age : 32 ,
-        Gender : 'M',
-        Photo: 'https://picsum.photos/200/300'
-    },
-    { 
-        id: 8,
-        Name : 'Name8' ,
-        Age : 19 ,
-        Gender : 'F',
-        Photo: 'https://picsum.photos/200/300'
-    },
+    }
+    // ,
+    // { 
+    //     id:5,
+    //     Name : 'Name5' ,
+    //     Age : 16 ,
+    //     Gender : 'M',
+    //     Photo: 'https://picsum.photos/200/300'
+    // },
+    // { 
+    //     id: 6,
+    //     Name : 'Name6' ,
+    //     Age : 27 ,
+    //     Gender : 'M',
+    //     Photo: 'https://picsum.photos/200/300'
+    // },
+    // { 
+    //     id: 7,
+    //     Name : 'Name7' , 
+    //     Age : 32 ,
+    //     Gender : 'M',
+    //     Photo: 'https://picsum.photos/200/300'
+    // },
+    // { 
+    //     id: 8,
+    //     Name : 'Name8' ,
+    //     Age : 19 ,
+    //     Gender : 'F',
+    //     Photo: 'https://picsum.photos/200/300'
+    // },
 
 ]
 

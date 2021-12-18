@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import players_array from '../externalLists/ListOfPlayers'
 import teams from '../externalLists/ListOfTeams'
 import cloneDeep from 'lodash/cloneDeep'
+import { checkIfBought, parseStringifyArray } from '../helpers'
 
 const initialState = {
   value: 0,
@@ -12,8 +13,9 @@ const initialState = {
   currentBidPrice: 0,
   playerIndexFromJson: 0,
   shouldStartForPending: false,
-  lastPlayerRemoved: null,
-  playersGenerated: []
+  lastPlayerBought: null,
+  playersGenerated: [players_array[0]],
+  pendingPlayers: []
 }
 
 export const storeSlice = createSlice({
@@ -35,9 +37,9 @@ export const storeSlice = createSlice({
     setCurrentBidPrice: (state, action) => {
       if (action.payload >= 0) state.currentBidPrice = action.payload
     },
-    setCurrentPlayerInRedux: (state, action) => {
-      state.currentPlayer = action.payload
-    },
+    // setCurrentPlayerInRedux: (state, action) => {
+    //   state.currentPlayer = action.payload
+    // },
     assignteamToPlayer: (state, action) => { // ({teamClicked, currentPlayer})
       // assign teamname in player obj in playerlist
       // add player to team's playerlist
@@ -74,7 +76,7 @@ export const storeSlice = createSlice({
           // console.log('Playerremoved: ', playerObj, newPlayerList)
 
           // assign lastPlyer got removed
-          state.lastPlayerRemoved = { ...playerObj }
+          state.lastPlayerBought = { ...playerObj }
 
           // reset displayed bid price
           state.currentBidPrice = 0
@@ -83,38 +85,96 @@ export const storeSlice = createSlice({
     },
     nextPlayerAction: (state, action) => {
 
+      const addToPendingBlock = () => {
+        // add to pending
+        let arr = parseStringifyArray(state.pendingPlayers)
+        // add to pending, only if not bought
+        if(!state.lastPlayerBought && state.playerIndexFromJson === 0) {
+          state.pendingPlayers = [state.playersGenerated[0]]
+        } else if(state.lastPlayerBought) {
+          if(state.lastPlayerBought.Name !== state.currentPlayer.Name) {
+            // state.pendingPlayers = arr.concat(parseStringifyArray(state.currentPlayer))
+            // state.pendingPlayers =  [...arr, ...parseStringifyArray(state.currentPlayer)]
+            state.pendingPlayers =  [...arr, state.currentPlayer]
+          }
+
+        } else if(!state.lastPlayerBought) {
+          // state.pendingPlayers = arr.concat(parseStringifyArray(state.currentPlayer))
+          // state.pendingPlayers =  [...arr, ...parseStringifyArray(state.currentPlayer)]
+          state.pendingPlayers =  [...arr, state.currentPlayer]
+        }
+      }
+
       let { playerList } = action.payload
       const localPlayerArr = playerList
 
-      // Check if next click has happened till length of layer json
-      if (state.playerIndexFromJson + 1 === playerList.length) {
-        // setshouldStartPending(true)
-        state.shouldStartForPending = true
+      // fill in pending
+      addToPendingBlock()
+
+
+      // if counter exceeds this criteria, eit
+      // helpful for last element
+      if (state.playerIndexFromJson + 1 >= playerList.length) {
         return
       }
+      
+
+      // if player not bought by any team, push to pending
+      // if(!checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList))) {
+        // console.log('check Player: ', checkIfBought(parseStringifyArray(state.currentPlayer), parseStringifyArray(state.initialTeamList)))
+        // console.log('check Player: ', parseStringifyArray(state.currentPlayer))
+        
+      // }
+
 
       // Check if not already present in generated ones
       let new_player_obj = localPlayerArr[state.playerIndexFromJson + 1]
-      if (state.playersGenerated.every(item => item.id !== new_player_obj.id)) {
 
-        state.playersGenerated = [ //to-do
-          ...initialState.playersGenerated,
-          new_player_obj,
-        ]
-        console.log('gen Player: ', initialState.playersGenerated)
+      const arrToIterate = parseStringifyArray(state.playersGenerated)
+      if (arrToIterate.length === 0 || 
+        arrToIterate.every(item => item.id !== new_player_obj.id)
+      ) {
+
+
+        state.playersGenerated = arrToIterate.concat(new_player_obj)
+        // console.log('gen Player: ', arrToIterate.concat(new_player_obj))
         state.currentPlayer = new_player_obj
         state.playerIndexFromJson += 1
 
         //reset bid price being shown]
-        // dispatch(setCurrentBidPrice(0))
         state.currentBidPrice = 0
+
+        
+        // console.log('pen Player: ', arr.concat(parseStringifyArray(state.currentPlayer)))
+        // console.log('pen Player genrrr: ', parseStringifyArray(state.playersGenerated))
+
       } else {
         // console.log('already done: ', new_player_obj)
+      }
 
+      //after player is generated
+      // Check if next click has happened till length of generated players
+      // console.log('TY: ', parseStringifyArray(state.playersGenerated), state.playerIndexFromJson)
+      if (state.playersGenerated.length === playerList.length) {
+        state.shouldStartForPending = true
+        return
       }
 
     },
-    handlePendingListStartClick: (state, action) => {
+    addToPending: (state, action) => {
+      // let arr = parseStringifyArray(state.pendingPlayers)
+      // state.pendingPlayers = arr.concat(action.payload)
+
+      // add to pending
+      let arr = parseStringifyArray(state.pendingPlayers)
+      // add to pending, only if not bought
+      if(state.lastPlayerBought.Name !== action.payload.Name) {
+
+        state.pendingPlayers = arr.concat(parseStringifyArray(action.payload))
+      }
+    },
+    handlePendingList: (state, action) => {
+      console.log('pen Player: ', parseStringifyArray(state.pendingPlayers))
 
     }
   },
@@ -123,7 +183,7 @@ export const storeSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
-  nextPlayerAction
+  nextPlayerAction, handlePendingList, addToPending
 } = storeSlice.actions
 
 export default storeSlice.reducer
