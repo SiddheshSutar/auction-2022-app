@@ -55,7 +55,6 @@ const PlayerCard = () => {
     useEffect(() => {
         if(initialPlayerListRedux) setcurrentAuctionPlayerList(initialPlayerListRedux)
     }, [initialPlayerListRedux])
-
     const handleNextPlayer = (e, playerList) => {
         e.preventDefault && e.preventDefault()
         // const localPlayerArr = playerList
@@ -96,12 +95,8 @@ const PlayerCard = () => {
     return (
         <div class="container">
             <div class="row">
-                <div class="col col-lg-6 padding pr-0">
-                    {currentPlayer?.Photo && <div class="player-image" style={{
-                        backgroundImage: `url(${currentPlayer.Photo})`
-                    }}>
-
-                    </div>}
+                <div id ="player-image-div" class="col col-lg-4 padding pr-0">
+                    <img  id = "player-photo"src ={currentPlayer.Photo}></img>    
                 </div>
                 <div class="col player-info padding pl-0 ">
                     <div class="info-row name mb-4">{currentPlayer.Name}</div>

@@ -2,7 +2,7 @@
     border: 3px solid #f44646;
     border-radius: 30px;
     width: 90vw;
-    
+   
 }
 
 .root {
@@ -22,7 +22,7 @@
 
 .name {
     color: #f44646;
-    
+   
 }
 
 .padding {
@@ -32,7 +32,7 @@
 .player-image {
     /* background-image: url('https://picsum.photos/200/300'); */
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     height: 30vw;
     border: 2px solid rgb(68, 68, 68);
     background-position: center;
@@ -87,4 +87,13 @@
     font-weight: bold;
     font-size: 30px;
     line-height: 30px;
+}
+#player-photo{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+#player-image-div{
+    min-height: 500px;
+    height: 500px;
 }

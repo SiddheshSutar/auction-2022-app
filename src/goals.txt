@@ -1,0 +1,6 @@
+19-12:
+
+1. store json via node
+2. start ending players conti nued auction
+3. left rght UI
+4. colors
