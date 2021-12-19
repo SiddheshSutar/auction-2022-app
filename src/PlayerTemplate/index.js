@@ -5,12 +5,11 @@ import players_array from '../externalLists/ListOfPlayers';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentPlayerInRedux, setCurrentBidPrice, nextPlayerAction, handlePendingList,
     addToPending } from '../redux/storeSlice'
+import axios from 'axios';
 
 const PlayerCard = () => {
 
-    // const count = useSelector((state) => state.counter.value)
     const dispatch = useDispatch()
-    // onClick={() => dispatch(increment())}
 
     const lastPlayerBought = useSelector((state) => state.store.lastPlayerBought)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
@@ -31,18 +30,13 @@ const PlayerCard = () => {
         setcurrentAuctionPlayerList(players_array)
     }, [])
 
-    // useEffect(() => {
-    //     //send update to redux
-    //     if (!player) return
-    //     dispatch(setCurrentPlayerInRedux(player))
-    // }, [player])
     useEffect(() => {
         if(!currentPlayer) return
         // console.log('St Up:', currentPlayer)
         // setPlayer(currentPlayer)
     }, [currentPlayer])
 
-    // when team list refreshes and player was bought, change the player being displayed
+    // when team list refreshes and player was bought, get the player for being displayed
     useEffect(() => {
 
         if(lastPlayerBought) {
@@ -55,41 +49,15 @@ const PlayerCard = () => {
     useEffect(() => {
         if(initialPlayerListRedux) setcurrentAuctionPlayerList(initialPlayerListRedux)
     }, [initialPlayerListRedux])
+
     const handleNextPlayer = (e, playerList) => {
         e.preventDefault && e.preventDefault()
-        // const localPlayerArr = playerList
-
-        // // Check if next click has happened till length of layer json
-        // if (playerIndexFromJson + 1 === playerList.length) {
-        //     setshouldStartPending(true)
-        //     return
-        // }
-
-        // // Check if not already present in generated ones
-        // let new_player_obj = localPlayerArr[playerIndexFromJson + 1]
-        // if (playersgenerated.every(item => item.id !== new_player_obj.id)) {
-        //     setPlayersGenerated(state => {
-        //         let newArr = state
-        //         newArr.push(new_player_obj)
-        //         return newArr
-        //     })
-        //     // console.log('New Player: ', new_player_obj)
-        //     setPlayer(new_player_obj)
-        //     setplayerIndexFromJson(state => state + 1)
-
-        //     //reset bid price being shown]
-        //     dispatch(setCurrentBidPrice(0))
-        // } else {
-        //     // console.log('already done: ', new_player_obj)
-
-        // }
         dispatch(nextPlayerAction({
             playerList
         }))
     }
 
     const handlePendingListStartClick = (e) => {
-        // setcurrentAuctionPlayerList(players_array)
         dispatch(handlePendingList())
     }
     return (

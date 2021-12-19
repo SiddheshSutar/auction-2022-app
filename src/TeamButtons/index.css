@@ -53,7 +53,7 @@
 
 .player-entry {
     display: flex;
-    max-height: 2rem;
+    max-height: fit-content;
     position: relative;
     border: 1px solid rgb(68, 68, 68);
 }

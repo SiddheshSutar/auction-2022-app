@@ -187,6 +187,7 @@ const players_array =
        "Timestamp": "2021/12/10 9:16:52 PM GMT+5:30",
        "Name": "Rutuja Rajaram Kalambate",
        "Age": 17,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1gvAI9DqjwpvuWOeysBjS3-2sQQKAJxxZ"
      },
     {
@@ -194,6 +195,7 @@ const players_array =
        "Timestamp": "2021/12/13 8:40:41 PM GMT+5:30",
        "Name": "Tanvi Amrute",
        "Age": 25,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1C65E5jNMge3vVzVAHztg_Y-fB_uN33uR"
      },
     {
@@ -201,6 +203,7 @@ const players_array =
        "Timestamp": "2021/12/10 10:54:13 PM GMT+5:30",
        "Name": "Anagha",
        "Age": 17,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1D_bm0KG39LW9JdY1BZgFWyHtiUSrUt4c"
      },
     {
@@ -208,6 +211,7 @@ const players_array =
        "Timestamp": "2021/12/11 12:16:59 PM GMT+5:30",
        "Name": "Sneha Gupta",
        "Age": 21,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1CsaG-JsAhQSrZS43aC4x944Cs6OGaqnG"
      },
     {
@@ -215,6 +219,7 @@ const players_array =
        "Timestamp": "2021/12/10 2:44:11 PM GMT+5:30",
        "Name": "Mitali",
        "Age": 23,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1KO7cHYr6jU5QDS5oZTdiMtqd-SGi9pEX"
      },
     {
@@ -222,6 +227,7 @@ const players_array =
        "Timestamp": "2021/12/10 4:36:32 PM GMT+5:30",
        "Name": "Disha Amin",
        "Age": 24,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1Uw5oHnKXPj94MElyDe17gAqFVZ3J6idj"
      },
     {
@@ -229,6 +235,7 @@ const players_array =
        "Timestamp": "2021/12/13 2:10:13 PM GMT+5:30",
        "Name": "Apurva Milind Sawant",
        "Age": 20,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1ToyRBMFgUZwsx0DdjWXKE29M4KLesZaE"
      },
     {
@@ -236,6 +243,7 @@ const players_array =
        "Timestamp": "2021/12/13 12:03:47 AM GMT+5:30",
        "Name": "Kimaya Palav",
        "Age": 19,
+       "Gender": "F",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1bp4Ec5Damha_gPLYbNmQW_yaSWcrobId"
      },
     {
@@ -243,6 +251,7 @@ const players_array =
        "Timestamp": "2021/12/10 2:50:04 PM GMT+5:30",
        "Name": "Inderdev Gupta",
        "Age": 48,
+       "Gender": "S",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1X94AW1AMfDZvMcL23n8qDQ62VnK7I0Ld"
      },
    {  
@@ -250,6 +259,7 @@ const players_array =
        "Timestamp": "2021/12/16 5:32:49 PM GMT+5:30",
        "Name": "Neeladhar Poojari (babu)",
        "Age": 45,
+       "Gender": "S",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1rgIJOigV12GXyeg1GfBObKtCcAX76jEm"
      },
    {
@@ -257,6 +267,7 @@ const players_array =
        "Timestamp": "2021/12/13 8:43:13 PM GMT+5:30",
        "Name": "Santosh Tavade",
        "Age": 50,
+       "Gender": "S",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=14CbCb_KFaKWS8jU1erYLHZRETXC4dsLv"
      },
     {
@@ -264,6 +275,7 @@ const players_array =
        "Timestamp": "2021/12/13 8:13:38 PM GMT+5:30",
        "Name": "Satish Desai",
        "Age": 56,
+       "Gender": "S",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1wsQUVMI-hxhdtoyDpze4H2UENzfAS0fR"
      },
     {
@@ -271,6 +283,7 @@ const players_array =
        "Timestamp": "2021/12/18 11:36:19 PM GMT+5:30",
        "Name": "Hrishikesh Kudalkar",
        "Age": 46,
+       "Gender": "S",
        "Photo": "https://drive.google.com/u/0/uc?usp=forms_web&id=1Z41fRebW4QbHxwxpf60bfSVrdS7EgHaN"
      }
    ]

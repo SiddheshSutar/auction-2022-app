@@ -23,29 +23,13 @@ export const storeSlice = createSlice({
   name: 'storeSlice',
   initialState,
   reducers: {
-    // increment: (state) => {
-    //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    //   // doesn't actually mutate the state because it uses the Immer library,
-    //   // which detects changes to a "draft state" and produces a brand new
-    //   // immutable state based off those changes
-    //   state.value += 1
-    // },
-    // decrement: (state) => {
-
-    //   state.value -= 1
-
-    // },
     setCurrentBidPrice: (state, action) => {
       if (action.payload >= 0) state.currentBidPrice = action.payload
     },
-    // setCurrentPlayerInRedux: (state, action) => {
-    //   state.currentPlayer = action.payload
-    // },
     assignteamToPlayer: (state, action) => { // ({teamClicked, currentPlayer})
       // assign teamname in player obj in playerlist
       // add player to team's playerlist
 
-      // let currentPlayerList = [...state.initialPlayerList]
       let currentPlayerList = cloneDeep(state.initialPlayerList)
 
       let playerBought = action.payload.currentPlayer
@@ -68,14 +52,6 @@ export const storeSlice = createSlice({
             }
           })
 
-          // /remove this player from auction list
-          let newPlayerList = initialState.initialPlayerList.filter(playeritem => { //Doubtful access
-            return playerObj.Name !== playeritem.Name
-          })
-
-          state.initialPlayerList = newPlayerList
-          // console.log('Playerremoved: ', playerObj, newPlayerList)
-
           // assign lastPlyer got removed
           state.lastPlayerBought = { ...playerObj }
 
@@ -94,14 +70,10 @@ export const storeSlice = createSlice({
           state.pendingPlayers = [...arr, parseStringifyArray(state.playersGenerated[0])]
         } else if(state.lastPlayerBought) {
           if(state.lastPlayerBought.Name !== state.currentPlayer.Name) {
-            // state.pendingPlayers = arr.concat(parseStringifyArray(state.currentPlayer))
-            // state.pendingPlayers =  [...arr, ...parseStringifyArray(state.currentPlayer)]
             state.pendingPlayers =  [...arr, state.currentPlayer]
           }
 
         } else if(!state.lastPlayerBought) {
-          // state.pendingPlayers = arr.concat(parseStringifyArray(state.currentPlayer))
-          // state.pendingPlayers =  [...arr, ...parseStringifyArray(state.currentPlayer)]
           state.pendingPlayers =  [...arr, state.currentPlayer]
         }
 
@@ -120,7 +92,13 @@ export const storeSlice = createSlice({
         console.log('before', parseStringifyArray(state.currentPlayer), parseStringifyArray(state.pendingPlayers))
         
         // if already currentPlayer is pushe at last, dont push again
-        if(parseStringifyArray(state.currentPlayer).Name !== parseStringifyArray(state.pendingPlayers)[state.pendingPlayers.length-1].Name) {
+        if(state.currentPlayer &&
+          state.pendingPlayers && parseStringifyArray(state.pendingPlayers).length !==0 &&
+          (
+            parseStringifyArray(state.currentPlayer).Name !== 
+            parseStringifyArray(state.pendingPlayers)[state.pendingPlayers.length-1].Name
+          )
+        ) {
           addToPendingBlock()
         }
         return
@@ -165,7 +143,7 @@ export const storeSlice = createSlice({
         state.shouldStartForPending = true
       }
       if (state.playerIndexFromJson  === playerList.length-1) {
-        // state.disableNext = true
+        // state.disableNext = true //to-do
         return
       }
 
@@ -184,7 +162,11 @@ export const storeSlice = createSlice({
       console.log('pen Player: ', parseStringifyArray(state.pendingPlayers))
 
       //assigning pendig to initial to-do : have some diff list
-      state.initialPlayerList = state.pendingPlayers
+      state.initialPlayerList = parseStringifyArray(state.pendingPlayers)
+      state.currentPlayer = parseStringifyArray(state.pendingPlayers)[0]
+      state.playersGenerated = []
+      state.playerIndexFromJson = 0
+      state.pendingPlayers = []
       state.shouldStartForPending = false
       state.disableNext = false
     }
