@@ -5,7 +5,6 @@ import cloneDeep from 'lodash/cloneDeep'
 import { checkIfBought, parseStringifyArray } from '../helpers'
 
 const initialState = {
-  value: 0,
   currentPlayer: players_array[0],
   initialTeamList: cloneDeep(teams),
   initialPlayerList: cloneDeep(players_array),
@@ -14,9 +13,11 @@ const initialState = {
   playerIndexFromJson: 0,
   shouldStartForPending: false,
   lastPlayerBought: null,
+
   playersGenerated: [players_array[0]],
   pendingPlayers: [],
-  disableNext: false
+  disableNext: false,
+  doneFetchingFromLocal: false
 }
 
 export const storeSlice = createSlice({
@@ -169,6 +170,44 @@ export const storeSlice = createSlice({
       state.pendingPlayers = []
       state.shouldStartForPending = false
       state.disableNext = false
+    },
+    setLocalStorage: (state, action) => {
+      try{
+        localStorage.setItem('auctionstate', JSON.stringify(parseStringifyArray(state)))
+      } catch(e) {
+        console.log('Error in setLocalStorage: ',e)
+        alert('Error in setLocalStorage: ',e)
+      }
+    },
+    getLocalStorage: (state, action) => {
+      try{
+        const newState = JSON.parse(localStorage.getItem('auctionstate', parseStringifyArray(state)))
+        // state = JSON.parse(newState)
+
+        // assign individually fo refrsh
+        state.currentPlayer = newState.currentPlayer
+        state.initialTeamList = newState.initialTeamList
+        state.initialPlayerList = newState.initialPlayerList
+        state.currentBidPrice = newState.currentBidPrice
+
+        state.playerIndexFromJson = newState.playerIndexFromJson-1 // one player less, since after buy, it increases index
+        state.shouldStartForPending = newState.shouldStartForPending
+        state.lastPlayerBought = newState.lastPlayerBought
+        state.playersGenerated = newState.playersGenerated
+        state.pendingPlayers = newState.pendingPlayers
+
+        state.disableNext = newState.disableNext
+
+        console.log('NEW STATE:', newState)
+
+        state.doneFetchingFromLocal = true
+      } catch(e) {
+        console.log('Error in getLocalStorage: ',e)
+        alert('Error in getLocalStorage: ',e)
+      }
+    }, 
+    setfetcherFlag: (state, action) => {
+      state.doneFetchingFromLocal = action.payload
     }
   },
 })
@@ -176,7 +215,8 @@ export const storeSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
-  nextPlayerAction, handlePendingList, addToPending
+  nextPlayerAction, handlePendingList, addToPending,
+  getLocalStorage , setLocalStorage, setfetcherFlag
 } = storeSlice.actions
 
 export default storeSlice.reducer

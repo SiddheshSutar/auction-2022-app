@@ -8,19 +8,26 @@ import { assignteamToPlayer } from '../redux/storeSlice'
 const ConfirmBuyPlayerModal = ({
     show,
     handleYes,
-    handleNo,setShowModal
+    handleNo,
+    setShowModal,
+    teamNamePassed,
+    currentBidPrice,
+    currentPlayer
 }) => {
     return <>
-        <Modal show={show} onHide={() => setShowModal(false)} >
-            <Modal.Header>
+        <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header className="justify-content-center">
                 <Modal.Title>Confirm ?</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
                 <p>Confirming to buy player ?</p>
+                <p>{teamNamePassed} wants:</p>
+                <p>{currentPlayer.Name} for:</p>
+                <p>{currentBidPrice} </p>
             </Modal.Body>
 
-            <Modal.Footer>
+            <Modal.Footer className="justify-content-center">
                 <Button variant="primary" onClick={e => handleYes(e)}>yes</Button>
                 <Button variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
@@ -31,6 +38,7 @@ const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
+    const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
     const [teamClicked, setTeamClicked] = useState(null)
     const dispatch = useDispatch()
 
@@ -63,6 +71,9 @@ const TeamButtons = () => {
                     handleYes={e => handleBuyPlayer(e)}
                     handleNo={() => setShowModal(false)}
                     setShowModal={setShowModal}
+                    currentBidPrice={currentBidPrice}
+                    teamNamePassed={teamClicked}
+                    currentPlayer={currentPlayer}
                 />
             }
             <div class="row title">Team Summary</div>

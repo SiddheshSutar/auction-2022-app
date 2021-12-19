@@ -92,8 +92,30 @@
     height: 100%;
     width: 100%;
     object-fit: contain;
+    border: 2px solid #f44646;
+    border-radius: 10px;
 }
 #player-image-div{
     min-height: 500px;
     height: 500px;
+}
+
+
+.one-btn.btn-primary {
+    background-color: #6ff16f;
+    border-color: #6ff16f;
+    color: brown;
+}
+.one-btn.btn-primary:hover {
+    background-color: #069506;
+    border-color: #069506;
+}
+.five-btn.btn-primary {
+    background-color: #f9c462;
+    border-color: #f9c462;
+    color: brown;
+}
+.five-btn.btn-primary:hover {
+    background-color: #f1a00c;
+    border-color: #f1a00c;
 }
