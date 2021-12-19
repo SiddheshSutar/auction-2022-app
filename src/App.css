@@ -28,6 +28,45 @@
   color: #61dafb;
 }
 
+.max-width-90.container {
+  max-width: 95vw;
+}
+
+
+.fs-2 {
+  font-size: 2rem;
+  line-height: 2rem
+}
+.fs-1dot5, .fs-1dot5.btn  {
+  font-size: 1.5rem;
+  line-height: 1.5rem
+}
+.fw-bold {
+  font-weight: bold;
+}
+.clr-primary {
+  color: #f44646;
+}
+.clr-secondary {
+  color: #6ff16f;
+}
+.clr-tertiary {
+  color: #f1a00c;
+}
+.bg-color-faint,
+.btn.bg-color-faint {
+  background-color: olive;
+}
+.bg-color-faint:disabled,
+.btn.bg-color-faint:disabled {
+  background-color: #d1d100;
+  cursor: not-allowed;
+}
+.bg-color-faint:hover,
+.btn.bg-color-faint:hover {
+  background-color: #b6b607;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

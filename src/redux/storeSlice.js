@@ -44,20 +44,25 @@ export const storeSlice = createSlice({
 
             if (action.payload.teamClicked === team.Name) {
               // console.log('Player bought:: ', playerObj)
+              const balance = team.Amount_Assigned - team.Amount_Used
+              if(balance - state.currentBidPrice < 0) {
+                alert('Not enough balance left. Available balance: ',JSON.stringify(team.Amount_Assigned - state.currentBidPrice))
+                return
+              } 
 
               team.Players.push({
                 ...playerObj,
                 SoldFor: state.currentBidPrice
               })
               team.Amount_Used = team.Amount_Used + state.currentBidPrice
+
+              // assign lastPlyer got removed
+              state.lastPlayerBought = { ...playerObj }
+
+              // reset displayed bid price
+              state.currentBidPrice = 0
             }
           })
-
-          // assign lastPlyer got removed
-          state.lastPlayerBought = { ...playerObj }
-
-          // reset displayed bid price
-          state.currentBidPrice = 0
         }
       })
     },
@@ -70,7 +75,18 @@ export const storeSlice = createSlice({
         if(!state.lastPlayerBought && state.playerIndexFromJson === 0) {
           state.pendingPlayers = [...arr, parseStringifyArray(state.playersGenerated[0])]
         } else if(state.lastPlayerBought) {
-          if(state.lastPlayerBought.Name !== state.currentPlayer.Name) {
+          console.log('Check Player: ', parseStringifyArray(state.lastPlayerBought), parseStringifyArray(state.currentPlayer))
+
+          if(
+            (
+              state.lastPlayerBought.Name !== state.currentPlayer.Name
+            ) 
+            // &&
+            // ( // if currentPlayer has not been pushed in pending already
+            //   state.pendingPlayers && parseStringifyArray(state.pendingPlayers)[parseStringifyArray(state.pendingPlayers).length-1].Name !==
+            //   state.currentPlayer.Name
+            // )
+          ) {
             state.pendingPlayers =  [...arr, state.currentPlayer]
           }
 
@@ -89,7 +105,7 @@ export const storeSlice = createSlice({
       // helpful for last element
       // console.log('before', parseStringifyArray(state.currentPlayer))
 
-      if (state.playerIndexFromJson + 1  === playerList.length) {
+      if (state.playerIndexFromJson + 1  === playerList.length) { // 19-12
         console.log('before', parseStringifyArray(state.currentPlayer), parseStringifyArray(state.pendingPlayers))
         
         // if already currentPlayer is pushe at last, dont push again
@@ -125,6 +141,7 @@ export const storeSlice = createSlice({
         // console.log('gen Player: ', arrToIterate.concat(new_player_obj))
         state.currentPlayer = new_player_obj
         state.playerIndexFromJson += 1
+
 
         //reset bid price being shown]
         state.currentBidPrice = 0
@@ -173,6 +190,22 @@ export const storeSlice = createSlice({
     },
     setLocalStorage: (state, action) => {
       try{
+
+        // const currentState = {}
+
+        // currentState.currentPlayer = state.currentPlayer
+        // currentState.initialTeamList = parseStringifyArray(state.initialTeamList)
+        // currentState.initialPlayerList = parseStringifyArray(state.initialPlayerList)
+        // currentState.currentBidPrice = state.currentBidPrice
+
+        // currentState.playerIndexFromJson = state.playerIndexFromJson-1
+        // currentState.shouldStartForPending = state.shouldStartForPending
+        // currentState.lastPlayerBought = state.lastPlayerBought
+        // currentState.playersGenerated = parseStringifyArray(state.playersGenerated)
+        // currentState.pendingPlayers = parseStringifyArray(state.pendingPlayers)
+
+        // currentState.disableNext = state.disableNext
+
         localStorage.setItem('auctionstate', JSON.stringify(parseStringifyArray(state)))
       } catch(e) {
         console.log('Error in setLocalStorage: ',e)
@@ -190,7 +223,10 @@ export const storeSlice = createSlice({
         state.initialPlayerList = newState.initialPlayerList
         state.currentBidPrice = newState.currentBidPrice
 
-        state.playerIndexFromJson = newState.playerIndexFromJson-1 // one player less, since after buy, it increases index
+        state.playerIndexFromJson = 
+        // newState.playerIndexFromJson > 0 ?
+        //  newState.playerIndexFromJson-1 : newState.playerIndexFromJson// one player less, since > let new_player_obj = localPlayerArr[state.playerIndexFromJson + 1]
+        newState.playerIndexFromJson
         state.shouldStartForPending = newState.shouldStartForPending
         state.lastPlayerBought = newState.lastPlayerBought
         state.playersGenerated = newState.playersGenerated

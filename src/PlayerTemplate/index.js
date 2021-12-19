@@ -17,16 +17,16 @@ const ConfirmfetchHistoryModal = ({
     return <>
         <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
             <Modal.Header className="justify-content-center">
-                <Modal.Title>Confirm ?</Modal.Title>
+                <Modal.Title className="fs-2">Confirm ?</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <p>Confirming to fetch from history ?</p>
+                <p className="fs-2">Confirming to fetch from history ?</p>
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
-                <Button variant="primary" onClick={e => handleYes(e)}>yes</Button>
-                <Button variant="secondary" onClick={handleNo}>no</Button>
+                <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>yes</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
     </>
@@ -99,6 +99,8 @@ const PlayerCard = () => {
         dispatch(nextPlayerAction({
             playerList
         }))
+        dispatch(setLocalStorage())
+
     }
 
     const handlePendingListStartClick = (e) => {
@@ -110,7 +112,7 @@ const PlayerCard = () => {
     }
     
     return (
-        <div class="container">
+        <div class="container max-width-90">
             <div class="row">
                 <div id ="player-image-div" class="col col-lg-4 padding pr-0">
                     <img  id = "player-photo"src ={currentPlayer.Photo}></img>    
@@ -152,21 +154,21 @@ const PlayerCard = () => {
                     <Row className='slider-btns mb-4 justify-content-center'>
                         <Col className="col col-lg-8 text-center">
                             {/* <Button disabled={shouldStartForPendingRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-                            <Button disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
+                            <Button className="bg-color-faint" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
                                 Next Player
                             </Button>
                         </Col>
                     </Row>
                     <Row className='slider-btns'>
                         <Col>
-                            <Button disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+                            <Button className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
                                 Start pending player's auction
                             </Button>
                         </Col>
                     </Row>
                     <Row className='slider-btns mt-2'>
                         <Col>
-                            <Button onClick={e => setShowModal(true)}>
+                            <Button className="bg-color-faint" onClick={e => setShowModal(true)}>
                                 Fetch From history ?
                             </Button>
                         </Col>

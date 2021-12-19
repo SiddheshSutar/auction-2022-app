@@ -17,19 +17,19 @@ const ConfirmBuyPlayerModal = ({
     return <>
         <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
             <Modal.Header className="justify-content-center">
-                <Modal.Title>Confirm ?</Modal.Title>
+                <Modal.Title className="fs-2">Confirm ?</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <p>Confirming to buy player ?</p>
-                <p>{teamNamePassed} wants:</p>
-                <p>{currentPlayer.Name} for:</p>
-                <p>{currentBidPrice} </p>
+                <p className="fs-2">Confirming to buy player ?</p>
+                <p className="fs-2 fw-bold "><span className="clr-primary">{teamNamePassed}</span> wants:</p>
+                <p className="fs-2 fw-bold "><span className="clr-secondary">{currentPlayer.Name}</span> for amount:</p>
+                <p className="fs-2 fw-bold clr-tertiary">{currentBidPrice} </p>
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
-                <Button variant="primary" onClick={e => handleYes(e)}>yes</Button>
-                <Button variant="secondary" onClick={handleNo}>no</Button>
+                <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>yes</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
     </>
@@ -63,7 +63,7 @@ const TeamButtons = () => {
     }, [showModal])
 
     return (
-        <div class="container team-buttons-cntr">
+        <div class="container team-buttons-cntr max-width-90">
             {
                 showModal &&
                 <ConfirmBuyPlayerModal
@@ -85,7 +85,7 @@ const TeamButtons = () => {
                             <div class="col">
                                 <button
                                     type="button"
-                                    class="btn btn-primary team-action-button"
+                                    class="btn btn-primary team-action-button fs-1dot5"
                                     name={team.Name}
                                     onClick={e => handleClickBuyTeam(e, team.Name)}
                                 >
@@ -101,7 +101,11 @@ const TeamButtons = () => {
                                                             team.Amount_Used
                                                         }
                                                     </span>/
-                                                    <span class="team-coins-total">200</span>
+                                                    <span class="team-coins-total">
+                                                        {
+                                                            team.Amount_Assigned
+                                                        }
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
