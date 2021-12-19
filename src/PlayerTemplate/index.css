@@ -77,8 +77,8 @@
 
 .current-bid-price {
     border: 2px solid #f44646;
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 85px;
+    line-height: 92px;
     font-weight: bold;
 }
 
@@ -87,6 +87,10 @@
     font-weight: bold;
     font-size: 30px;
     line-height: 30px;
+}
+.slider-btns .numeric-row.col button{
+    font-size: 40px;
+    line-height: 40px;
 }
 #player-photo{
     height: 100%;

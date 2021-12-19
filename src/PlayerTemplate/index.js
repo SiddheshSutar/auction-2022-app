@@ -127,7 +127,7 @@ const PlayerCard = () => {
                     {/* <div class="info-row number mb-4"> Number</div> */}
                     {/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
                     <Row className='slider-btns mb-4'>
-                        <Col className="col-4">
+                        <Col className="col-4 numeric-row">
                             <Row className='mb-2'>
                                 <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
                                     -
@@ -144,7 +144,7 @@ const PlayerCard = () => {
                                 {currentBidPrice}
                             </div>
                         </Col>
-                        <Col className="col-4">
+                        <Col className="col-4 numeric-row">
                             <Row className='mb-2'>
                                 <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
                                     +
@@ -164,9 +164,9 @@ const PlayerCard = () => {
                         </Col>
                     </Row>
                     <Row className='slider-btns'>
-                        <Col className="">
-                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
-                                Next Player
+                        <Col>
+                            <Button className="bg-color-faint" onClick={e => setShowModal(true)}>
+                                Fetch From history ?
                             </Button>
                         </Col>
                         <Col>
@@ -174,9 +174,9 @@ const PlayerCard = () => {
                                 Start pending player's auction
                             </Button>
                         </Col>
-                        <Col>
-                            <Button className="bg-color-faint" onClick={e => setShowModal(true)}>
-                                Fetch From history ?
+                        <Col className="">
+                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
+                                Next Player
                             </Button>
                         </Col>
                     </Row>
