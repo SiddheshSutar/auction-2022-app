@@ -85,8 +85,14 @@ const TeamButtons = () => {
                             <div class="col">
                                 <button
                                     type="button"
-                                    class="btn btn-primary team-action-button fs-1dot5"
+                                    class={`btn btn-primary team-action-button fs-1dot5 ${
+                                        team.Color
+                                    }`}
                                     name={team.Name}
+                                    style={{
+                                        backgroundColor: team.Color,
+                                        borderColor: team.Color
+                                    }}
                                     onClick={e => handleClickBuyTeam(e, team.Name)}
                                 >
                                     <div class="row">
@@ -118,7 +124,10 @@ const TeamButtons = () => {
                                 {
                                     team.Players.map((player, index) => (
                                         player ?
-                                            <div class="player-entry row mx-1">
+                                            <div class={`player-entry row mx-1 ${
+                                                player.Gender === 'F' ? 'pink-bg' :
+                                                player.Gender === 'S' ? 'green-bg' : ''
+                                            }`}>
                                                 <div class="player-name col col-9 text-align-left">{player.Name}</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
                                             </div> :

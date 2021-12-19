@@ -83,7 +83,7 @@
 }
 
 .slider-btns .col button {
-    width: inherit;
+    /* width: inherit; */
     font-weight: bold;
     font-size: 30px;
     line-height: 30px;
@@ -96,7 +96,7 @@
     border-radius: 10px;
 }
 #player-image-div{
-    min-height: 500px;
+    /* min-height: 75%; */
     height: 500px;
 }
 

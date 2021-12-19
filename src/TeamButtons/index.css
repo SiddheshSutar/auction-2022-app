@@ -71,8 +71,8 @@
     line-height: 3rem;
     background-color: #f44646;
     color: white;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
     margin-left: -3px;
     margin-right: -3px;
 }

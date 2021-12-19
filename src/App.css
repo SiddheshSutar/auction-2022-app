@@ -56,15 +56,35 @@
 .bg-color-faint,
 .btn.bg-color-faint {
   background-color: olive;
+  border-color: olive;
 }
 .bg-color-faint:disabled,
 .btn.bg-color-faint:disabled {
   background-color: #d1d100;
+  border-color: #d1d100;
   cursor: not-allowed;
+  color: #363600;
 }
 .bg-color-faint:hover,
 .btn.bg-color-faint:hover {
   background-color: #b6b607;
+  border-color: #b6b607;
+}
+
+.max-width-fit-content{
+  max-width: fit-content;
+}
+
+.width-inherit {
+  width: inherit;
+}
+.pink-bg {
+  background-color: #c77676;
+  border-color: #c77676;
+}
+.green-bg {
+  background-color: #6ff16f;
+  border-color: #6ff16f;
 }
 
 @keyframes App-logo-spin {
