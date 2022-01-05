@@ -29,7 +29,10 @@
 }
 
 .max-width-90.container {
-  max-width: 95vw;
+  /* max-width: 95vw; */
+  max-width: 90vw;
+    margin-right: auto;
+    margin-left: 0;
 }
 
 

@@ -35,7 +35,7 @@ export const storeSlice = createSlice({
 
       let playerBought = action.payload.currentPlayer
 
-      currentPlayerList.map(playerObj => {
+      currentPlayerList.map((playerObj, index_player) => {
 
         if (playerBought.Name === playerObj.Name) {
 
@@ -55,6 +55,8 @@ export const storeSlice = createSlice({
                 SoldFor: state.currentBidPrice
               })
               team.Amount_Used = team.Amount_Used + state.currentBidPrice
+
+              state.initialPlayerList[index_player].SoldFor = state.currentBidPrice 
 
               // assign lastPlyer got removed
               state.lastPlayerBought = { ...playerObj }
@@ -131,6 +133,15 @@ export const storeSlice = createSlice({
       // Check if not already present in generated ones
       let new_player_obj = localPlayerArr[state.playerIndexFromJson + 1]
 
+      if(
+        !new_player_obj.SoldFor ||
+        parseStringifyArray(state.pendingPlayers).every(item => {
+          return item.Name !== new_player_obj.Name
+        })
+      ) {
+        console.log('NTTTTT BOUGHHH REFRESHHH')
+      }
+
       const arrToIterate = parseStringifyArray(state.playersGenerated)
       if (arrToIterate.length === 0 || 
         arrToIterate.every(item => item.id !== new_player_obj.id)
@@ -191,21 +202,6 @@ export const storeSlice = createSlice({
     setLocalStorage: (state, action) => {
       try{
 
-        // const currentState = {}
-
-        // currentState.currentPlayer = state.currentPlayer
-        // currentState.initialTeamList = parseStringifyArray(state.initialTeamList)
-        // currentState.initialPlayerList = parseStringifyArray(state.initialPlayerList)
-        // currentState.currentBidPrice = state.currentBidPrice
-
-        // currentState.playerIndexFromJson = state.playerIndexFromJson-1
-        // currentState.shouldStartForPending = state.shouldStartForPending
-        // currentState.lastPlayerBought = state.lastPlayerBought
-        // currentState.playersGenerated = parseStringifyArray(state.playersGenerated)
-        // currentState.pendingPlayers = parseStringifyArray(state.pendingPlayers)
-
-        // currentState.disableNext = state.disableNext
-
         localStorage.setItem('auctionstate', JSON.stringify(parseStringifyArray(state)))
       } catch(e) {
         console.log('Error in setLocalStorage: ',e)
@@ -226,7 +222,7 @@ export const storeSlice = createSlice({
         state.playerIndexFromJson = 
         // newState.playerIndexFromJson > 0 ?
         //  newState.playerIndexFromJson-1 : newState.playerIndexFromJson// one player less, since > let new_player_obj = localPlayerArr[state.playerIndexFromJson + 1]
-        newState.playerIndexFromJson
+        newState.playerIndexFromJson 
         state.shouldStartForPending = newState.shouldStartForPending
         state.lastPlayerBought = newState.lastPlayerBought
         state.playersGenerated = newState.playersGenerated

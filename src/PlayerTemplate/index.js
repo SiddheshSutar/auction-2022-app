@@ -47,6 +47,7 @@ const PlayerCard = () => {
     const initialPlayerListRedux = useSelector((state) => state.store.initialPlayerList)
     const disableNextRedux = useSelector((state) => state.store.disableNext)
     const doneFetchingFromLocalRedux = useSelector((state) => state.store.doneFetchingFromLocal)
+    const pendingPlayersRedux = useSelector((state) => state.store.pendingPlayers)
 
     const [playersgenerated, setPlayersGenerated] = useState([])
     const [shouldStartPending, setshouldStartPending] = useState(false)
@@ -74,8 +75,12 @@ const PlayerCard = () => {
 
     // when team list refreshes and player was bought, get the player for being displayed
     useEffect(() => {
+        const condtn_refresh = pendingPlayersRedux &&
+            pendingPlayersRedux.length > 0 &&
+             pendingPlayersRedux[pendingPlayersRedux.length - 1].Name !== currentPlayer.Name
 
-        if (lastPlayerBought) {
+        if (lastPlayerBought ) {
+        // if (lastPlayerBought && condtn_refresh ) {
             handleNextPlayer({}, currentAuctionPlayerList)
             dispatch(addToPending(lastPlayerBought))
             dispatch(setLocalStorage())
@@ -116,7 +121,7 @@ const PlayerCard = () => {
     return (
         <div class="container max-width-90">
             <div class="row">
-                <div id="player-image-div" class="col col-lg-4 padding pr-0">
+                <div id="player-image-div" class="col col-lg-5 padding pr-0">
                     <img id="player-photo" src={currentPlayer.Photo}></img>
                 </div>
                 <div class="col player-info padding pl-0 ">
@@ -157,11 +162,6 @@ const PlayerCard = () => {
                             </Row>
                         </Col>
                         
-                    </Row>
-                    <Row className='slider-btns mb-4  '>
-                        <Col className="col col-lg-8 text-center">
-                            {/* <Button disabled={shouldStartForPendingRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-                        </Col>
                     </Row>
                     <Row className='slider-btns'>
                         <Col>
