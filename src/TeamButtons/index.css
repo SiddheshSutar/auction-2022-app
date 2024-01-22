@@ -1,7 +1,13 @@
-.container {
-    border: 3px solid #f44646;
+.container-tb {
+    /* border: 3px solid #f44646; */
     border-radius: 30px;
     margin-top: 5px;
+}
+
+.team-buttons-cntr {
+    max-width: 98% !important;
+    padding-inline: 0 !important;
+    margin-inline: auto;
 }
 
 .root {
@@ -29,6 +35,7 @@
 
 .row.team-buttons button {
     width: inherit !important;
+    font-size: 1.45em;
 }
 
 .row.team-buttons .col.main-col {
@@ -37,6 +44,16 @@
 
 .team-player-list.row .player-name {
     text-align: left;
+    color: white;
+    font-size: 0.9em;
+    padding-right: 0;
+    padding-left: 2px;
+}
+
+.player-coins {
+    color:  #c4ff00;
+    padding-left: 0 !important;
+    text-align: right;
 }
 
 .team-name.text-left {
@@ -56,7 +73,7 @@
     display: flex;
     max-height: fit-content;
     position: relative;
-    border: 1px solid rgb(68, 68, 68);
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .team-player-list {
@@ -87,6 +104,6 @@
 }
 
 .team-buttons.row {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    /* padding-left: 5px !important;
+    padding-right: 5px !important; */
 }

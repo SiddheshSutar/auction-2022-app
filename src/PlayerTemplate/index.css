@@ -1,5 +1,5 @@
 .container {
-    border: 3px solid #f44646;
+    /* border: 3px solid #f44646; */
     border-radius: 30px;
     width: 90vw;
    
@@ -58,13 +58,17 @@
 .age, .number {
     font-size: 3rem;
     line-height: 3rem;
-    color: rgb(68, 68, 68);
+    color: rgb(160 160 160);
 }
 .add-on-info {
     font-size: 2rem;
     line-height: 2rem;
     color: rgb(68, 68, 68);
 
+}
+
+.current-bid-price {
+    color: rgb(160 160 160);
 }
 
 .info-row {

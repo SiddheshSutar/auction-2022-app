@@ -63,7 +63,7 @@ const TeamButtons = () => {
     }, [showModal])
 
     return (
-        <div class="container team-buttons-cntr max-width-90">
+        <div class="container-tb team-buttons-cntr">
             {
                 showModal &&
                 <ConfirmBuyPlayerModal
@@ -77,7 +77,7 @@ const TeamButtons = () => {
                 /> 
             }
             <div class="row title">Team Summary</div>
-            <div class="row team-buttons m-0 px-0">
+            <div class="row team-buttons">
                 
                 {currentTeamList.map((team) => (
                     <div class="col col-3 main-col team-col pr-0">
@@ -128,7 +128,9 @@ const TeamButtons = () => {
                                                 player.Gender === 'F' ? 'pink-bg' :
                                                 player.Gender === 'S' ? 'green-bg' : ''
                                             }`}>
-                                                <div class="player-name col col-9 text-align-left">{player.Name}</div>
+                                                <div class="player-name col col-9 text-align-left pr-0">{
+                                                    player.Name.length < 15 ? player.Name : player.Name.substring(0,17) + '...'
+                                                }</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
                                             </div> :
                                             <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>

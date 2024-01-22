@@ -53,7 +53,7 @@ const teams = [
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: 500,
-        Color: "#101500"
+        Color: "#004c5a"
     },
     {
         Name : 'Suresh Chalke',
