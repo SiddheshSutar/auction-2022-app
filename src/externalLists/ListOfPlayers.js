@@ -1,3 +1,5 @@
+import players2 from "./ListOfPlayersLatest"
+
 const players_array =
   [
     {
@@ -288,4 +290,7 @@ const players_array =
     }
   ]
 
-export default players_array;
+// export default players_array;
+
+const t2 = [...players2]
+export default t2

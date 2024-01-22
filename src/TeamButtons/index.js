@@ -74,7 +74,7 @@ const TeamButtons = () => {
                     currentBidPrice={currentBidPrice}
                     teamNamePassed={teamClicked}
                     currentPlayer={currentPlayer}
-                />
+                /> 
             }
             <div class="row title">Team Summary</div>
             <div class="row team-buttons m-0 px-0">

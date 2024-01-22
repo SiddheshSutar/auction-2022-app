@@ -127,7 +127,10 @@ const PlayerCard = () => {
                 <div class="col player-info padding pl-0 ">
                     <div class="info-row name mb-2">{currentPlayer.Name}</div>
                     {(!currentPlayer.Gender || (currentPlayer.Gender && currentPlayer.Gender !== 'F')) &&
-                        <div class="info-row age mb-2">Age: {currentPlayer.Age}</div>
+                        // <div class="info-row age mb-2">Age: {currentPlayer.Age}</div>
+                        <div class="info-row age mb-2">{
+                            !currentPlayer.Age ? 'Young player' : currentPlayer.Age > 44 ? 'Senior member' : 'Young player'
+                        }</div>
                     }
                     {/* <div class="info-row number mb-4"> Number</div> */}
                     {/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
