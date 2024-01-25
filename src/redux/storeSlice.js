@@ -248,7 +248,7 @@ export const storeSlice = createSlice({
 export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
   nextPlayerAction, handlePendingList, addToPending,
-  getLocalStorage , setLocalStorage, setfetcherFlag
+  getLocalStorage , setLocalStorage, setfetcherFlag,
 } = storeSlice.actions
 
 export default storeSlice.reducer

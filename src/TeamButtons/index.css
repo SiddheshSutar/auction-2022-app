@@ -98,6 +98,10 @@
     font-size: 1.7rem;
 }
 
+.team-action-button:disabled:hover {
+    cursor: not-allowed;
+}
+
 .player-entry, .player-entry.row {
     font-size: 1.5rem;
     line-height: 1.7rem;

@@ -5,7 +5,7 @@ import players_array from '../externalLists/ListOfPlayers';
 import { useSelector, useDispatch } from 'react-redux'
 import {
     setCurrentPlayerInRedux, setCurrentBidPrice, nextPlayerAction, handlePendingList,
-    addToPending, getLocalStorage, setLocalStorage, setfetcherFlag
+    addToPending, getLocalStorage, setLocalStorage, setfetcherFlag, askWhetherToFetchNext
 } from '../redux/storeSlice'
 import axios from 'axios';
 
@@ -23,12 +23,36 @@ const ConfirmfetchHistoryModal = ({
             </Modal.Header>
 
             <Modal.Body>
-                <p className="fs-2">Confirming to fetch from history ?</p>
+                <p className="fs-2">are you sure to fetch from history ?</p>
+            </Modal.Body>
+
+            <Modal.Footer className="justify-content-center">
+                <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>Yes</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>No</Button>
+            </Modal.Footer>
+        </Modal>
+    </>
+}
+
+const ConfirmFetchNextModal = ({
+    show,
+    handleYes,
+    handleNo,
+    setShowModal
+}) => {
+    return <>
+        <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header className="justify-content-center">
+                <Modal.Title className="fs-2">Confirm ?</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <p className="fs-2">Show next player ?</p>
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
                 <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>yes</Button>
-                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>No</Button>
             </Modal.Footer>
         </Modal>
     </>
@@ -48,14 +72,18 @@ const PlayerCard = () => {
     const disableNextRedux = useSelector((state) => state.store.disableNext)
     const doneFetchingFromLocalRedux = useSelector((state) => state.store.doneFetchingFromLocal)
     const pendingPlayersRedux = useSelector((state) => state.store.pendingPlayers)
+    const {
+    } = useSelector((state) => state.store)
 
     const [playersgenerated, setPlayersGenerated] = useState([])
     const [shouldStartPending, setshouldStartPending] = useState(false)
     const [fetchfromHistory, setfetchfromHistory] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [showNextFetchModal, setShowNextFetchModal] = useState(false)
 
     const [currentAuctionPlayerList, setcurrentAuctionPlayerList] = useState(initialPlayerListRedux)
     const [playerIndexFromJson, setplayerIndexFromJson] = useState(playerIndexFromJsonRedux)
+    const [tempPlayerList, setTempPlayerList] = useState(initialPlayerListRedux)
 
 
     //didMount
@@ -107,6 +135,14 @@ const PlayerCard = () => {
             playerList
         }))
         dispatch(setLocalStorage())
+        showNextFetchModal && setShowNextFetchModal(false)
+    }
+    
+    const TriggerFetchConfirmationModal = (e, currentAuctionPlayerListPassed) => {
+        e.preventDefault && e.preventDefault()
+      
+        setShowNextFetchModal(true)
+        setTempPlayerList(currentAuctionPlayerListPassed)
 
     }
 
@@ -117,12 +153,21 @@ const PlayerCard = () => {
     const handleHistoryFetch = e => {
         dispatch(getLocalStorage())
     }
+    
+    // useEffect(() => {
+    //     fetch(currentPlayer.Photo)
+    //         .then(res => {
+    //             console.log('res: ', res)
+    //         })
+    // }, [])
 
     return (
         <div class="container max-width-90">
             <div class="row">
                 <div id="player-image-div" class="col col-lg-5 padding pr-0">
-                    <img id="player-photo" src={currentPlayer.Photo}></img>
+                    <img id="player-photo" src={currentPlayer.Photo}
+                        loading='eager'
+                    ></img>
                 </div>
                 <div class="col player-info padding pl-0 ">
                     <div class="info-row name mb-2">{currentPlayer.Name}</div>
@@ -178,7 +223,8 @@ const PlayerCard = () => {
                             </Button>
                         </Col>
                         <Col className="">
-                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
+                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
                                 Next Player
                             </Button>
                         </Col>
@@ -192,6 +238,15 @@ const PlayerCard = () => {
                                 handleYes={e => handleHistoryFetch(e)}
                                 handleNo={() => setShowModal(false)}
                                 setShowModal={setShowModal}
+                            />
+                        }
+                        {
+                            showNextFetchModal &&
+                            <ConfirmFetchNextModal
+                                show={showNextFetchModal}
+                                handleYes={e => handleNextPlayer(e, tempPlayerList)}
+                                handleNo={() => setShowNextFetchModal(false)}
+                                setShowModal={setShowNextFetchModal}
                             />
                         }
                     </Row>

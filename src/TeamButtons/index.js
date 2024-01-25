@@ -88,6 +88,7 @@ const TeamButtons = () => {
                                     class={`btn btn-primary team-action-button fs-1dot5 ${
                                         team.Color
                                     }`}
+                                    disabled={currentBidPrice <= 0}
                                     name={team.Name}
                                     style={{
                                         backgroundColor: team.Color,
