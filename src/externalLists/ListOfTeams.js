@@ -1,10 +1,12 @@
+import { MAX_AMOUNT } from "../helpers"
+
 const teams = [
     {
         Name : 'Sagar K',
         Owner : 'OwnerName1',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#ef2f2f"
     },
     {
@@ -12,7 +14,7 @@ const teams = [
         Owner : 'OwnerName2',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#21bd21"
     },
     {
@@ -20,7 +22,7 @@ const teams = [
         Owner : 'OwnerName3',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#a3a304"
     },
     {
@@ -28,7 +30,7 @@ const teams = [
         Owner : 'OwnerName4',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#a63def"
     },
     {
@@ -36,7 +38,7 @@ const teams = [
         Owner : 'OwnerName5',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#14a5f9"
     },
     {
@@ -44,7 +46,7 @@ const teams = [
         Owner : 'OwnerName6',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#f95d12"
     },
     {
@@ -52,7 +54,7 @@ const teams = [
         Owner : 'OwnerName7',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#004c5a"
     },
     {
@@ -60,7 +62,7 @@ const teams = [
         Owner : 'OwnerName8',
         Players : [],
         Amount_Used : 0,
-        Amount_Assigned: 500,
+        Amount_Assigned: MAX_AMOUNT,
         Color: "#686868"
     },
 

@@ -4,6 +4,7 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer } from '../redux/storeSlice'
+import { MAX_AMOUNT } from "../helpers";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -88,7 +89,9 @@ const TeamButtons = () => {
                                     class={`btn btn-primary team-action-button fs-1dot5 ${
                                         team.Color
                                     }`}
-                                    disabled={currentBidPrice <= 0}
+                                    disabled={currentBidPrice <= 0 || (
+                                        MAX_AMOUNT - team.Amount_Used < currentBidPrice
+                                    )}
                                     name={team.Name}
                                     style={{
                                         backgroundColor: team.Color,

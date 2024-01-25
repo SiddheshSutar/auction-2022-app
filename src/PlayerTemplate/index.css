@@ -67,6 +67,10 @@
 
 }
 
+.gap-1 {
+    gap: 1em;
+}
+
 .current-bid-price {
     color: rgb(160 160 160);
 }

@@ -105,10 +105,10 @@ const PlayerCard = () => {
     useEffect(() => {
         const condtn_refresh = pendingPlayersRedux &&
             pendingPlayersRedux.length > 0 &&
-             pendingPlayersRedux[pendingPlayersRedux.length - 1].Name !== currentPlayer.Name
+            pendingPlayersRedux[pendingPlayersRedux.length - 1].Name !== currentPlayer.Name
 
-        if (lastPlayerBought ) {
-        // if (lastPlayerBought && condtn_refresh ) {
+        if (lastPlayerBought) {
+            // if (lastPlayerBought && condtn_refresh ) {
             handleNextPlayer({}, currentAuctionPlayerList)
             dispatch(addToPending(lastPlayerBought))
             dispatch(setLocalStorage())
@@ -137,10 +137,10 @@ const PlayerCard = () => {
         dispatch(setLocalStorage())
         showNextFetchModal && setShowNextFetchModal(false)
     }
-    
+
     const TriggerFetchConfirmationModal = (e, currentAuctionPlayerListPassed) => {
         e.preventDefault && e.preventDefault()
-      
+
         setShowNextFetchModal(true)
         setTempPlayerList(currentAuctionPlayerListPassed)
 
@@ -153,7 +153,7 @@ const PlayerCard = () => {
     const handleHistoryFetch = e => {
         dispatch(getLocalStorage())
     }
-    
+
     // useEffect(() => {
     //     fetch(currentPlayer.Photo)
     //         .then(res => {
@@ -186,10 +186,17 @@ const PlayerCard = () => {
                                     -
                                 </Button>
                             </Row>
-                            <Row>
-                                <Button className="five-btn max-width-fit-content" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
-                                    -5
-                                </Button>
+                            <Row className='gap-1'>
+                                <Col className='px-0'>
+                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
+                                        -5
+                                    </Button>
+                                </Col>
+                                <Col className='px-0'>
+                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
+                                        -10
+                                    </Button>
+                                </Col>
                             </Row>
                         </Col>
                         <Col className="col-4">
@@ -203,13 +210,22 @@ const PlayerCard = () => {
                                     +
                                 </Button>
                             </Row>
+                            <Row className='gap-1'>
+                                <Col className='px-0'>
+                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
+                                        +5
+                                    </Button>
+                                </Col>
+                                <Col className='px-0'>
+                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
+                                        +10
+                                    </Button>
+                                </Col>
+                            </Row>
                             <Row>
-                                <Button className="five-btn max-width-fit-content" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
-                                    +5
-                                </Button>
                             </Row>
                         </Col>
-                        
+
                     </Row>
                     <Row className='slider-btns'>
                         <Col>

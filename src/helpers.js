@@ -17,3 +17,6 @@ export const checkIfBought = (playerObj, teamList) => {
 }
 
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
+
+export const MAX_AMOUNT = 100
+export const DEFAULT_BID_PRICE = 20

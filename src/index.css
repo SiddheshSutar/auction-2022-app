@@ -13,5 +13,18 @@ code {
 }
 
 .App {
-  background-color: #000;
+  position: relative;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.45719537815126055) 0%, rgba(200,0,0,0.21629901960784315) 47%);
+  background-repeat: round;
+}
+
+.App::after {
+  content: '';
+  position: absolute;
+  color: #c80000;
+  width: 20px;
+  height: 20px;
+  top: 0%;
+  left: 0%;
+  z-index: -2;
 }

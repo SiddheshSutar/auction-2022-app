@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import players_array from '../externalLists/ListOfPlayers'
 import teams from '../externalLists/ListOfTeams'
 import cloneDeep from 'lodash/cloneDeep'
-import { checkIfBought, parseStringifyArray } from '../helpers'
+import { DEFAULT_BID_PRICE, checkIfBought, parseStringifyArray } from '../helpers'
 
 const initialState = {
   currentPlayer: players_array[0],
   initialTeamList: cloneDeep(teams),
   initialPlayerList: cloneDeep(players_array),
 
-  currentBidPrice: 0,
+  currentBidPrice: DEFAULT_BID_PRICE,
   playerIndexFromJson: 0,
   shouldStartForPending: false,
   lastPlayerBought: null,
