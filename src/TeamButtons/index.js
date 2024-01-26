@@ -99,13 +99,13 @@ const TeamButtons = () => {
                                     }}
                                     onClick={e => handleClickBuyTeam(e, team.Name)}
                                 >
-                                    <div class="row">
-                                        <div class="team-name col col-8 text-left">
+                                    <div class="team-btn-row">
+                                        <div class="team-name text-left">
                                             {team.Name}
                                         </div>
-                                        <div class="team-coins col col-3 text-right pl-0">
-                                            <div class="row m-0 ">
-                                                <div>
+                                        <div class="team-coins text-right pl-0">
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="team-coins-spent">
                                                         {
                                                             team.Amount_Used

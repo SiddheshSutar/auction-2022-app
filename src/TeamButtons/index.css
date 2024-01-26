@@ -44,16 +44,27 @@
 
 .team-player-list.row .player-name {
     text-align: left;
-    color: white;
+    color: #000;
     font-size: 0.9em;
     padding-right: 0;
     padding-left: 2px;
 }
 
 .player-coins {
-    color:  #c4ff00;
+    color:  #506705;
     padding-left: 0 !important;
+    font-weight: bold;
     text-align: right;
+}
+
+.team-btn-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-coins {
+    font-weight: bold;
+    width: fit-content;
 }
 
 .team-name.text-left {
@@ -73,8 +84,9 @@
     display: flex;
     max-height: fit-content;
     position: relative;
-    border: 1px solid rgb(255, 255, 255);
+    border-bottom: 1px solid #000;
 }
+
 
 .team-player-list {
     height: inherit;
@@ -87,15 +99,16 @@
     font-size: 2.5rem;
     line-height: 3rem;
     background-color: #f44646;
-    color: white;
+    color: #fff;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
     margin-left: -3px;
     margin-right: -3px;
 }
 
-.team-action-button {
-    font-size: 1.7rem;
+.btn.team-action-button {
+    font-size: 1.3rem;
+    font-family: 'poppins-regular';
 }
 
 .team-action-button:disabled:hover {
