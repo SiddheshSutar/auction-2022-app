@@ -12,10 +12,14 @@ const AssignDirectModal = ({
     setShowModal
 }) => {
 
-    const { initialPlayerList, initialTeamList, soldPlayers } = useSelector(state => state.store)
+    const { initialPlayerList, initialTeamList, pendingPlayers, soldPlayers } = useSelector(state => state.store)
     const dispatch = useDispatch()
     
-    const playersToShow = initialPlayerList.filter(item => soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id))
+    const playersToShow = initialPlayerList.filter(item => {
+        
+        return soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id) &&
+        pendingPlayers.every(pendingPlayrObj => pendingPlayrObj.id !== item.id)
+    })
     
     const [selectedPlayerId, setSelectedPlayerId] = useState(null)
     const [selectedTeamId, setSelectedTeamId] = useState(null)
@@ -26,8 +30,6 @@ const AssignDirectModal = ({
     
     const handleSubmit = e => {
         e.preventDefault()
-        debugger
-        console.log('hex: ', selectedPlayerId, selectedTeamId, soldFor)
         
         if(selectedPlayerId && selectedTeamId && soldFor) {
             dispatch(handleDirectPlayerAdd({
@@ -56,8 +58,13 @@ const AssignDirectModal = ({
                     <Form.Group className={`${styles['form-group']} ${styles['form-wrapper']} mb-4`}>
                         <Form.Label className={`${styles['form-label']}`}>Select player to be assigned</Form.Label>
                         <Form.Control className={`${styles['fs-2']}`} as="select" value={selectedPlayerId} onChange={e => {
-                            debugger;
+                            // debugger;
                             setSelectedPlayerId(e.target.value)
+                            
+                            dispatch(handleDirectPlayerAdd({
+                                selectedPlayerId: e.target.value
+                            }))
+                            setShowModal(false)
                         }}>
                             <option>--select--</option>
                             {
