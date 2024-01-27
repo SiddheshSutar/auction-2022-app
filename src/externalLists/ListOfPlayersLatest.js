@@ -20,7 +20,7 @@ const players2 = [
         "Name": "Manohar Pawar",
         "Age": "",
         "Gender": "S",
-        "Photo": "",
+        "Photo": "./Photo/Manohar.jpg",
         "id": 2
     },
     {
@@ -394,6 +394,20 @@ const players2 = [
         "Age": "",
         "Photo": "./Photo/Pramod.jpg",
         "id": 51
+    },
+    {
+        "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
+        "Name": "Mahesh Kotiyan",
+        "Age": "",
+        "Photo": "./Photo/abc.jpg",
+        "id": 52
+    },
+    {
+        "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
+        "Name": "Rakesh Bhatkar",
+        "Age": "",
+        "Photo": "./Photo/abc.jpg",
+        "id": 53
     }
 ]
 

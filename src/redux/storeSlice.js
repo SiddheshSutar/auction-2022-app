@@ -23,7 +23,6 @@ const initialState = {
   disableNext: false,
   doneFetchingFromLocal: false
 }
-console.log('hex: ', initialState.initialPlayerList)
 
 export const storeSlice = createSlice({
   name: 'storeSlice',
@@ -238,6 +237,44 @@ export const storeSlice = createSlice({
         state.pendingPlayers = arr.concat(parseStringifyArray(action.payload))
       }
     },
+    deletePlayer: (state, action) => {
+
+      const { team, player } = action.payload
+      
+      const currentTeamList  = cloneDeep(state.initialTeamList)
+      const currentPlayerList  = cloneDeep(state.initialPlayerList)
+      let currentGeneratedPlayerList  = cloneDeep(state.playersGenerated)
+      const currentSoldPlayers  = cloneDeep(state.soldPlayers)
+      
+      state.initialTeamList = currentTeamList.map((teamObj) => {
+        
+        if(team.id === parseInt(teamObj.id)) {
+
+          teamObj = {
+            ...teamObj,
+            Amount_Used: teamObj.Amount_Used - (player.soldFor ?? DEFAULT_BID_PRICE),
+            Players: teamObj.Players.filter(item => item.id !== parseInt(player.id))
+          }
+          
+          return teamObj
+        }
+        
+        return teamObj
+      })
+      state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj.id !== parseInt(player.id))
+      
+      // state.initialPlayerList = [
+      //   player, ...currentPlayerList
+      // ]
+      
+      currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item.id !== parseInt(player.id))
+      if(currentGeneratedPlayerList.length > 0) {
+        currentGeneratedPlayerList = currentGeneratedPlayerList.slice(0, currentGeneratedPlayerList.length - 1)
+      }
+      state.playersGenerated = currentGeneratedPlayerList
+      state.currentPlayer = player
+      state.playerIndexFromJson -= 1
+    },
     handlePendingList: (state, action) => {
       console.log('pen Player: ', parseStringifyArray(state.pendingPlayers))
 
@@ -300,7 +337,7 @@ export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
   nextPlayerAction, handlePendingList, addToPending,
   getLocalStorage , setLocalStorage, setfetcherFlag,
-  handleDirectPlayerAdd
+  handleDirectPlayerAdd, deletePlayer
 } = storeSlice.actions
 
 export default storeSlice.reducer

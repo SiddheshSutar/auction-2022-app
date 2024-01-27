@@ -3,7 +3,7 @@ import "./index.css";
 import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
-import { assignteamToPlayer } from '../redux/storeSlice'
+import { assignteamToPlayer, deletePlayer } from '../redux/storeSlice'
 import { MAX_AMOUNT } from "../helpers";
 
 const ConfirmBuyPlayerModal = ({
@@ -35,8 +35,39 @@ const ConfirmBuyPlayerModal = ({
         </Modal>
     </>
 }
+const ConfirmDeletePlayerModal = ({
+    show,
+    handleYes,
+    handleNo,
+    setShowModal,
+}) => {
+    const {team, player} = show
+    
+    if(!team || !player) return <></>
+    
+    return <>
+        <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header className="justify-content-center">
+                <Modal.Title className="fs-2">Confirm ?</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <p className="fs-2">Confirming to delete</p>
+                <p className="fs-2 fw-bold "><span className="clr-primary">{player.Name}</span> from</p>
+                <p className="fs-2 fw-bold "><span className="clr-secondary">{team.Name}</span>{' '}?</p>
+            </Modal.Body>
+
+            <Modal.Footer className="justify-content-center">
+                <Button className="fs-2" variant="primary" onClick={e => handleYes({team, player})}>yes</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
+            </Modal.Footer>
+        </Modal>
+    </>
+}
 const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
+    const [openDeleteModal, setDeleteModal] = useState(null)
+    const allState = useSelector((state) => state.store)
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
@@ -44,10 +75,7 @@ const TeamButtons = () => {
     const dispatch = useDispatch()
 
     const handleClickBuyTeam = (e, teamNamePassed) => {
-        console.log('TEAM::', e.target)
         setTeamClicked(teamNamePassed)
-        // console.log('Team player:',currentPlayer )
-
         setShowModal(true)
     }
 
@@ -56,6 +84,11 @@ const TeamButtons = () => {
         // console.log('Team player:',currentPlayer )
         dispatch(assignteamToPlayer({teamClicked, currentPlayer}))
         setShowModal(false)
+    }
+
+    const handleDeletePlayer = ({player, team}) => {
+        dispatch(deletePlayer({player, team}))
+        setDeleteModal(null)
     }
 
     useEffect(() => {
@@ -75,6 +108,15 @@ const TeamButtons = () => {
                     currentBidPrice={currentBidPrice}
                     teamNamePassed={teamClicked}
                     currentPlayer={currentPlayer}
+                /> 
+            }
+            {
+                (Boolean(openDeleteModal)) &&
+                <ConfirmDeletePlayerModal
+                    show={openDeleteModal}
+                    handleYes={({player, team}) => handleDeletePlayer({player, team})}
+                    handleNo={() => setDeleteModal(null)}
+                    setShowModal={setDeleteModal}
                 /> 
             }
             <div class="row title">Team Summary</div>
@@ -136,6 +178,14 @@ const TeamButtons = () => {
                                                     player.Name.length < 15 ? player.Name : player.Name.substring(0,17) + '...'
                                                 }</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
+                                                <div className="del-btn col col-1"
+                                                    onClick={e => {
+                                                        e.preventDefault()
+                                                        setDeleteModal({team, player})
+                                                    }}
+                                                >
+                                                    X
+                                                </div>
                                             </div> :
                                             <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>
                                                 <div class="player-name col col-9 "></div>

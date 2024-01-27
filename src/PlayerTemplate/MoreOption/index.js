@@ -58,7 +58,6 @@ const AssignDirectModal = ({
                     <Form.Group className={`${styles['form-group']} ${styles['form-wrapper']} mb-4`}>
                         <Form.Label className={`${styles['form-label']}`}>Select player to be assigned</Form.Label>
                         <Form.Control className={`${styles['fs-2']}`} as="select" value={selectedPlayerId} onChange={e => {
-                            // debugger;
                             setSelectedPlayerId(e.target.value)
                             
                             dispatch(handleDirectPlayerAdd({
