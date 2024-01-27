@@ -245,7 +245,7 @@ const players2 = [
         "Timestamp": "2024/01/21 8:47:03 pm GMT+5:30",
         "Name": "Rakesh Raorane",
         "Age": 37,
-        "Photo": "./Photo/Rakesh.jpg",
+        "Photo": "./Photo/Tatya.jpg",
         "id": 31
     },
     {

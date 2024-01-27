@@ -101,7 +101,7 @@
     line-height: 40px;
 }
 #player-photo{
-    transform: scale(1.25);
+    transform: scale(1.1);
     height: 100%;
     width: 100%;
     object-fit: contain;

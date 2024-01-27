@@ -184,7 +184,7 @@ const PlayerCard = () => {
                     {(!currentPlayer.Gender || (currentPlayer.Gender && currentPlayer.Gender !== 'F')) &&
                         // <div class="info-row age mb-2">Age: {currentPlayer.Age}</div>
                         <div class="info-row age mb-2">{
-                            !currentPlayer.Age ? 'Young player' : currentPlayer.Age > 44 ? 'Senior member' : 'Young player'
+                            !currentPlayer.Age ? 'Young player' : currentPlayer.Gender === 'S' ? 'Senior member' : 'Young player'
                         }</div>
                     }
                     {/* <div class="info-row number mb-4"> Number</div> */}
