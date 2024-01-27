@@ -3,6 +3,7 @@ const players2 = [
         "Timestamp": "2024/01/20 9:26:49 pm GMT+5:30",
         "Name": "Satish Desai",
         "Age": 57,
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=1AG-P9qqCaWURL0VNnVu8e3vLhg8iNXdl",
         "id": 0
     },
@@ -31,7 +32,7 @@ const players2 = [
     {
         "Timestamp": "2024/01/20 9:41:51 pm GMT+5:30",
         "Name": "Rutuja kalambate",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1ON4eJSibq-G6b1d6tdtNpCmrqpJ38r7R",
         "id": 4
@@ -50,20 +51,22 @@ const players2 = [
         "Photo": "https://drive.google.com/thumbnail?id=1wTeM9LEOAqU8ldia98ZaN4dJK6vdovgQ",
         "id": 6
     },
-    // {
-    //     "Timestamp": "2024/01/21 8:05:55 pm GMT+5:30",
-    //     "Name": "Aniket Bagkar",
-    //     "Age": 30,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1g8tQuP652goVIIlyqDOkimy07lGLFpR-",
-    //     "id": 7
-    // },
-    // {
-    //     "Timestamp": "2024/01/21 8:08:11 pm GMT+5:30",
-    //     "Name": "Niraj Gupta",
-    //     "Age": 27,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1NUtWZSzCAqH5upDMqTAE2bsUzn3Wg4Np",
-    //     "id": 8
-    // },
+    {
+        "Timestamp": "2024/01/21 8:05:55 pm GMT+5:30",
+        "Name": "Aniket Bagkar",
+        "Captain": true,
+        "Age": 30,
+        "Photo": "https://drive.google.com/thumbnail?id=1g8tQuP652goVIIlyqDOkimy07lGLFpR-",
+        "id": 7
+    },
+    {
+        "Timestamp": "2024/01/21 8:08:11 pm GMT+5:30",
+        "Name": "Niraj Gupta",
+        "Age": 27,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1NUtWZSzCAqH5upDMqTAE2bsUzn3Wg4Np",
+        "id": 8
+    },
     {
         "Timestamp": "2024/01/21 8:09:10 pm GMT+5:30",
         "Name": "Raj Gupta (Bhopu)",
@@ -71,13 +74,14 @@ const players2 = [
         "Photo": "https://drive.google.com/thumbnail?id=1Mx3H9DBIPglAP9KAx0NljEyvGuen7SDh",
         "id": 9
     },
-    // {
-    //     "Timestamp": "2024/01/21 8:10:02 pm GMT+5:30",
-    //     "Name": "Raj Sutar",
-    //     "Age": 29,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1WpTQ1lciUTPTwrja2cmqYe4jnP9QzrKI",
-    //     "id": 10
-    // },
+    {
+        "Timestamp": "2024/01/21 8:10:02 pm GMT+5:30",
+        "Name": "Raj Sutar",
+        "Age": 29,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1WpTQ1lciUTPTwrja2cmqYe4jnP9QzrKI",
+        "id": 10
+    },
     {
         "Timestamp": "2024/01/21 8:16:31 pm GMT+5:30",
         "Name": "Akhil Palkar",
@@ -105,7 +109,7 @@ const players2 = [
     {
         "Timestamp": "2024/01/21 8:21:36 pm GMT+5:30",
         "Name": "Kimaya Palav",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1p3ofef-r2TNCEaZo5iqFFfnY2RJWuABD",
         "id": 14
@@ -117,20 +121,22 @@ const players2 = [
         "Photo": "https://drive.google.com/thumbnail?id=1jI3EAajrguAfceZaaVJltjySmygpBt--",
         "id": 15
     },
-    // {
-    //     "Timestamp": "2024/01/21 8:30:17 pm GMT+5:30",
-    //     "Name": "Rupesh Panchal",
-    //     "Age": 27,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1azjDsFqNfY0g1V-7EGnS8w5t7wdpo-B6",
-    //     "id": 16
-    // },
-    // {
-    //     "Timestamp": "2024/01/21 8:45:14 pm GMT+5:30",
-    //     "Name": "Sanket Nandgaonkar",
-    //     "Age": 27,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1FKc2xUlF7PynS6Ltha5Kz3dahM6gi3CY",
-    //     "id": 17
-    // },
+    {
+        "Timestamp": "2024/01/21 8:30:17 pm GMT+5:30",
+        "Name": "Rupesh Panchal",
+        "Age": 27,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1azjDsFqNfY0g1V-7EGnS8w5t7wdpo-B6",
+        "id": 16
+    },
+    {
+        "Timestamp": "2024/01/21 8:45:14 pm GMT+5:30",
+        "Name": "Sanket Nandgaonkar",
+        "Age": 27,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1FKc2xUlF7PynS6Ltha5Kz3dahM6gi3CY",
+        "id": 17
+    },
     {
         "Timestamp": "2024/01/21 8:47:03 pm GMT+5:30",
         "Name": "Rakesh Raorane",
@@ -141,7 +147,7 @@ const players2 = [
     {
         "Timestamp": "2024/01/21 8:49:35 pm GMT+5:30",
         "Name": "Mitali Dhamnaskar",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1UW_MCIQ9Ik5FAhyq2iej_v6vSvSWTVhb",
         "id": 19
@@ -167,27 +173,30 @@ const players2 = [
         "Photo": "https://drive.google.com/thumbnail?id=1-nJYMb-wAfHNKK5L38mUqaQgKApqhKM3",
         "id": 22
     },
-    // {
-    //     "Timestamp": "2024/01/21 9:01:31 pm GMT+5:30",
-    //     "Name": "Sagar Kuveskar",
-    //     "Age": 34,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1hNGcTxUFcqZVqojQ2x3oCduArxT7j6aD",
-    //     "id": 23
-    // },
+    {
+        "Timestamp": "2024/01/21 9:01:31 pm GMT+5:30",
+        "Name": "Sagar Kuveskar",
+        "Age": 34,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1hNGcTxUFcqZVqojQ2x3oCduArxT7j6aD",
+        "id": 23
+    },
     {
         "Timestamp": "2024/01/21 9:03:29 pm GMT+5:30",
         "Name": "Ajit Palav",
         "Age": 42,
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=1y472OSLxVPxxkWU0S5422l-jWBWjJfst",
         "id": 24
     },
-    // {
-    //     "Timestamp": "2024/01/21 9:04:45 pm GMT+5:30",
-    //     "Name": "Pranay Ramane",
-    //     "Age": 25,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1GJGthCGJJi2ku2HHW16KBwE6mfKJ9GwG",
-    //     "id": 25
-    // },
+    {
+        "Timestamp": "2024/01/21 9:04:45 pm GMT+5:30",
+        "Name": "Pranay Ramane",
+        "Age": 25,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1GJGthCGJJi2ku2HHW16KBwE6mfKJ9GwG",
+        "id": 25
+    },
     {
         "Timestamp": "2024/01/21 9:10:55 pm GMT+5:30",
         "Name": "Prasad Gosavi",
@@ -220,7 +229,7 @@ const players2 = [
     {
         "Timestamp": "2024/01/21 9:40:12 pm GMT+5:30",
         "Name": "Apurva Sawant",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1y50F3eA6kqVGAANa-bTV1LyS3Cc-O5x1",
         "id": 30
@@ -239,17 +248,18 @@ const players2 = [
         "Photo": "https://drive.google.com/thumbnail?id=1WZlfS8c7XS8xduKCroMMW5Mc-NRbP-9T",
         "id": 32
     },
-    // {
-    //     "Timestamp": "2024/01/22 12:19:42 am GMT+5:30",
-    //     "Name": "Dhiraj Amin",
-    //     "Age": 34,
-    //     "Photo": "https://drive.google.com/thumbnail?id=1ul5FcSkwINyJ3NwGWv8SQBI7SY3M82YS",
-    //     "id": 33
-    // },
+    {
+        "Timestamp": "2024/01/22 12:19:42 am GMT+5:30",
+        "Name": "Dhiraj Amin",
+        "Age": 34,
+        "Captain": true,
+        "Photo": "https://drive.google.com/thumbnail?id=1ul5FcSkwINyJ3NwGWv8SQBI7SY3M82YS",
+        "id": 33
+    },
     {
         "Timestamp": "2024/01/22 7:27:23 pm GMT+5:30",
         "Name": "Disha Amin",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1syhc8jW-M7eAvzxHCu_KENnFVKseHsvf",
         "id": 34
@@ -257,38 +267,35 @@ const players2 = [
     {
         "Timestamp": "2024/01/22 7:28:47 pm GMT+5:30",
         "Name": "Disha Desai",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1z-Hol1ELwqk1GMNr7IyXvmZNpuKEG92S",
         "id": 35
     },
-    {
-        "Timestamp": "2024/01/22 7:30:57 pm GMT+5:30",
-        "Name": "Ashwini Kudalkar",
-        "Age": "",
-        "Photo": "https://drive.google.com/thumbnail?id=1EesN26LNc0xdQ0vMpcn1b9LCJZ0FAaFb",
-        "id": 36
-    },
+   
     {
         "Timestamp": "2024/01/22 7:33:10 pm GMT+5:30",
         "Name": "Mahesh Dhamnaskar",
         "Age": "",
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=1dwaLpQchG_CD-ox0RsTWchqnc7it4l8E",
-        "id": 37
+        "id": 36
     },
     {
         "Timestamp": "2024/01/22 7:35:32 pm GMT+5:30",
         "Name": "Sudhakar Gosavi",
         "Age": "",
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=1iN-lsDD1dqa1vgcK7OX5dEKSXGglR1Yr",
-        "id": 38
+        "id": 37
     },
     {
         "Timestamp": "2024/01/22 7:40:18 pm GMT+5:30",
         "Name": "Sunil Sawant",
         "Age": 48,
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=13Jg3aN9QmLKLF62g2WJzkwmEvtdjik_r",
-        "id": 39
+        "id": 38
     },
     {
         "Timestamp": "2024/01/22 7:41:43 pm GMT+5:30",
@@ -296,14 +303,14 @@ const players2 = [
         "Age": "",
         "GameChanger": true,
         "Photo": "https://drive.google.com/thumbnail?id=1jQ8AFFjfxAgDSIW48CbdQt0PaXT1TyxK",
-        "id": 40
+        "id": 39
     },
     {
         "Timestamp": "2024/01/22 7:43:04 pm GMT+5:30",
         "Name": "Ajinkya Pawar",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1yrTY2oXiwtY7966Io_8HRLy0sHYK6Z8q",
-        "id": 41
+        "id": 40
     },
     {
         "Timestamp": "2024/01/22 8:25:55 pm GMT+5:30",
@@ -311,7 +318,7 @@ const players2 = [
         "Age": "",
         "GameChanger": true,
         "Photo": "https://drive.google.com/thumbnail?id=1dXOXXysdjsJsQsv5EhzGdR3zjgSLc6ig",
-        "id": 42
+        "id": 41
     },
     {
         "Timestamp": "2024/01/22 8:26:19 pm GMT+5:30",
@@ -319,72 +326,75 @@ const players2 = [
         "GameChanger": true,
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1G9-fFRllJb5rEynoeM3Ug_Koj8v6jplT",
-        "id": 43
+        "id": 42
     },
     {
         "Timestamp": "2024/01/22 8:26:43 pm GMT+5:30",
         "Name": "Aaresh Tawade",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1ERX_5qNejXyatGiyp_7wM1f9G22zepA7",
-        "id": 44
+        "id": 43
     },
     {
         "Timestamp": "2024/01/22 10:42:02 pm GMT+5:30",
         "Name": "Milind Sawant",
         "Age": 55,
+        "Gender": "S",
         "Photo": "https://drive.google.com/thumbnail?id=1gCMaDIgtWAEFkIqlxtwDJxH-Nme5i0Ap",
-        "id": 45
+        "id": 44
     },
     {
         "Timestamp": "2024/01/23 9:32:23 pm GMT+5:30",
         "Name": "Vedant More",
         "Age": 19,
         "Photo": "https://drive.google.com/thumbnail?id=168ff4nVYqwO-sf9_VMJQ0SREw_3kHxPw",
-        "id": 46
+        "id": 45
     },
     {
         "Timestamp": "2024/01/24 4:33:31 pm GMT+5:30",
         "Name": "Aditi More",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1UMDQvLtVeFT92tPf3-5Xaq_VqlN643wb",
-        "id": 47
+        "id": 46
     },
     {
         "Timestamp": "2024/01/24 8:40:17 pm GMT+5:30",
         "Name": "Harshad Amrute",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1b2s096mrCDPNODZ1x95FFS0n9_ng4LqT",
-        "id": 48
+        "id": 47
     },
     {
         "Timestamp": "2024/01/24 8:57:09 pm GMT+5:30",
         "Name": "Manohar Pawar",
         "Age": "",
+        "Gender": "S",
         "Photo": "",
-        "id": 49
+        "id": 48
     },
     {
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
         "Name": "Pramod Belekar",
         "Age": "",
         "Photo": "https://drive.google.com/thumbnail?id=1br9spTGZG5G4wrsgH0-0lPPUK2z4ux8D",
-        "id": 50
+        "id": 49
     },
     {
         "Timestamp": "2024/01/25 11:36:23 pm GMT+5:30",
         "Name": "Neeladhar poojari",
         "Age": "",
+        "Gender": "S",
         "Photo": "",
-        "id": 51
+        "id": 50
     },
     {
         "Timestamp": "2024/01/24 4:33:31 pm GMT+5:30",
         "Name": "Siddhi",
-        "Gender": "Female",
+        "Gender": "F",
         "Age": "",
         "Photo": "",
-        "id": 52
+        "id": 51
     },
 ]
 

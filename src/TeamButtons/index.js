@@ -108,7 +108,7 @@ const TeamButtons = () => {
                                                 <div class="col">
                                                     <span class="team-coins-spent">
                                                         {
-                                                            team.Amount_Used
+                                                            parseInt(team.Amount_Used)
                                                         }
                                                     </span>/
                                                     <span class="team-coins-total">

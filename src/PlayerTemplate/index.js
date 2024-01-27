@@ -8,6 +8,7 @@ import {
     addToPending, getLocalStorage, setLocalStorage, setfetcherFlag, askWhetherToFetchNext
 } from '../redux/storeSlice'
 import axios from 'axios';
+import MoreOption from './MoreOption';
 
 
 const ConfirmfetchHistoryModal = ({
@@ -171,7 +172,15 @@ const PlayerCard = () => {
                     ></img>
                 </div>
                 <div class="col player-info padding pl-0 ">
-                    <div class="info-row name mb-2">{currentPlayer.Name}</div>
+                    <Row className='align-items-center'>
+                        <Col>
+                            <div class="info-row name mb-2">{currentPlayer.Name}</div>
+                           
+                        </Col>
+                        <Col sm={1}>
+                            <MoreOption />
+                        </Col>
+                    </Row>
                     {(!currentPlayer.Gender || (currentPlayer.Gender && currentPlayer.Gender !== 'F')) &&
                         // <div class="info-row age mb-2">Age: {currentPlayer.Age}</div>
                         <div class="info-row age mb-2">{

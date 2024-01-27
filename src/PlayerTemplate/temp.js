@@ -3,6 +3,7 @@ import './index.css'
 import { Modal, Button } from "react-bootstrap";
 import players_array from '../externalLists/ListOfPlayers';
 
+
 const PlayerCard = () => {
 
     const [playersgenerated, setPlayersGenerated] = useState([])

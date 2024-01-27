@@ -1,0 +1,53 @@
+.container {
+    
+}
+
+.more {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.more-dd-btn {
+    font-size: 1.4em;
+}
+
+.fs-2 {
+    font-size: 2em;
+}
+
+.form-wrapper,
+.form-wrapper * {
+    font-size: 1.2em;
+}
+
+.find {
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+    font-weight: bold;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-label {
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.sold-for {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sold-for > * {
+    width: fit-content;
+}

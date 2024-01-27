@@ -2,20 +2,22 @@ import { MAX_AMOUNT } from "../helpers"
 
 const teams = [
     {
-        Name : 'Sagar K',
+        Name : 'Shashi Amin',
         Owner : 'OwnerName1',
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#ef2f2f"
+        Color: "#272e9b",
+        id: 0
     },
     {
-        Name : 'Prasad G',
+        Name : 'Manohar Pawar',
         Owner : 'OwnerName2',
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#21bd21"
+        Color: "#21bd21",
+        id: 1
     },
     {
         Name : 'Ravindra Mane',
@@ -23,7 +25,8 @@ const teams = [
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#a3a304"
+        Color: "#a3a304",
+        id: 2
     },
     {
         Name : 'Pravin Sawant',
@@ -31,15 +34,17 @@ const teams = [
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#a63def"
+        Color: "#a63def",
+        id: 3
     },
     {
-        Name : 'Devanand Amin',
+        Name : 'Manisha Mhapralkar',
         Owner : 'OwnerName5',
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#14a5f9"
+        Color: "#14a5f9",
+        id: 4
     },
     {
         Name : 'Pradeep Gode',
@@ -47,23 +52,26 @@ const teams = [
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#f95d12"
+        Color: "#f95d12",
+        id: 5
     },
     {
-        Name : 'Sunil Patil',
+        Name : 'Sudhakar Gosavi',
         Owner : 'OwnerName7',
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#004c5a"
+        Color: "#004c5a",
+        id: 6
     },
     {
-        Name : 'Suresh Chalke',
+        Name : 'Sunita Sawant',
         Owner : 'OwnerName8',
         Players : [],
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
-        Color: "#686868"
+        Color: "#686868",
+        id: 0
     },
 
 ]

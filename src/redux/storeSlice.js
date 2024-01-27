@@ -7,18 +7,23 @@ import { DEFAULT_BID_PRICE, checkIfBought, parseStringifyArray } from '../helper
 const initialState = {
   currentPlayer: players_array[0],
   initialTeamList: cloneDeep(teams),
-  initialPlayerList: cloneDeep(players_array),
+  initialPlayerList: cloneDeep(
+    players_array.filter((item) => {
+      return !item.Captain && !item.GameChanger
+    })
+  ),
 
   currentBidPrice: DEFAULT_BID_PRICE,
   playerIndexFromJson: 0,
   shouldStartForPending: false,
   lastPlayerBought: null,
-
+  soldPlayers: [],
   playersGenerated: [players_array[0]],
   pendingPlayers: [],
   disableNext: false,
   doneFetchingFromLocal: false
 }
+console.log('hex: ', initialState.initialPlayerList)
 
 export const storeSlice = createSlice({
   name: 'storeSlice',
@@ -54,6 +59,8 @@ export const storeSlice = createSlice({
                 ...playerObj,
                 SoldFor: state.currentBidPrice
               })
+              state.soldPlayers.push(playerObj)
+              
               team.Amount_Used = team.Amount_Used + state.currentBidPrice
 
               state.initialPlayerList[index_player].SoldFor = state.currentBidPrice 
@@ -63,6 +70,50 @@ export const storeSlice = createSlice({
 
               // reset displayed bid price
               state.currentBidPrice = 0
+            }
+          })
+        }
+      })
+    },
+    handleDirectPlayerAdd: (state, action) => {
+      const {
+        selectedTeamId, selectedPlayerId, soldFor
+      } = action.payload
+      
+      if(!selectedTeamId || !selectedPlayerId) {
+        return null
+      }
+      
+      /** Find selected Team */
+      state.initialTeamList.forEach(team => {
+
+        if (parseInt(selectedTeamId) === team.id) {
+          
+          const balance = team.Amount_Assigned - team.Amount_Used
+          if (balance - soldFor < 0) {
+            alert('Not enough balance left. Available balance: ', JSON.stringify(team.Amount_Assigned - soldFor))
+            return
+          } 
+      
+          let currentPlayerList = cloneDeep(state.initialPlayerList)
+              
+          /** Find player with id */
+          currentPlayerList.forEach((playerObj, index_player) => {
+
+            if (parseInt(selectedPlayerId) === playerObj.id) {
+              
+              const soldForInt = parseInt(soldFor)
+              
+              team.Players.push({
+                ...playerObj,
+                SoldFor: soldForInt
+              })
+              state.soldPlayers.push(playerObj)
+              
+              team.Amount_Used = team.Amount_Used + soldForInt
+
+              state.initialPlayerList[index_player].SoldFor = soldForInt
+              
             }
           })
         }
@@ -249,6 +300,7 @@ export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
   nextPlayerAction, handlePendingList, addToPending,
   getLocalStorage , setLocalStorage, setfetcherFlag,
+  handleDirectPlayerAdd
 } = storeSlice.actions
 
 export default storeSlice.reducer
