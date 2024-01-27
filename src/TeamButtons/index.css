@@ -2,6 +2,8 @@
     /* border: 3px solid #f44646; */
     border-radius: 30px;
     margin-top: 5px;
+    font-family: 'poppins-regular';
+    
 }
 
 .team-buttons-cntr {
@@ -108,7 +110,6 @@
 
 .btn.team-action-button {
     font-size: 1.3rem;
-    font-family: 'poppins-regular';
 }
 
 .team-action-button:disabled:hover {

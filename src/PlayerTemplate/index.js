@@ -165,6 +165,7 @@ const PlayerCard = () => {
         <div class="container max-width-90">
             <div class="row">
                 <div id="player-image-div" class="col col-lg-5 padding pr-0">
+                    {/* <img id="player-photo" src={'./SatishDesai.jpg'} */}
                     <img id="player-photo" src={currentPlayer.Photo}
                         loading='eager'
                     ></img>

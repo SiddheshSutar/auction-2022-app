@@ -20,8 +20,10 @@ code {
 
 .App {
   position: relative;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.45719537815126055) 0%, rgba(200,0,0,0.21629901960784315) 47%);
   background-repeat: round;
+  /* background: rgba(252, 251, 251, 0.982);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(69, 134, 254) 100%); */
+  background-image: radial-gradient(circle, rgba(255,255,255,0.45719537815126055) 0%, rgba(200,0,0,0.21629901960784315) 47%);
 }
 
 .App::after {
