@@ -2,7 +2,7 @@
     /* border: 3px solid #f44646; */
     border-radius: 30px;
     width: 90vw;
-   
+    padding-top: 2rem !important;
 }
 
 .root {
@@ -101,6 +101,7 @@
     line-height: 40px;
 }
 #player-photo{
+    transform: scale(1.25);
     height: 100%;
     width: 100%;
     object-fit: contain;
@@ -124,6 +125,7 @@
 #player-image-div{
     /* min-height: 75%; */
     height: 450px;
+    overflow: hidden;
 }
 
 

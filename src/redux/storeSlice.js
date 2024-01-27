@@ -125,7 +125,7 @@ export const storeSlice = createSlice({
         // add to pending
         let arr = parseStringifyArray(state.pendingPlayers)
         // add to pending, only if not bought
-        if(!state.lastPlayerBought && state.playerIndexFromJson === 0) {
+        if(!state.lastPlayerBought && state.playerIndexFromJson === 0 && state.playersGenerated[0]) {
           state.pendingPlayers = [...arr, parseStringifyArray(state.playersGenerated[0])]
         } else if(state.lastPlayerBought) {
           console.log('Check Player: ', parseStringifyArray(state.lastPlayerBought), parseStringifyArray(state.currentPlayer))
