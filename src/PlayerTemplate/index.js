@@ -181,12 +181,10 @@ const PlayerCard = () => {
                             <MoreOption />
                         </Col>
                     </Row>
-                    {(!currentPlayer.Gender || (currentPlayer.Gender && currentPlayer.Gender !== 'F')) &&
-                        // <div class="info-row age mb-2">Age: {currentPlayer.Age}</div>
                         <div class="info-row age mb-2">{
-                            !currentPlayer.Age ? 'Young player' : currentPlayer.Gender === 'S' ? 'Senior member' : 'Young player'
+                            currentPlayer.Gender === 'S' ? 'Senior member' : 'Player'
                         }</div>
-                    }
+                    
                     {/* <div class="info-row number mb-4"> Number</div> */}
                     {/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
                     <Row className='slider-btns mb-4'>
@@ -249,8 +247,8 @@ const PlayerCard = () => {
                             </Button>
                         </Col>
                         <Col className="">
-                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
-                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}> */}
+                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
                                 Next Player
                             </Button>
                         </Col>
