@@ -72,11 +72,14 @@
 }
 
 .current-bid-price {
-    color: #fff;
+    color: #934f5a;
 }
 
 .info-row {
     border-bottom: 1px solid #f44646;
+}
+.info-row-dark {
+    color: #934f5a;
 }
 
 .info-row:nth-last-child(1) {

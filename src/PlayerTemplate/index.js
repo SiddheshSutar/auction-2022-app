@@ -181,7 +181,7 @@ const PlayerCard = () => {
                             <MoreOption />
                         </Col>
                     </Row>
-                        <div class="info-row age mb-2">{
+                        <div class="info-row info-row-dark age mb-2">{
                             currentPlayer.Gender === 'S' ? 'Senior member' : 'Player'
                         }</div>
                     
