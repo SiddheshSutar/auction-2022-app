@@ -209,7 +209,7 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/20 9:45:28 pm GMT+5:30",
-        "Name": "Ankit waran",
+        "Name": "Ankit Warang",
         "Age": 36,
         "Photo": "./Photo/AnkitW.jpg",
         "id": 26
