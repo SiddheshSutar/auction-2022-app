@@ -410,6 +410,20 @@ const players2 = [
         "Age": "",
         "Photo": "./Photo/abc.jpg",
         "id": 53
+    },
+    {
+        "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
+        "Name": "Harsh Chavan 512",
+        "Age": "",
+        "Photo": "",
+        "id": 54
+    },
+    {
+        "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
+        "Name": "Saurabh 616",
+        "Age": "",
+        "Photo": "",
+        "id": 55
     }
 ]
 

@@ -100,4 +100,4 @@ export const isSelfSenior = ({
 }
 
 export const MAX_AMOUNT = 1000
-export const DEFAULT_BID_PRICE = 50
+export const DEFAULT_BID_PRICE = 30
