@@ -76,5 +76,28 @@ export const generateMatches = () => {
     return b
 }
 
+export const checkFemaleOrSenior = ({
+    currentTeam, teams, currentPlayer
+}) => {
+    return (
+        currentPlayer.Gender === 'S' && currentTeam.Players.length > 0 && currentTeam.Players.some((player) => player.Gender === 'S')
+    ) || (
+        currentPlayer.Gender === 'F' && currentTeam.Players.length > 0 && currentTeam.Players.some((player) => player.Gender === 'F')
+    )
+}
+
+export const isSelfSenior = ({
+    currentTeam, teams, currentPlayer
+}) => {
+    /** TO-DO */
+    /** WHen to disable:
+     * when cur player is owner & teamBtn.Name == plyBtn.Name
+     */
+    
+    return (
+        currentPlayer.Gender === 'S' && currentTeam.Name === currentPlayer.Name && currentPlayer.Owner 
+    ) 
+}
+
 export const MAX_AMOUNT = 1000
 export const DEFAULT_BID_PRICE = 50

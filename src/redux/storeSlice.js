@@ -69,7 +69,7 @@ export const storeSlice = createSlice({
               state.lastPlayerBought = { ...playerObj }
 
               // reset displayed bid price
-              state.currentBidPrice = 0
+              state.currentBidPrice = DEFAULT_BID_PRICE
             }
           })
         }
@@ -125,8 +125,13 @@ export const storeSlice = createSlice({
         // add to pending
         let arr = parseStringifyArray(state.pendingPlayers)
         // add to pending, only if not bought
-        if(!state.lastPlayerBought && state.playerIndexFromJson === 0 && state.playersGenerated[0]) {
-          state.pendingPlayers = [...arr, parseStringifyArray(state.playersGenerated[0])]
+        if(!state.lastPlayerBought && state.playerIndexFromJson === 0) {
+          let newArr = [...arr]
+          
+          if(state.playersGenerated[0]) {
+            newArr.push(parseStringifyArray(state.playersGenerated[0]))
+          }
+          state.pendingPlayers = newArr
         } else if(state.lastPlayerBought) {
           console.log('Check Player: ', parseStringifyArray(state.lastPlayerBought), parseStringifyArray(state.currentPlayer))
 
@@ -206,7 +211,7 @@ export const storeSlice = createSlice({
 
 
         //reset bid price being shown]
-        state.currentBidPrice = 0
+        state.currentBidPrice = DEFAULT_BID_PRICE
 
         
         // console.log('pen Player: ', arr.concat(parseStringifyArray(state.currentPlayer)))

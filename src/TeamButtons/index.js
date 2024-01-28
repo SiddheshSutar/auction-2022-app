@@ -4,7 +4,7 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, storeMatches } from '../redux/storeSlice'
-import { MAX_AMOUNT, generateMatches } from "../helpers";
+import { MAX_AMOUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 
 const ConfirmBuyPlayerModal = ({
@@ -114,11 +114,6 @@ const MatchListModal = ({
                     }
                 </div>
             </Modal.Body>
-
-            {/* <Modal.Footer className="justify-content-center">
-                <Button className="fs-2" variant="primary" onClick={e => handleYes()}>yes</Button>
-                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
-            </Modal.Footer> */}
         </Modal>
     </>
 }
@@ -127,7 +122,6 @@ const TeamButtons = () => {
     const [openDeleteModal, setDeleteModal] = useState(null)
     const [openMatchListModal, toggleMatchListModal] = useState(false)
     
-    const allState = useSelector((state) => state.store)
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
@@ -216,7 +210,20 @@ const TeamButtons = () => {
                                     }`}
                                     disabled={currentBidPrice <= 0 || (
                                         MAX_AMOUNT - team.Amount_Used < currentBidPrice
-                                    )}
+                                    ) || (
+                                        checkFemaleOrSenior({
+                                            currentTeam: team,
+                                            teams: currentTeamList,
+                                            currentPlayer: currentPlayer
+                                        })
+                                    ) 
+                                    // || (
+                                    //     isSelfSenior({
+                                    //         currentTeam: team,
+                                    //         currentPlayer: currentPlayer
+                                    //     })
+                                    // )
+                                }
                                     name={team.Name}
                                     style={{
                                         backgroundColor: team.Color,

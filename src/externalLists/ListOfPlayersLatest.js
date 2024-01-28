@@ -20,6 +20,7 @@ const players2 = [
         "Name": "Manohar Pawar",
         "Age": "",
         "Gender": "S",
+        "Owner": true,
         "Photo": "./Photo/Manohar.jpg",
         "id": 2
     },
@@ -52,6 +53,7 @@ const players2 = [
         "Name": "Sudhakar Gosavi",
         "Age": "",
         "Gender": "S",
+        "Owner": true,
         "Photo": "./Photo/Sudhakar.jpg",
         "id": 6
     },

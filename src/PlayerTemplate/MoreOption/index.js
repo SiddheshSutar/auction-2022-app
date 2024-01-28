@@ -60,10 +60,10 @@ const AssignDirectModal = ({
                         <Form.Control className={`${styles['fs-2']}`} as="select" value={selectedPlayerId} onChange={e => {
                             setSelectedPlayerId(e.target.value)
                             
-                            dispatch(handleDirectPlayerAdd({
-                                selectedPlayerId: e.target.value
-                            }))
-                            setShowModal(false)
+                            // dispatch(handleDirectPlayerAdd({
+                            //     selectedPlayerId: e.target.value
+                            // }))
+                            // setShowModal(false)
                         }}>
                             <option>--select--</option>
                             {
