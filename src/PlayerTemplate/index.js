@@ -165,9 +165,13 @@ const PlayerCard = () => {
     return (
         <div class="container max-width-90">
             <div class="row">
-                <div id="player-image-div" class="col col-lg-5 padding pr-0">
+                <div id="player-image-div" class={`col col-lg-5 padding pr-0 ${
+                    currentPlayer.GameChanger ? ' game-changer' : ''
+                }`}>
                     {/* <img id="player-photo" src={'./SatishDesai.jpg'} */}
-                    <img id="player-photo" src={currentPlayer.Photo}
+                    <img id="player-photo" 
+                        className={currentPlayer.GameChanger ? 'game-changer' : ''}
+                        src={currentPlayer.Photo}
                         loading='eager'
                     ></img>
                 </div>
@@ -247,8 +251,8 @@ const PlayerCard = () => {
                             </Button>
                         </Col>
                         <Col className="">
-                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}>
+                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}> */}
                                 Next Player
                             </Button>
                         </Col>

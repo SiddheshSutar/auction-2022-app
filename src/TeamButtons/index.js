@@ -268,7 +268,10 @@ const TeamButtons = () => {
                                                 player.Gender === 'S' ? 'green-bg' : ''
                                             }`}>
                                                 <div class="player-name col col-9 text-align-left pr-0">{
-                                                    player.Name.length < 15 ? player.Name : player.Name.substring(0,17) + '...'
+                                                    player.Name.length < 20 ? player.Name : player.Name.substring(0,20) + '...'
+                                                }&nbsp;&nbsp;{
+                                                    player.Captain ? <span className="captain"></span> : 
+                                                         player.GameChanger ? <span className="star"></span>: ''
                                                 }</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
                                                 <div className="del-btn col col-1"

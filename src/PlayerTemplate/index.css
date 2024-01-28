@@ -150,3 +150,21 @@
     background-color: #f1a00c;
     border-color: #f1a00c;
 }
+
+.game-changer::after {
+    content: '';
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-image: url('../../public/Images/star.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 3vw;
+    padding: 30px;
+    /* box-shadow: 0 0 10px 10px #0000006e; */
+    filter: drop-shadow(2px 4px 6px black);
+}

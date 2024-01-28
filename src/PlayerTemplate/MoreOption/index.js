@@ -4,6 +4,7 @@ import { Button, Dropdown, DropdownButton, Form, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { DEFAULT_BID_PRICE, MAX_AMOUNT } from '../../helpers';
 import { handleDirectPlayerAdd } from '../../redux/storeSlice';
+import players2 from '../../externalLists/ListOfPlayersLatest';
 
 const AssignDirectModal = ({
     show,
@@ -15,11 +16,17 @@ const AssignDirectModal = ({
     const { initialPlayerList, initialTeamList, pendingPlayers, soldPlayers } = useSelector(state => state.store)
     const dispatch = useDispatch()
     
-    const playersToShow = initialPlayerList.filter(item => {
+    
+    // const captains = players2.filter(item => item.Captain)
+    // const gameChangers = players2.filter(item => item.GameChanger)
+    
+    const playersToShow = [...initialPlayerList.filter(item => {
         
         return soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id) &&
         pendingPlayers.every(pendingPlayrObj => pendingPlayrObj.id !== item.id)
     })
+    // , ...captains, ...gameChangers
+]
     
     const [selectedPlayerId, setSelectedPlayerId] = useState(null)
     const [selectedTeamId, setSelectedTeamId] = useState(null)

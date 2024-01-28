@@ -90,6 +90,27 @@
   border-color: #6ff16f;
 }
 
+.captain {
+  background-image: url('../public/Images/captain.png');
+  background-size: 23px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border-radius: 100vw;
+  padding-inline: 12px;
+  filter: drop-shadow(2px 4px 3px rgba(255, 255, 255, 0.662));
+}
+.star {
+  background-image: url('../public/Images/star.png');
+  background-size: 23px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border-radius: 100vw;
+  padding-inline: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

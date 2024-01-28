@@ -9,7 +9,8 @@ const initialState = {
   initialTeamList: cloneDeep(teams),
   initialPlayerList: cloneDeep(
     players_array.filter((item) => {
-      return !item.Captain && !item.GameChanger
+      return true
+      // return !item.Captain && !item.GameChanger
     })
   ),
 
