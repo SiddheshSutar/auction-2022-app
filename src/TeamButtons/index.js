@@ -274,14 +274,14 @@ const TeamButtons = () => {
                                                          player.GameChanger ? <span className="star"></span>: ''
                                                 }</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
-                                                <div className="del-btn col col-1"
+                                                {/* <div className="del-btn display-none col col-1"
                                                     onClick={e => {
                                                         e.preventDefault()
                                                         setDeleteModal({team, player})
                                                     }}
                                                 >
                                                     X
-                                                </div>
+                                                </div> */}
                                             </div> :
                                             <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>
                                                 <div class="player-name col col-9 "></div>

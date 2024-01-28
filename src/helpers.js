@@ -70,7 +70,7 @@ export const generateMatches = () => {
     /** css specific */
     b = b.map((item, index) => {
         return `<span class="match-name">
-           <span>${index+1}.</span> <span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
+           <span>${index+1}.</span><span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
         </span>`
     })
     return b
