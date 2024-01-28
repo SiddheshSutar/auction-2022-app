@@ -21,7 +21,8 @@ const initialState = {
   playersGenerated: [players_array[0]],
   pendingPlayers: [],
   disableNext: false,
-  doneFetchingFromLocal: false
+  doneFetchingFromLocal: false,
+  storedMatches: []
 }
 
 export const storeSlice = createSlice({
@@ -237,6 +238,10 @@ export const storeSlice = createSlice({
         state.pendingPlayers = arr.concat(parseStringifyArray(action.payload))
       }
     },
+    storeMatches: (state, action) => {
+      
+      state.storedMatches = action.payload
+    },
     deletePlayer: (state, action) => {
 
       const { team, player } = action.payload
@@ -337,7 +342,7 @@ export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
   nextPlayerAction, handlePendingList, addToPending,
   getLocalStorage , setLocalStorage, setfetcherFlag,
-  handleDirectPlayerAdd, deletePlayer
+  handleDirectPlayerAdd, deletePlayer, storeMatches
 } = storeSlice.actions
 
 export default storeSlice.reducer

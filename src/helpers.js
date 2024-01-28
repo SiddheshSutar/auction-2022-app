@@ -1,3 +1,5 @@
+import teams from "./externalLists/ListOfTeams";
+
 export const checkIfBought = (playerObj, teamList) => {
 
     //check if some team has bought this player
@@ -17,6 +19,62 @@ export const checkIfBought = (playerObj, teamList) => {
 }
 
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+  
+export const generateMatches = () => {
+    
+    const storedTeams = teams.map(item => item.Name)
+    
+    const a = [...storedTeams]
+    let b = []
+    
+
+    for (let i = 0; i < a.length; i++) {
+        let subArr = a.slice(i, a.length)
+
+        subArr.forEach(item => {
+            if (a[i] === item) return
+
+            b.push([a[i], item])
+        })
+
+
+    }
+    
+    /** Shuffled */
+    b = shuffle(b)
+        
+    const foundTeam = (name) => {
+        
+        return teams.find(item => item.Name === name)
+    }
+    console.log('hex: inn',  b)
+    
+    /** css specific */
+    b = b.map((item, index) => {
+        return `<span class="match-name">
+           <span>${index+1}.</span> <span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
+        </span>`
+    })
+    return b
+}
 
 export const MAX_AMOUNT = 1000
 export const DEFAULT_BID_PRICE = 50

@@ -3,8 +3,9 @@ import "./index.css";
 import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
-import { assignteamToPlayer, deletePlayer } from '../redux/storeSlice'
-import { MAX_AMOUNT } from "../helpers";
+import { assignteamToPlayer, deletePlayer, storeMatches } from '../redux/storeSlice'
+import { MAX_AMOUNT, generateMatches } from "../helpers";
+import parse from 'html-react-parser'
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -64,9 +65,68 @@ const ConfirmDeletePlayerModal = ({
         </Modal>
     </>
 }
+const MatchListModal = ({
+    show,
+    handleYes,
+    handleNo,
+    setShowModal,
+}) => {
+    
+    const { storedMatches } = useSelector(state => state.store)
+
+    const [matches, setMatches] = useState(storedMatches.length > 0 ? storedMatches : generateMatches())
+    
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        
+        /** Store in redux when unmounting */
+        return () => {
+            dispatch(storeMatches(matches))
+        }
+    }, [matches])
+
+    return <>
+        <Modal size="xl" className="text-center" show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header className="justify-content-center">
+                <Modal.Title className="fs-2">List of matches</Modal.Title>
+                <a
+                    className="refresh-link"
+                    href="#"
+                    onClick={e => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setMatches(generateMatches())
+                    }}
+                >
+                    Regenerate..
+                </a>
+            </Modal.Header>
+
+            <Modal.Body>
+                <div className="matches-row">
+                    {
+                        matches.map((item, index) => {
+                            return <div className="matches-col" key={index}>
+                                {parse(item)}
+                            </div>
+                        })
+                    }
+                </div>
+            </Modal.Body>
+
+            {/* <Modal.Footer className="justify-content-center">
+                <Button className="fs-2" variant="primary" onClick={e => handleYes()}>yes</Button>
+                <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
+            </Modal.Footer> */}
+        </Modal>
+    </>
+}
 const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
     const [openDeleteModal, setDeleteModal] = useState(null)
+    const [openMatchListModal, toggleMatchListModal] = useState(false)
+    
     const allState = useSelector((state) => state.store)
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
@@ -119,7 +179,30 @@ const TeamButtons = () => {
                     setShowModal={setDeleteModal}
                 /> 
             }
-            <div class="row title">Team Summary</div>
+            {
+                (openMatchListModal) &&
+                <MatchListModal
+                    show={openMatchListModal}
+                    handleYes={() => {}}
+                    handleNo={() => toggleMatchListModal(null)}
+                    setShowModal={toggleMatchListModal}
+                /> 
+            }
+            <div class="row title">
+                <div className="text">Team Summary</div>
+                <div className="showMatches">
+                    <a
+                        href="#"
+                        onClick={e => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            toggleMatchListModal(true)
+                        }}
+                    >
+                        Show matches
+                    </a>
+                </div>
+            </div>
             <div class="row team-buttons">
                 
                 {currentTeamList.map((team) => (
