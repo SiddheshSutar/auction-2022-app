@@ -114,6 +114,10 @@ export const storeSlice = createSlice({
 
               state.initialPlayerList[index_player].SoldFor = soldForInt
               
+              // if(state.currentPlayer.Name === playerObj.Name) {
+              //   state.playerIndexFromJson += 1
+              // }
+              
             }
           })
         }

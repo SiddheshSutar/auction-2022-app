@@ -186,6 +186,9 @@ const TeamButtons = () => {
                 <div className="text">Team Summary</div>
                 <div className="showMatches">
                     <a
+                        style={{
+                            color: "#fcfaaf"
+                        }}
                         href="#"
                         onClick={e => {
                             e.preventDefault()
@@ -261,7 +264,7 @@ const TeamButtons = () => {
                                     team.Players.map((player, index) => (
                                         player ?
                                             <div class={`player-entry row mx-1 ${
-                                                player.Gender === 'F' ? 'pink-bg' :
+                                                player.Gender === 'F' ? 'pale-yellow-bg' :
                                                 player.Gender === 'S' ? 'green-bg' : ''
                                             }`}>
                                                 <div class="player-name col col-9 text-align-left pr-0">{
