@@ -321,7 +321,7 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
-        "Name": "Rakesh Bhatkar",
+        "Name": "Rakesh Bagkar",
         "Age": "",
         "Photo": "./Photo/abc.jpg",
         "id": 42
@@ -349,7 +349,7 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
-        "Name": "Mahesh Kotiyan",
+        "Name": "Sudhir Wadekar 216",
         "Age": "",
         "Photo": "./Photo/abc.jpg",
         "id": 46

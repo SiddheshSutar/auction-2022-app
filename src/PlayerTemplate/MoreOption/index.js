@@ -22,8 +22,9 @@ const AssignDirectModal = ({
     
     const playersToShow = [...initialPlayerList.filter(item => {
         
-        return soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id) &&
-        pendingPlayers.every(pendingPlayrObj => pendingPlayrObj.id !== item.id)
+        return soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id) 
+        // &&
+        // pendingPlayers.every(pendingPlayrObj => pendingPlayrObj.id !== item.id)
     })
     // , ...captains, ...gameChangers
 ]

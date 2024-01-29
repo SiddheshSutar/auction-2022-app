@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, storeMatches } from '../redux/storeSlice'
 import { MAX_AMOUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
+import players2 from "../externalLists/ListOfPlayersLatest";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -117,10 +118,81 @@ const MatchListModal = ({
         </Modal>
     </>
 }
+const CaptainsModal = ({
+    show,
+    handleYes,
+    handleNo,
+    setShowModal,
+}) => {
+    
+    // const { storedMatches } = useSelector(state => state.store)
+
+    // const [matches, setMatches] = useState(storedMatches.length > 0 ? storedMatches : generateMatches())
+    
+    // const dispatch = useDispatch()
+    
+    // useEffect(() => {
+        
+    //     /** Store in redux when unmounting */
+    //     return () => {
+    //         dispatch(storeMatches(matches))
+    //     }
+    // }, [matches])
+    
+    const [captains, setCaptains] = useState(
+        players2.filter(item => item.Captain)
+            .map(item => ({ ...item, show: false}))
+    )
+
+    return <>
+        <Modal size="xl" className="text-center" show={show} onHide={() => setShowModal(false)} >
+            <Modal.Header className="justify-content-center">
+                <Modal.Title className="fs-2">Select Captains</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <div className="matches-row">
+                    <div className="captains-row">
+                    {
+                        captains.map((captain, index) => {
+                            return <div className={
+                                `cap cap-show ${captain.show ? 'show' : ''}`
+                            } key={index}
+                                onClick={e => {
+                                    let allCaptains = [...captains]
+                                    
+                                    allCaptains = allCaptains.map(item => {
+                                        
+                                        if(item.Name === captain.Name) {
+                                            return {
+                                                ...item,
+                                                show: !item.show
+                                            }
+                                        }
+                                        
+                                        return item
+                                    })
+                                    
+                                    setCaptains(allCaptains)
+                                }}
+                            >
+                                {captain.Name}
+                            </div>
+                        })
+                    }
+                    </div>
+                </div>
+            </Modal.Body>
+        </Modal>
+    </>
+}
+
 const TeamButtons = () => {
     const [showModal, setShowModal] = useState(false)
     const [openDeleteModal, setDeleteModal] = useState(null)
     const [openMatchListModal, toggleMatchListModal] = useState(false)
+    const [openCaptainsModal, toggleCaptainsModal] = useState(false)
+    const [openGameChangersModal, toggleGameChangersModal] = useState(false)
     
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
@@ -182,7 +254,53 @@ const TeamButtons = () => {
                     setShowModal={toggleMatchListModal}
                 /> 
             }
+            {
+                (openCaptainsModal) &&
+                <CaptainsModal
+                    show={openCaptainsModal}
+                    handleYes={() => {}}
+                    handleNo={() => toggleCaptainsModal(null)}
+                    setShowModal={toggleCaptainsModal}
+                /> 
+            }
+            {
+                (openGameChangersModal) &&
+                <MatchListModal
+                    show={openGameChangersModal}
+                    handleYes={() => {}}
+                    handleNo={() => toggleGameChangersModal(null)}
+                    setShowModal={toggleGameChangersModal}
+                /> 
+            }
             <div class="row title">
+                <div className="showCaptainSlots">
+                    {/* <a
+                        style={{
+                            color: "#fcfaaf"
+                        }}
+                        href="#"
+                        onClick={e => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            toggleCaptainsModal(true)
+                        }}
+                    >
+                        Captains
+                    </a>
+                    <a
+                        style={{
+                            color: "#fcfaaf"
+                        }}
+                        href="#"
+                        onClick={e => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            toggleGameChangersModal(true)
+                        }}
+                    >
+                        Gamechangers
+                    </a> */}
+                </div>
                 <div className="text">Team Summary</div>
                 <div className="showMatches">
                     <a
@@ -274,14 +392,14 @@ const TeamButtons = () => {
                                                          player.GameChanger ? <span className="star"></span>: ''
                                                 }</div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
-                                                {/* <div className="del-btn display-none col col-1"
+                                                <div className="del-btn display-none col col-1"
                                                     onClick={e => {
                                                         e.preventDefault()
                                                         setDeleteModal({team, player})
                                                     }}
                                                 >
                                                     X
-                                                </div> */}
+                                                </div>
                                             </div> :
                                             <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>
                                                 <div class="player-name col col-9 "></div>

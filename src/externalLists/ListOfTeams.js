@@ -71,7 +71,7 @@ const teams = [
         Amount_Used : 0,
         Amount_Assigned: MAX_AMOUNT,
         Color: "#686868",
-        id: 0
+        id: 7
     },
 
 ]
