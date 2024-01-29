@@ -21,6 +21,19 @@ export const checkIfBought = (playerObj, teamList) => {
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
 
 function shuffle(array) {
+    let start = 0, end = array.length - 1
+    let count = 0
+    while(start < end ) {
+        if((count%2 === 0)) {
+            console.log('hex: ', start, end, count)
+            let temp = array[start];
+            array[start] = array[end]
+            array[end] = temp
+        }
+        start++
+        end--
+        count++
+    }
     let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle.
@@ -34,6 +47,8 @@ function shuffle(array) {
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
     }
+    
+    
 
     return array;
 }
@@ -65,7 +80,6 @@ export const generateMatches = () => {
         
         return teams.find(item => item.Name === name)
     }
-    console.log('hex: inn',  b)
     
     /** css specific */
     b = b.map((item, index) => {
