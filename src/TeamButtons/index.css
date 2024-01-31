@@ -166,20 +166,26 @@
     flex-direction: column;
     height: 500px;
     flex-wrap: wrap;
+    column-gap: 10px;
 }
 
 .matches-col {
     text-align: left;
-    margin-inline: 0.2rem;
+    /* margin-inline: 0.2rem; */
     font-size: 1.23em;
     line-height: 1.6;
     display: flex;
+    width: 50%;
 }
 
 .match-name {
     font-weight: bold;
     display: flex;
     gap: 10px;
+}
+
+.matches-col:nth-child(even) {
+    background-color: rgba(198, 197, 197, 0.324);
 }
 
 .matches-col-index {

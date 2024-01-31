@@ -74,14 +74,18 @@ function sect(array) {
     
 }
   
+let count = 0;
 export const generateMatches = (matchesPassed) => {
     
     if(matchesPassed) {
-        let newMatchesPassed = sect(matchesPassed)
+        
+        let newMatchesPassed = [matchesPassed.pop(), ...matchesPassed]
+        newMatchesPassed = sect(newMatchesPassed)
+        newMatchesPassed = shuffle(newMatchesPassed)
         return newMatchesPassed
     } 
     
-    const storedTeams = teams.map(item => item.Name)
+    const storedTeams = teams.map(item => item.TeamName)
     
     const a = [...storedTeams]
     let b = []
@@ -100,7 +104,7 @@ export const generateMatches = (matchesPassed) => {
         
     const foundTeam = (name) => {
         
-        return teams.find(item => item.Name === name)
+        return teams.find(item => item.TeamName === name)
     }
     
     /** css specific */

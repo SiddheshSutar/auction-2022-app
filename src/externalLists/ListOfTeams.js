@@ -3,7 +3,7 @@ import { MAX_AMOUNT } from "../helpers"
 const teams = [
     {
         "Name" : 'Shashi Amin',
-        "Owner" : 'OwnerName1',
+        "TeamName" : 'Mumbai Mafia',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -12,7 +12,7 @@ const teams = [
     },
     {
         "Name" : 'Manohar Pawar',
-        "Owner" : 'OwnerName2',
+        "TeamName" : 'Pawar ka Power',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -21,7 +21,7 @@ const teams = [
     },
     {
         "Name" : 'Ravindra Mane',
-        "Owner" : 'OwnerName3',
+        "TeamName" : 'Old Fox',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -30,7 +30,7 @@ const teams = [
     },
     {
         "Name" : 'Pravin Sawant',
-        "Owner" : 'OwnerName4',
+        "TeamName" : 'DSP Sky',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -39,7 +39,7 @@ const teams = [
     },
     {
         "Name" : 'Manisha Mhapralkar',
-        "Owner" : 'OwnerName5',
+        "TeamName" : 'Power Hitters',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -48,7 +48,7 @@ const teams = [
     },
     {
         "Name" : 'Pradeep Gode',
-        "Owner" : 'OwnerName6',
+        "TeamName" : '7 Wonders',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -57,7 +57,7 @@ const teams = [
     },
     {
         "Name" : 'Sudhakar Gosavi',
-        "Owner" : 'OwnerName7',
+        "TeamName" : 'Sai Prasad',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -66,7 +66,7 @@ const teams = [
     },
     {
         "Name" : 'Sunita Sawant',
-        "Owner" : 'OwnerName8',
+        "TeamName" : 'Red Wings',
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
