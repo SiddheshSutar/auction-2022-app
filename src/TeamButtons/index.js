@@ -97,7 +97,7 @@ const MatchListModal = ({
                     onClick={e => {
                         e.preventDefault()
                         e.stopPropagation()
-                        setMatches(generateMatches())
+                        setMatches(generateMatches(matches))
                     }}
                 >
                     Regenerate..
@@ -109,6 +109,7 @@ const MatchListModal = ({
                     {
                         matches.map((item, index) => {
                             return <div className="matches-col" key={index}>
+                                <div className="matches-col-index">{index + 1}.</div>&nbsp;
                                 {parse(item)}
                             </div>
                         })

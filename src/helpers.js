@@ -20,20 +20,22 @@ export const checkIfBought = (playerObj, teamList) => {
 
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
 
+// function swap(array) {
+//     let start = 0, end = array.length - 1
+//     let count = 0
+//     while(start < end ) {
+//         if((count%2 === 0)) {
+//             console.log('hex: ', start, end, count)
+//             let temp = array[start];
+//             array[start] = array[end]
+//             array[end] = temp
+//         }
+//         start++
+//         end--
+//         count++
+//     }
+// }
 function shuffle(array) {
-    let start = 0, end = array.length - 1
-    let count = 0
-    while(start < end ) {
-        if((count%2 === 0)) {
-            console.log('hex: ', start, end, count)
-            let temp = array[start];
-            array[start] = array[end]
-            array[end] = temp
-        }
-        start++
-        end--
-        count++
-    }
     let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle.
@@ -48,32 +50,52 @@ function shuffle(array) {
             array[randomIndex], array[currentIndex]];
     }
     
-    
-
     return array;
 }
+
+function sect(array) {
+    let copy = [...array]
+    
+    let start = 0
+    let end = copy.length - 1
+    let count = 0
+    let index = 0
+    
+    while(start <= end) {
+        if(++count % 2 === 0) {
+            copy[index++] = array[start]
+            start++
+        } else {
+            copy[index++] = array[end]
+            end--
+        }
+    }
+    return copy
+    
+}
   
-export const generateMatches = () => {
+export const generateMatches = (matchesPassed) => {
+    
+    if(matchesPassed) {
+        let newMatchesPassed = sect(matchesPassed)
+        return newMatchesPassed
+    } 
     
     const storedTeams = teams.map(item => item.Name)
     
     const a = [...storedTeams]
     let b = []
     
-
     for (let i = 0; i < a.length; i++) {
         let subArr = a.slice(i, a.length)
-
-        subArr.forEach(item => {
+        subArr.forEach((item, inx) => {
             if (a[i] === item) return
-
             b.push([a[i], item])
         })
 
-
     }
     
-    /** Shuffled */
+    b = sect(b)
     b = shuffle(b)
         
     const foundTeam = (name) => {
@@ -84,7 +106,7 @@ export const generateMatches = () => {
     /** css specific */
     b = b.map((item, index) => {
         return `<span class="match-name">
-           <span>${index+1}.</span><span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
+           <span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
         </span>`
     })
     return b
