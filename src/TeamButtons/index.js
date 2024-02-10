@@ -7,6 +7,7 @@ import { assignteamToPlayer, deletePlayer, storeMatches } from '../redux/storeSl
 import { MAX_AMOUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
+import { updateTeamList } from "../services";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -210,6 +211,13 @@ const TeamButtons = () => {
         // alert('success: ', JSON.stringify(currentPlayer))
         // console.log('Team player:',currentPlayer )
         dispatch(assignteamToPlayer({teamClicked, currentPlayer}))
+        updateTeamList({
+            data: [{
+                singleTeam: true,
+                teamId: teamClicked._id,
+                playerId: currentPlayer._id
+            }]
+        })
         setShowModal(false)
     }
 

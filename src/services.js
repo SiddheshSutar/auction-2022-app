@@ -18,3 +18,13 @@ export const getPlayers = () => axios.get(
 export const getTeams = () => axios.get(
     `${BASE_URL}get-team-list`
 )
+
+export const updatePlayerList = (payload) => axios.post(
+    `${BASE_URL}update-player-list`,
+    payload
+).then(response => response)
+
+export const updateTeamList = (payload) => axios.post(
+    `${BASE_URL}update-team-list`,
+    payload
+).then(response => response)

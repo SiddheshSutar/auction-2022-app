@@ -31,7 +31,7 @@ const ApiCalls = () => {
         
         const teamsResp = (await getTeams()).data.data
         const playersResp = await (await getPlayers()).data.data
-        
+        // console.log('hex: ',teamsResp )
         dispatch(setReduxState({
             key: 'initialTeamList',
             data: teamsResp
