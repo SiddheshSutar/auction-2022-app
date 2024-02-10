@@ -2,8 +2,8 @@ import { MAX_AMOUNT } from "../helpers"
 
 const teams = [
     {
-        "Name" : 'Shashi Amin',
-        "TeamName" : 'Mumbai Mafia',
+        "Name" : "Shashi Amin",
+        "TeamName" : "Mumbai Mafia",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -11,8 +11,8 @@ const teams = [
         "id": 0
     },
     {
-        "Name" : 'Manohar Pawar',
-        "TeamName" : 'Pawar ka Power',
+        "Name" : "Manohar Pawar",
+        "TeamName" : "Pawar ka Power",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -20,8 +20,8 @@ const teams = [
         "id": 1
     },
     {
-        "Name" : 'Ravindra Mane',
-        "TeamName" : 'Old Fox',
+        "Name" : "Ravindra Mane",
+        "TeamName" : "Old Fox",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -29,8 +29,8 @@ const teams = [
         "id": 2
     },
     {
-        "Name" : 'Pravin Sawant',
-        "TeamName" : 'DSP Sky',
+        "Name" : "Pravin Sawant",
+        "TeamName" : "DSP Sky",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -38,8 +38,8 @@ const teams = [
         "id": 3
     },
     {
-        "Name" : 'Manisha Mhapralkar',
-        "TeamName" : 'Power Hitters',
+        "Name" : "Manisha Mhapralkar",
+        "TeamName" : "Power Hitters",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -47,8 +47,8 @@ const teams = [
         "id": 4
     },
     {
-        "Name" : 'Pradeep Gode',
-        "TeamName" : '7 Wonders',
+        "Name" : "Pradeep Gode",
+        "TeamName" : "7 Wonders",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -56,8 +56,8 @@ const teams = [
         "id": 5
     },
     {
-        "Name" : 'Sudhakar Gosavi',
-        "TeamName" : 'Sai Prasad',
+        "Name" : "Sudhakar Gosavi",
+        "TeamName" : "Sai Prasad",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -65,8 +65,8 @@ const teams = [
         "id": 6
     },
     {
-        "Name" : 'Sunita Sawant',
-        "TeamName" : 'Red Wings',
+        "Name" : "Sunita Sawant",
+        "TeamName" : "Red Wings",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
