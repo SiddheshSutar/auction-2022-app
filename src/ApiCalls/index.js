@@ -1,9 +1,26 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { setPlayer } from "../services";
+import { setPlayer, setTeam } from "../services";
+import teams from "../externalLists/ListOfTeams";
+import players2 from "../externalLists/ListOfPlayersLatest";
+import { removeIdKeyFromArry } from "../helpers";
 
 const ApiCalls = () => {
-    const { initialPlayerList } = useSelector(state => state.store)
+    const { initialPlayerList, initialTeamList } = useSelector(state => state.store)
+
+    useEffect(() => {
+        /** To insert players when app loads */
+        setPlayer({
+            data: removeIdKeyFromArry(initialPlayerList)
+        })
+        
+        /** To insert teams when app loads */
+        setTeam({
+            data: removeIdKeyFromArry(initialTeamList)
+        })
+        
+        
+    }, [])
     
     useEffect(() => {
         

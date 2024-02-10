@@ -79,7 +79,7 @@ const teams = [
 const payload = [
     {
         "Name" : "Shashi Amin",
-        "Owner" : "OwnerName1",
+        "TeamName" : "OwnerName1",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -88,7 +88,7 @@ const payload = [
     },
     {
         "Name" : "Manohar Pawar",
-        "Owner" : "OwnerName2",
+        "TeamName" : "OwnerName2",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -97,7 +97,7 @@ const payload = [
     },
     {
         "Name" : "Ravindra Mane",
-        "Owner" : "OwnerName3",
+        "TeamName" : "OwnerName3",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -106,7 +106,7 @@ const payload = [
     },
     {
         "Name" : "Pravin Sawant",
-        "Owner" : "OwnerName4",
+        "TeamName" : "OwnerName4",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -115,7 +115,7 @@ const payload = [
     },
     {
         "Name" : "Manisha Mhapralkar",
-        "Owner" : "OwnerName5",
+        "TeamName" : "OwnerName5",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -124,7 +124,7 @@ const payload = [
     },
     {
         "Name" : "Pradeep Gode",
-        "Owner" : "OwnerName6",
+        "TeamName" : "OwnerName6",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -133,7 +133,7 @@ const payload = [
     },
     {
         "Name" : "Sudhakar Gosavi",
-        "Owner" : "OwnerName7",
+        "TeamName" : "OwnerName7",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,
@@ -142,7 +142,7 @@ const payload = [
     },
     {
         "Name" : "Sunita Sawant",
-        "Owner" : "OwnerName8",
+        "TeamName" : "OwnerName8",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": 100,

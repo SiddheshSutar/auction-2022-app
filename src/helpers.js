@@ -259,6 +259,17 @@ export const isSelfSenior = ({
     ) 
 }
 
+export const removeIdKeyFromArry = arr => {
+    return arr.map(item => {
+        
+        let newObj = {...item}
+        
+        if('id' in newObj) delete newObj.id
+        
+        return newObj
+    })
+}
+
 export const MAX_AMOUNT = 1000
 export const DEFAULT_BID_PRICE = 30
 export const BASE_URL = 'http://localhost:8000/'
