@@ -6,12 +6,15 @@ import { store } from './store'
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorBoundary from './ErrBoundary';
+import ApiCalls from './ApiCalls';
 
 function App() {
+  
   return (
     <ErrorBoundary>
       <Provider store={store}>
       <div className="App">
+        <ApiCalls />
         <PlayerCard />
         <TeamButtons />
       </div>
