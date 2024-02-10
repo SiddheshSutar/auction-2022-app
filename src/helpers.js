@@ -74,16 +74,135 @@ function sect(array) {
     
 }
   
-let count = 0;
+let staticMatches = [
+    [
+        "7 Wonders",
+        "Sai Prasad"
+    ],
+    [
+        "DSP Sky",
+        "Power Hitters"
+    ],
+    [
+        "Mumbai Mafia",
+        "Pawar ka Power"
+    ],
+    [
+        "Old Fox",
+        "Red Wings"
+    ],
+    [
+        "Power Hitters",
+        "Sai Prasad"
+    ],
+    [
+        "DSP Sky",
+        "7 Wonders"
+    ],
+    [
+        "Old Fox",
+        "Power Hitters"
+    ],
+    
+    // day 2
+    [
+        "Pawar ka Power",
+        "Sai Prasad"
+    ],
+    [
+        "Mumbai Mafia",
+        "Old Fox"
+    ],
+    [
+        "DSP Sky",
+        "Red Wings"
+    ],
+    [
+        "Pawar ka Power",
+        "7 Wonders"
+    ],
+    [
+        "Power Hitters",
+        "Red Wings"
+    ],
+    [
+        "Mumbai Mafia",
+        "7 Wonders"
+    ],
+    [
+        "Old Fox",
+        "DSP Sky"
+    ],
+    // day 3
+    [
+        "DSP Sky",
+        "Sai Prasad"
+    ],
+    [
+        "Old Fox",
+        "7 Wonders"
+    ],
+    [
+        "Sai Prasad",
+        "Red Wings"
+    ],
+    [
+        "Pawar ka Power",
+        "DSP Sky"
+    ],
+    [
+        "7 Wonders",
+        "Red Wings"
+    ],
+    [
+        "Old Fox",
+        "Sai Prasad"
+    ],
+    [
+        "Power Hitters",
+        "7 Wonders"
+    ],
+    [
+        "Mumbai Mafia",
+        "DSP Sky"
+    ],
+    [
+        "Pawar ka Power",
+        "Old Fox"
+    ],
+    [
+        "Mumbai Mafia",
+        "Power Hitters"
+    ],
+    [
+        "Pawar ka Power",
+        "Red Wings"
+    ],
+    [
+        "Mumbai Mafia",
+        "Sai Prasad"
+    ],
+    [
+        "Pawar ka Power",
+        "Power Hitters"
+    ],
+    [
+        "Mumbai Mafia",
+        "Red Wings"
+    ],
+];
+
 export const generateMatches = (matchesPassed) => {
     
-    if(matchesPassed) {
+    // if(matchesPassed) {
         
-        let newMatchesPassed = [matchesPassed.pop(), ...matchesPassed]
-        newMatchesPassed = sect(newMatchesPassed)
-        newMatchesPassed = shuffle(newMatchesPassed)
-        return newMatchesPassed
-    } 
+    //     let newMatchesPassed = [matchesPassed.pop(), ...matchesPassed]
+    //     newMatchesPassed = sect(newMatchesPassed)
+    //     newMatchesPassed = shuffle(newMatchesPassed)
+    // console.log('hex: ', newMatchesPassed)
+        
+    //     return newMatchesPassed
+    // } 
     
     const storedTeams = teams.map(item => item.TeamName)
     
@@ -106,9 +225,10 @@ export const generateMatches = (matchesPassed) => {
         
         return teams.find(item => item.TeamName === name)
     }
-    
+    console.log('hex: ', b)
     /** css specific */
-    b = b.map((item, index) => {
+    // b = b.map((item, index) => {
+    b = staticMatches.map((item, index) => {
         return `<span class="match-name">
            <span class="team-name" style="color: ${(foundTeam(item[0])).Color};">${item[0]}</span> vs <span class="team-name" style="color: ${(foundTeam(item[1])).Color};">${item[1]}</span>
         </span>`
