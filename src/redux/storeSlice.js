@@ -6,13 +6,8 @@ import { DEFAULT_BID_PRICE, checkIfBought, parseStringifyArray } from '../helper
 
 const initialState = {
   currentPlayer: players_array[0],
-  initialTeamList: cloneDeep(teams),
-  initialPlayerList: cloneDeep(
-    players_array.filter((item) => {
-      return true
-      // return !item.Captain && !item.GameChanger
-    })
-  ),
+  initialTeamList: [],
+  initialPlayerList: [],
 
   currentBidPrice: DEFAULT_BID_PRICE,
   playerIndexFromJson: 0,
@@ -30,6 +25,9 @@ export const storeSlice = createSlice({
   name: 'storeSlice',
   initialState,
   reducers: {
+    setReduxState: (state, action) => {
+      state[action.payload.key] = action.payload.data
+    },
     setCurrentBidPrice: (state, action) => {
       if (action.payload >= 0) state.currentBidPrice = action.payload
     },
@@ -88,7 +86,7 @@ export const storeSlice = createSlice({
       /** Find selected Team */
       state.initialTeamList.forEach(team => {
 
-        if (parseInt(selectedTeamId) === team.id) {
+        if (parseInt(selectedTeamId) === team._id) {
           
           const balance = team.Amount_Assigned - team.Amount_Used
           if (balance - soldFor < 0) {
@@ -98,10 +96,10 @@ export const storeSlice = createSlice({
       
           let currentPlayerList = cloneDeep(state.initialPlayerList)
               
-          /** Find player with id */
+          /** Find player with _id */
           currentPlayerList.forEach((playerObj, index_player) => {
 
-            if (parseInt(selectedPlayerId) === playerObj.id) {
+            if (parseInt(selectedPlayerId) === playerObj._id) {
               
               const soldForInt = parseInt(soldFor)
               
@@ -205,7 +203,7 @@ export const storeSlice = createSlice({
 
       const arrToIterate = parseStringifyArray(state.playersGenerated)
       if (arrToIterate.length === 0 || 
-        arrToIterate.every(item => item.id !== new_player_obj.id)
+        arrToIterate.every(item => item._id !== new_player_obj._id)
       ) {
 
 
@@ -263,12 +261,12 @@ export const storeSlice = createSlice({
       
       state.initialTeamList = currentTeamList.map((teamObj) => {
         
-        if(team.id === parseInt(teamObj.id)) {
+        if(team._id === parseInt(teamObj._id)) {
 
           teamObj = {
             ...teamObj,
             Amount_Used: teamObj.Amount_Used - (player.soldFor ?? DEFAULT_BID_PRICE),
-            Players: teamObj.Players.filter(item => item.id !== parseInt(player.id))
+            Players: teamObj.Players.filter(item => item._id !== parseInt(player._id))
           }
           
           return teamObj
@@ -276,13 +274,13 @@ export const storeSlice = createSlice({
         
         return teamObj
       })
-      state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj.id !== parseInt(player.id))
+      state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj._id !== parseInt(player._id))
       
       // state.initialPlayerList = [
       //   player, ...currentPlayerList
       // ]
       
-      currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item.id !== parseInt(player.id))
+      currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item._id !== parseInt(player._id))
       if(currentGeneratedPlayerList.length > 0) {
         currentGeneratedPlayerList = currentGeneratedPlayerList.slice(0, currentGeneratedPlayerList.length - 1)
       }
@@ -352,7 +350,8 @@ export const { increment, decrement, incrementByAmount,
   setCurrentPlayerInRedux, assignteamToPlayer, setCurrentBidPrice,
   nextPlayerAction, handlePendingList, addToPending,
   getLocalStorage , setLocalStorage, setfetcherFlag,
-  handleDirectPlayerAdd, deletePlayer, storeMatches
+  handleDirectPlayerAdd, deletePlayer, storeMatches,
+  setReduxState
 } = storeSlice.actions
 
 export default storeSlice.reducer

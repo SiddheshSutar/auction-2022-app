@@ -7,7 +7,7 @@ export const checkIfBought = (playerObj, teamList) => {
     teamList.forEach(element => {
         // console.log('team item:', element, playerObj)
 
-        if(element.Players.some(player => player.id === playerObj.id)) {
+        if(element.Players.some(player => player._id === playerObj._id)) {
             flag = true
         }
     });
