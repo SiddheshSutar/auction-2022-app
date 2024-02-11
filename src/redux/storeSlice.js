@@ -5,7 +5,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { DEFAULT_BID_PRICE, checkIfBought, parseStringifyArray } from '../helpers'
 
 const initialState = {
-  currentPlayer: players_array[0],
+  currentPlayer: null,
   initialTeamList: [],
   initialPlayerList: [],
 
@@ -14,7 +14,7 @@ const initialState = {
   shouldStartForPending: false,
   lastPlayerBought: null,
   soldPlayers: [],
-  playersGenerated: [players_array[0]],
+  playersGenerated: [],
   pendingPlayers: [],
   disableNext: false,
   doneFetchingFromLocal: false,

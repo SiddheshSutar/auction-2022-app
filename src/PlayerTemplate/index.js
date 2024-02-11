@@ -161,6 +161,8 @@ const PlayerCard = () => {
     //             console.log('res: ', res)
     //         })
     // }, [])
+    
+    if(!currentPlayer) return <></>
 
     return (
         <div class="container max-width-90">

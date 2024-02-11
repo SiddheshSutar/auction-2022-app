@@ -8,8 +8,8 @@ import { cloneDeep } from "lodash";
 import { setReduxState } from "../redux/storeSlice";
 
 const ApiCalls = () => {
-    const { initialPlayerList, initialTeamList } = useSelector(state => state.store)
-    
+    const { initialPlayerList, initialTeamList, playersGenerated, currentPlayer, playerIndexFromJson } = useSelector(state => state.store)
+
     const dispatch = useDispatch()
     
     const loadJsonIntoDb = async () => {
@@ -44,6 +44,27 @@ const ApiCalls = () => {
             key: 'initialPlayerList',
             data: playersResp.data
         }))
+        
+        playersGenerated.length <=0 && dispatch(setReduxState({ /** Initially set 1st player as generated player*/
+            key: 'playersGenerated',
+            data: [playersResp.data[0]]
+        }))
+        
+        /** Check sold players and accordingly set playerIndexFromJson */
+        const playerIndexToResumeFrom = playersResp.data.findIndex(item => !item.SoldFor)
+        
+        if(playerIndexToResumeFrom >= 0) {
+            dispatch(setReduxState({ /** Initially set 1st player */
+                key: 'playerIndexFromJson',
+                data: playerIndexToResumeFrom
+            }))
+            
+            !currentPlayer && dispatch(setReduxState({ /** Initially set 1st player */
+                key: 'currentPlayer',
+                data: playersResp.data[playerIndexToResumeFrom]
+            }))
+        }
+        
         
     }
 

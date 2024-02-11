@@ -3,11 +3,11 @@ import "./index.css";
 import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
-import { assignteamToPlayer, deletePlayer, storeMatches } from '../redux/storeSlice'
+import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '../redux/storeSlice'
 import { MAX_AMOUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
-import { updateTeamList } from "../services";
+import { getTeams, updatePlayerList, updateTeamList } from "../services";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -199,25 +199,44 @@ const TeamButtons = () => {
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
+    
     const [teamClicked, setTeamClicked] = useState(null)
+    const [teamIdClicked, setTeamIdClicked] = useState(null)
+    
     const dispatch = useDispatch()
 
-    const handleClickBuyTeam = (e, teamNamePassed) => {
-        setTeamClicked(teamNamePassed)
+    const handleClickBuyTeam = (e, teamObj) => {
+        setTeamClicked(teamObj.teamName)
+        setTeamIdClicked(teamObj._id)
         setShowModal(true)
     }
 
-    const handleBuyPlayer = () => {
+    const handleBuyPlayer = async () => {
         // alert('success: ', JSON.stringify(currentPlayer))
         // console.log('Team player:',currentPlayer )
         dispatch(assignteamToPlayer({teamClicked, currentPlayer}))
-        updateTeamList({
+
+        await updateTeamList({
             data: [{
-                singleTeam: true,
-                teamId: teamClicked._id,
+                singlePlayer: true,
+                teamId: teamIdClicked,
                 playerId: currentPlayer._id
             }]
         })
+        await updatePlayerList({
+            data: [{
+                _id: currentPlayer._id,
+                SoldFor: currentBidPrice
+            }]
+            
+        })
+        
+        
+        const teamsResp = await getTeams()
+        dispatch(setReduxState({
+            key: 'initialTeamList',
+            data: teamsResp.data
+        }))
         setShowModal(false)
     }
 
@@ -228,7 +247,10 @@ const TeamButtons = () => {
 
     useEffect(() => {
         //reset team once player bought
-        if(!showModal) setTeamClicked(null)
+        if(!showModal) {
+            setTeamClicked(null)
+            setTeamIdClicked(null)
+        }
     }, [showModal])
 
     return (
@@ -359,7 +381,7 @@ const TeamButtons = () => {
                                         backgroundColor: team.Color,
                                         borderColor: team.Color
                                     }}
-                                    onClick={e => handleClickBuyTeam(e, team.Name)}
+                                    onClick={e => handleClickBuyTeam(e, team)}
                                 >
                                     <div class="team-btn-row">
                                         <div class="team-name text-left">
