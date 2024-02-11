@@ -29,16 +29,20 @@ const ApiCalls = () => {
         })
         
         
-        const teamsResp = (await getTeams()).data.data
-        const playersResp = await (await getPlayers()).data.data
-        // console.log('hex: ',teamsResp )
+        const teamsResp = await getTeams()
+        const playersResp = await getPlayers()
+
+        if(!teamsResp.success || !playersResp.success) { /** Alert used in case API fails to access BE  */
+            alert('Sync failed ! Using local state..')
+        }
+        
         dispatch(setReduxState({
             key: 'initialTeamList',
-            data: teamsResp
+            data: teamsResp.data
         }))
         dispatch(setReduxState({
             key: 'initialPlayerList',
-            data: playersResp
+            data: playersResp.data
         }))
         
     }

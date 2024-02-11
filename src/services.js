@@ -13,11 +13,11 @@ export const setTeam = (payload) => axios.post(
 
 export const getPlayers = () => axios.get(
     `${BASE_URL}get-player-list`
-)
+).then(response => response.data)
 
 export const getTeams = () => axios.get(
     `${BASE_URL}get-team-list`
-)
+).then(response => response.data)
 
 export const updatePlayerList = (payload) => axios.post(
     `${BASE_URL}update-player-list`,
