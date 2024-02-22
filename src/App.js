@@ -9,7 +9,6 @@ import ErrorBoundary from './ErrBoundary';
 import ApiCalls from './ApiCalls';
 
 function App() {
-  
   return (
     <ErrorBoundary>
       <Provider store={store}>
