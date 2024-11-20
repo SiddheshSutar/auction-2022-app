@@ -11,8 +11,8 @@ const teams = [
         "id": 0
     },
     {
-        "Name" : "Manohar Pawar",
-        "TeamName" : "Pawar ka Power",
+        "Name" : "Ninad Kudalkar",
+        "TeamName" : "Desi 007",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,

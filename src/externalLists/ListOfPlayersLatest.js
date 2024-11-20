@@ -73,10 +73,10 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/24 4:33:31 pm GMT+5:30",
-        "Name": "Urvi",
+        "Name": "Manali Mhapralkar",
         "Gender": "F",
         "Age": "",
-        "Photo": "",
+        "Photo": "./Photo/Manali.jpg",
         "id": 9
     },
     {
@@ -121,7 +121,7 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/21 9:40:12 pm GMT+5:30",
-        "Name": "Apurva Sawant",
+        "Name": "Sneha Kuveskar",
         "Gender": "F",
         "Age": "",
         "Photo": "./Photo/Apurva.jpg",
@@ -145,11 +145,11 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/24 8:57:09 pm GMT+5:30",
-        "Name": "Manohar Pawar",
+        "Name": "Pradeep Gode",
         "Age": "",
         "Gender": "S",
         "Owner": true,
-        "Photo": "./Photo/Manohar.jpg",
+        "Photo": "./Photo/Pradeep.jpg",
         "id": 18
     },
     {
@@ -258,9 +258,9 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/21 8:58:26 pm GMT+5:30",
-        "Name": "Ketan Patade",
+        "Name": "Pratik Ramane",
         "Age": 27,
-        "Photo": "./Photo/Ketan.jpg",
+        "Photo": "./Photo/Pratik.jpg",
         "id": 33
     },
     {
@@ -321,16 +321,16 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
-        "Name": "Rakesh Bagkar",
+        "Name": "Sameer Chalke",
         "Age": "",
-        "Photo": "./Photo/abc.jpg",
+        "Photo": "./Photo/Sameer.jpg",
         "id": 42
     },
     {
         "Timestamp": "2024/01/23 9:32:23 pm GMT+5:30",
-        "Name": "Vedant More",
+        "Name": "Shaurya Sutar",
         "Age": 19,
-        "Photo": "./Photo/Vedant.jpg",
+        "Photo": "./Photo/ShauryaS.jpg",
         "id": 43
     },
     {
@@ -379,10 +379,10 @@ const players2 = [
     },
     {
         "Timestamp": "2024/01/21 8:17:37 pm GMT+5:30",
-        "Name": "Ninad Kudalkar",
+        "Name": "Tanmay Sane",
         "GameChanger": true,
         "Age": 37,
-        "Photo": "./Photo/Ninad.jpg",
+        "Photo": "./Photo/Tanmay.jpg",
         "id": 50
     },
     {
