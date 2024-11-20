@@ -349,12 +349,12 @@ const TeamButtons = () => {
                     </a>
                 </div>
             </div>
-            <div class="row team-buttons">
+            <div class="team-buttons">
                 
                 {currentTeamList.map((team) => (
-                    <div class="col col-3 main-col team-col pr-0">
-                        <div class="row">
-                            <div class="col">
+                    <div class="main-col team-col pr-0">
+                        <div class="">
+                            <div class="">
                                 <button
                                     type="button"
                                     class={`btn btn-primary team-action-button fs-1dot5 ${

@@ -29,6 +29,13 @@
 .team-buttons {
     margin: 1rem 0.2rem;
     padding: 1rem 0.2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.team-action-button {
+    width: 100%;
 }
 
 .btn.btn-light {
@@ -68,6 +75,7 @@
     font-weight: bold;
     width: fit-content;
 }
+
 
 .team-name.text-left {
     text-align: left;
@@ -150,6 +158,7 @@
 
 .btn.team-action-button {
     font-size: 1.3rem;
+    padding-inline: 4px;
 }
 
 .team-action-button:disabled:hover {
@@ -199,8 +208,8 @@
     font-weight: bold;
     font-family: 'poppins-regular';
     letter-spacing: 0.5px;
-    font-size: 1.05em;
-    min-width: 19ch;
+    font-size: 1em;
+    /* min-width: 19ch; */
 }
 
 .team-buttons.row {
