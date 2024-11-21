@@ -103,11 +103,15 @@
     font-size: 40px;
     line-height: 40px;
 }
+.uppper-row {
+    height: 450px;
+}
 #player-photo{
     transform: scale(1.1);
     height: 100%;
     width: 100%;
     object-fit: contain;
+    object-position: top;
     border-radius: 10px;
 }
 #player-image-div {

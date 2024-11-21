@@ -166,7 +166,7 @@ const PlayerCard = () => {
 
     return (
         <div class="container max-width-90">
-            <div class="row">
+            <div class="row uppper-row">
                 <div id="player-image-div" class={`col col-lg-5 padding pr-0 ${
                     currentPlayer.GameChanger ? ' game-changer' : ''
                 }`}>
