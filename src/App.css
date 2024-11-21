@@ -13,6 +13,12 @@
   }
 }
 
+.page-c {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

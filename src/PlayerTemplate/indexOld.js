@@ -165,11 +165,9 @@ const PlayerCard = () => {
     if(!currentPlayer) return <></>
 
     return (
-        <div class="container" style={{
-            paddingTop: "10px"
-        }}>
-            <div class="rowX uppper-rowX">
-                <div id="player-image-div" class={`pr-0 ${
+        <div class="container max-width-90">
+            <div class="row uppper-row">
+                <div id="player-image-div" class={`col col-lg-5 padding pr-0 ${
                     currentPlayer.GameChanger ? ' game-changer' : ''
                 }`}>
                     {/* <img id="player-photo" src={'./SatishDesai.jpg'} */}
@@ -178,27 +176,20 @@ const PlayerCard = () => {
                         src={currentPlayer.Photo}
                         loading='eager'
                     ></img>
-                    <div className='current-bid-price rock-salt-regular'>
-                        {currentBidPrice}
-                    </div>
                 </div>
-                <div class="col player-info pl-0 ">
+                <div class="col player-info padding pl-0 ">
                     <Row className='align-items-center'>
                         <Col>
-                            <Row>
-                                <Col>
-                                    <div class="info-row name mb-2">{currentPlayer.Name}</div>
-                                </Col>
-                            </Row>
-
+                            <div class="info-row name mb-2">{currentPlayer.Name}</div>
+                           
                         </Col>
                         <Col sm={1}>
                             <MoreOption />
                         </Col>
                     </Row>
-                        {/* <div class="info-row info-row-dark age mb-2">{
+                        <div class="info-row info-row-dark age mb-2">{
                             currentPlayer.Gender === 'S' ? 'Senior member' : 'Player'
-                        }</div> */}
+                        }</div>
                     
                     {/* <div class="info-row number mb-4"> Number</div> */}
                     {/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
@@ -222,11 +213,11 @@ const PlayerCard = () => {
                                 </Col>
                             </Row>
                         </Col>
-                        {/* <Col className="col-4">
+                        <Col className="col-4">
                             <div className='current-bid-price'>
                                 {currentBidPrice}
                             </div>
-                        </Col> */}
+                        </Col>
                         <Col className="col-4 numeric-row">
                             <Row className='mb-2'>
                                 <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>

@@ -14,8 +14,12 @@ function App() {
       <Provider store={store}>
       <div className="App">
         <ApiCalls />
-        <PlayerCard />
-        <TeamButtons />
+        {/* <PlayerCard />
+        <TeamButtons /> */}
+        <div className='page-c'>
+          <PlayerCard />
+          <TeamButtons />
+        </div>
       </div>
     </Provider>
     </ErrorBoundary>

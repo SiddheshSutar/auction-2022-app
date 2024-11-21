@@ -1,0 +1,174 @@
+.container {
+  /* border: 3px solid #f44646; */
+  border-radius: 30px;
+  width: 90vw;
+  padding-top: 2rem !important;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+}
+.player-info {
+  margin: 1rem;
+}
+
+.player-info .info-row {
+  margin-bottom: 1rem;
+  /* line-height: 2rem; */
+  font-family: 'Secular One', sans-serif;;
+}
+
+
+.name {
+  color: #f44646;
+ 
+}
+
+.padding {
+  padding: 1em;
+}
+
+.player-image {
+  /* background-image: url('https://picsum.photos/200/300'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30vw;
+  border: 2px solid rgb(68, 68, 68);
+  background-position: center;
+  margin: 1em;
+}
+
+.name {
+  font-size: 4rem;
+  line-height: 4rem;
+  border: 1px solid #f44646;
+  background-color: #f44646;
+  color: white;
+
+  border-radius: 20px;
+  white-space: break-spaces;
+}
+
+.name, .age, .number , .add-on-info{
+  padding: 10px;
+
+}
+
+.age, .number {
+  font-size: 3rem;
+  line-height: 3rem;
+  color: #fff;
+}
+.add-on-info {
+  font-size: 2rem;
+  line-height: 2rem;
+  color: rgb(68, 68, 68);
+
+}
+
+.gap-1 {
+  gap: 1em;
+}
+
+.current-bid-price {
+  color: #934f5a;
+}
+
+.info-row {
+  border-bottom: 1px solid #f44646;
+}
+.info-row-dark {
+  color: #934f5a;
+}
+
+.info-row:nth-last-child(1) {
+  border-bottom: transparent;
+}
+
+.current-bid-price {
+  border: 2px solid #f44646;
+  font-size: 85px;
+  line-height: 92px;
+  font-weight: bold;
+}
+
+.slider-btns .col button {
+  /* width: inherit; */
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 30px;
+}
+.slider-btns .numeric-row.col button{
+  font-size: 40px;
+  line-height: 40px;
+}
+.upper-row {
+  /* height: 450px; */
+}
+#player-photo{
+  transform: scale(1.1);
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: top;
+  border-radius: 10px;
+}
+#player-image-div {
+  position: relative;
+}
+#player-image-div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: rgb(231,251,63);
+  background: radial-gradient(circle, rgba(232, 251, 63, 0.934) 0%, rgba(252,70,107,0) 100%);
+  background-position: center;
+}
+#player-image-div{
+  /* min-height: 75%; */
+  height: 450px;
+  overflow: hidden;
+}
+
+
+.one-btn.btn-primary {
+  background-color: #6ff16f;
+  border-color: #6ff16f;
+  color: brown;
+}
+.one-btn.btn-primary:hover {
+  background-color: #069506;
+  border-color: #069506;
+}
+.five-btn.btn-primary {
+  background-color: #f9c462;
+  border-color: #f9c462;
+  color: brown;
+}
+.five-btn.btn-primary:hover {
+  background-color: #f1a00c;
+  border-color: #f1a00c;
+}
+
+.game-changer::after {
+  content: '';
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background-image: url('../../public/Images/star.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3vw;
+  padding: 30px;
+  /* box-shadow: 0 0 10px 10px #0000006e; */
+  filter: drop-shadow(2px 4px 6px black);
+}

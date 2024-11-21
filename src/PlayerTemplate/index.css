@@ -1,8 +1,8 @@
 .container {
     /* border: 3px solid #f44646; */
     border-radius: 30px;
-    width: 90vw;
-    padding-top: 2rem !important;
+    /* width: 90vw; */
+    padding-top: 10px !important;
 }
 
 .root {
@@ -10,11 +10,10 @@
     justify-content: center;
 }
 .player-info {
-    margin: 1rem;
+    margin: 4px;
 }
 
 .player-info .info-row {
-    margin-bottom: 1rem;
     /* line-height: 2rem; */
     font-family: 'Secular One', sans-serif;;
 }
@@ -45,12 +44,10 @@
     border: 1px solid #f44646;
     background-color: #f44646;
     color: white;
-
-    border-radius: 20px;
     white-space: break-spaces;
 }
 
-.name, .age, .number , .add-on-info{
+.name, .number , .add-on-info{
     padding: 10px;
 
 }
@@ -59,6 +56,10 @@
     font-size: 3rem;
     line-height: 3rem;
     color: #fff;
+}
+.age {
+    font-size: 3rem;
+    line-height: 1;
 }
 .add-on-info {
     font-size: 2rem;
@@ -70,11 +71,31 @@
 .gap-1 {
     gap: 1em;
 }
-
+.player-image-div {
+    overflow: visible;
+}
 .current-bid-price {
     color: #934f5a;
+    position: absolute;
+    font-size: 75px;
+    line-height: 92px;
+    /* font-weight: bold; */
+    padding: 20px;
+    /* border: 1px solid rgb(193, 193, 193); */
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgb(0, 50, 135);
+    text-shadow: 0 0 4px #fff;
+    color: #fff;
+    border-radius: 50vw;
+    border-top-right-radius: 0;
+    box-shadow: 0 0 10px 2px rgba(0, 49, 135, 0.8);
 }
 
+
+.current-bid-price {
+}
 .info-row {
     border-bottom: 1px solid #f44646;
 }
@@ -84,13 +105,6 @@
 
 .info-row:nth-last-child(1) {
     border-bottom: transparent;
-}
-
-.current-bid-price {
-    border: 2px solid #f44646;
-    font-size: 85px;
-    line-height: 92px;
-    font-weight: bold;
 }
 
 .slider-btns .col button {
@@ -103,8 +117,8 @@
     font-size: 40px;
     line-height: 40px;
 }
-.uppper-row {
-    height: 450px;
+.upper-row {
+    /* height: 450px; */
 }
 #player-photo{
     transform: scale(1.1);
