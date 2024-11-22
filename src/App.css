@@ -15,7 +15,7 @@
 
 .page-c {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 0.4fr 0.6fr;
   gap: 10px;
 }
 
@@ -98,7 +98,7 @@
 
 .captain {
   background-image: url('../public/Images/captain.png');
-  background-size: 23px 24px;
+  background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
