@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-image: url('../public/Images/waveBg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .App-logo {
@@ -96,19 +99,36 @@
   border-color: #6ff16f;
 }
 
+.icon-wrap:has(.captain) {
+  background-color: #fff;
+}
+
 .captain {
   background-image: url('../public/Images/captain.png');
+  /* content: '\00A9'; */
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
   border-radius: 100vw;
   padding-inline: 12px;
-  filter: drop-shadow(2px 4px 3px rgba(255, 255, 255, 0.662));
+  /* filter: drop-shadow(0 0 1px 10px rgba(255, 255, 255, 0.9)); */
+  position: relative;
+}
+
+.captain::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 .star {
   background-image: url('../public/Images/star.png');
-  background-size: 23px 24px;
+  background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;

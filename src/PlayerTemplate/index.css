@@ -1,8 +1,13 @@
 .container {
     /* border: 3px solid #f44646; */
-    border-radius: 30px;
     /* width: 90vw; */
     padding-top: 10px !important;
+}
+
+.left-c {
+    border: 2px solid #fff;
+    border-top: 0;
+    border-bottom: 0;
 }
 
 .root {
@@ -80,8 +85,9 @@
     position: absolute;
     font-size: 75px;
     line-height: 92px;
-    /* font-weight: bold; */
+    font-weight: bolder;
     padding: 20px;
+    padding-block: 30px;
     /* border: 1px solid rgb(193, 193, 193); */
     top: 0;
     right: 0;
@@ -90,12 +96,17 @@
     text-shadow: 0 0 4px #fff;
     color: #fff;
     border-radius: 50vw;
-    border-top-right-radius: 0;
-    box-shadow: 0 0 10px 2px rgba(0, 49, 135, 0.8);
+    outline: 5px solid #fff;
+    /* border-top-right-radius: 0; */
+    box-shadow: 0 0 50px 22px rgba(0, 49, 135, 0.8);
 }
 
 
 .current-bid-price {
+}
+
+.upper-row {
+    position: relative;
 }
 .info-row {
     border-bottom: 1px solid #f44646;
@@ -107,16 +118,18 @@
 .info-row:nth-last-child(1) {
     border-bottom: transparent;
 }
-
+.horiz-btn-col > * {
+    width: 100%;
+}
 .slider-btns .col button {
     /* width: inherit; */
     font-weight: bold;
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 10px;
+    line-height: 10px;
 }
 .slider-btns .numeric-row.col button{
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 25px;
 }
 .upper-row {
     /* height: 450px; */
@@ -150,6 +163,9 @@
     overflow: hidden;
 }
 
+.current-bid-price-sm {
+    font-size: 30px;
+}
 
 .one-btn.btn-primary {
     background-color: #6ff16f;

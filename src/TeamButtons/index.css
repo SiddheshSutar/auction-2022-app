@@ -1,15 +1,15 @@
 .container-tb {
     /* border: 3px solid #f44646; */
-    border-radius: 30px;
     margin-top: 5px;
     font-family: 'poppins-regular';
     
 }
 
+.right-c {
+    background: rgba(105, 0, 84, 0.5);
+}
+
 .team-buttons-cntr {
-    max-width: 98% !important;
-    padding-inline: 0 !important;
-    margin-inline: auto;
 }
 
 .root {
@@ -27,10 +27,9 @@
 }
 
 .team-buttons {
-    margin: 1rem 0.2rem;
-    padding: 1rem 0.2rem;
+    margin-top: 4px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 
@@ -53,14 +52,14 @@
 
 .team-player-list.row .player-name {
     text-align: left;
-    color: #000;
-    font-size: 0.9em;
+    color: #fff;
+    font-size: 1rem;
     padding-right: 0;
     padding-left: 2px;
 }
 
 .player-coins {
-    color:  #506705;
+    color:  #e2f79c;
     padding-left: 0 !important;
     font-weight: bold;
     text-align: right;
@@ -143,7 +142,7 @@
 .refresh-link {
     position: absolute;
     right: 0;
-    font-size: 30px !important;
+    font-size: 15px !important;
     margin-left: auto;
     width: auto;
 }
@@ -166,8 +165,8 @@
 }
 
 .player-entry, .player-entry.row {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
 .matches-row {

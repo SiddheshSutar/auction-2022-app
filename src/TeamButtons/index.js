@@ -254,7 +254,7 @@ const TeamButtons = () => {
     }, [showModal])
 
     return (
-        <div class="container-tb team-buttons-cntr">
+        <div class="container-tb right-c team-buttons-cntr">
             {
                 showModal &&
                 <ConfirmBuyPlayerModal
@@ -303,7 +303,7 @@ const TeamButtons = () => {
                     setShowModal={toggleGameChangersModal}
                 /> 
             }
-            <div class="row title">
+           {false && <div class="row title">
                 <div className="showCaptainSlots">
                     {/* <a
                         style={{
@@ -348,7 +348,7 @@ const TeamButtons = () => {
                         Show matches
                     </a>
                 </div>
-            </div>
+            </div>}
             <div class="team-buttons">
                 
                 {currentTeamList.map((team) => (
@@ -418,10 +418,13 @@ const TeamButtons = () => {
                                             }`}>
                                                 <div class="player-name col col-9 text-align-left pr-0">{
                                                     player.Name.length < 20 ? player.Name : player.Name.substring(0,20) + '...'
-                                                }&nbsp;&nbsp;{
-                                                    player.Captain ? <span className="captain"></span> : 
+                                                }&nbsp;&nbsp;<span className="icon-wrap">
+                                                    {
+                                                        player.Captain ? <span className="captain"></span> : 
                                                          player.GameChanger ? <span className="star"></span>: ''
-                                                }</div>
+                                                    }
+                                                    </span>
+                                                    </div>
                                                 <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
                                                 <div className="del-btn display-none col col-1"
                                                     onClick={e => {

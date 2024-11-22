@@ -165,10 +165,13 @@ const PlayerCard = () => {
     if(!currentPlayer) return <></>
 
     return (
-        <div class="container" style={{
+        <div class="container left-c" style={{
             paddingTop: "10px"
         }}>
-            <div class="rowX uppper-rowX">
+            <div class="rowX upper-row">
+                    <div className='current-bid-price'>
+                        {currentBidPrice}
+                    </div>
                 <div id="player-image-div" class={`pr-0 ${
                     currentPlayer.GameChanger ? ' game-changer' : ''
                 }`}>
@@ -178,15 +181,12 @@ const PlayerCard = () => {
                         src={currentPlayer.Photo}
                         loading='eager'
                     ></img>
-                    <div className='current-bid-price rock-salt-regular'>
-                        {currentBidPrice}
-                    </div>
                 </div>
                 <div class="col player-info pl-0 ">
                     <Row className='align-items-center'>
                         <Col>
                             <Row>
-                                <Col>
+                                <Col className='p-0'>
                                     <div class="info-row name mb-2">{currentPlayer.Name}</div>
                                 </Col>
                             </Row>
@@ -203,21 +203,41 @@ const PlayerCard = () => {
                     {/* <div class="info-row number mb-4"> Number</div> */}
                     {/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
                     <Row className='slider-btns mb-4'>
-                        <Col className="col-4 numeric-row">
-                            <Row className='mb-2'>
-                                <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
-                                    -
-                                </Button>
-                            </Row>
+                        <Col className=" numeric-row">
                             <Row className='gap-1'>
-                                <Col className='px-0'>
-                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
+                                        -10
+                                    </Button>
+                                </Col>
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
                                         -5
                                     </Button>
                                 </Col>
-                                <Col className='px-0'>
-                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
-                                        -10
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+                                        -
+                                    </Button>
+                                </Col>
+                                {/* <Col className='horiz-btn-col px-0'>
+                                    <div className='current-bid-price-sm'>
+                                        {currentBidPrice}
+                                    </div>
+                                </Col> */}
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+                                        +
+                                    </Button>
+                                </Col>
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
+                                        +5
+                                    </Button>
+                                </Col>
+                                <Col className='horiz-btn-col px-0'>
+                                    <Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
+                                        +10
                                     </Button>
                                 </Col>
                             </Row>
@@ -227,27 +247,7 @@ const PlayerCard = () => {
                                 {currentBidPrice}
                             </div>
                         </Col> */}
-                        <Col className="col-4 numeric-row">
-                            <Row className='mb-2'>
-                                <Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
-                                    +
-                                </Button>
-                            </Row>
-                            <Row className='gap-1'>
-                                <Col className='px-0'>
-                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
-                                        +5
-                                    </Button>
-                                </Col>
-                                <Col className='px-0'>
-                                    <Button className="five-btn width-100" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
-                                        +10
-                                    </Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                            </Row>
-                        </Col>
+                        
 
                     </Row>
                     <Row className='slider-btns'>
