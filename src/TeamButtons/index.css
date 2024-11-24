@@ -63,13 +63,13 @@
     padding-left: 2px;
 }
 
-.team-player-list.row .pale-yellow-bg .player-name,
-.team-player-list.row .green-bg .player-name {
+.team-player-list .pale-yellow-bg .player-name,
+.team-player-list .green-bg .player-name {
     color: #000;
 }
 
-.team-player-list.row .pale-yellow-bg .player-coins,
-.team-player-list.row .green-bg .player-coins {
+.team-player-list .pale-yellow-bg .player-coins,
+.team-player-list .green-bg .player-coins {
     color: #002183;
 }
 
@@ -80,7 +80,7 @@
     text-align: right;
 }
 
-.team-player-list.row .pale-yellow-bg .player-name {
+.team-player-list .pale-yellow-bg .player-name {
     color: #000;
 }
 
@@ -133,7 +133,7 @@
 
 .team-player-list {
     height: inherit;
-    margin-top: 1rem;
+    width: 100%;
 }
 
 .title {

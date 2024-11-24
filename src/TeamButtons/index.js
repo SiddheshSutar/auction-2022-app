@@ -439,9 +439,10 @@ const TeamButtons = () => {
                                         {team.Name}
                                     </div>
                                     <div class="team-coins text-right pl-0">
-                                        <div class="row">
+                                        <div class="rodw">
                                             <div class="col">
-                                                <span class="team-coins-spent">
+                                               <div>
+                                               <span class="team-coins-spent">
                                                     {
                                                         parseInt(team.Amount_Used)
                                                     }
@@ -451,6 +452,7 @@ const TeamButtons = () => {
                                                         team.Amount_Assigned
                                                     }
                                                 </span>
+                                               </div>
                                             </div>
                                         </div>
                                     </div>
@@ -458,8 +460,8 @@ const TeamButtons = () => {
                             </button>
                         </div>
                     </div>
-                    <div class="team-player-list row">
-                        <div class="col">
+                    <div class="team-player-list">
+                        <div class="">
                             {
                                 true &&
                                 // team.Players.map((player, index) => (
