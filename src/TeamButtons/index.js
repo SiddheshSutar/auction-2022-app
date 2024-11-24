@@ -7,7 +7,7 @@ import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '.
 import { MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
-import { getTeams, updatePlayerList, updateTeamList } from "../services";
+import { getPlayers, getTeams, updatePlayerList, updateTeamList } from "../services";
 import { cloneDeep } from "lodash";
 
 const ConfirmBuyPlayerModal = ({
@@ -203,11 +203,13 @@ const TeamButtons = () => {
 
     const [teamClicked, setTeamClicked] = useState(null)
     const [teamIdClicked, setTeamIdClicked] = useState(null)
+    const [teamClickedObj, setTeamClickedObj] = useState(null)
 
     const dispatch = useDispatch()
 
     const handleClickBuyTeam = (e, teamObj) => {
-        setTeamClicked(teamObj.teamName)
+        setTeamClickedObj(teamObj)
+        setTeamClicked(teamObj.TeamName)
         setTeamIdClicked(teamObj._id)
         setShowModal(true)
     }
@@ -221,7 +223,8 @@ const TeamButtons = () => {
             data: [{
                 singlePlayer: true,
                 teamId: teamIdClicked,
-                playerId: currentPlayer._id
+                playerId: currentPlayer._id,
+                Amount_Used: (teamClickedObj?.Amount_Used ?? 0) + currentBidPrice
             }]
         })
         await updatePlayerList({
@@ -234,15 +237,54 @@ const TeamButtons = () => {
 
 
         const teamsResp = await getTeams()
+        const playersResp = await getPlayers()
+
         dispatch(setReduxState({
             key: 'initialTeamList',
             data: teamsResp.data
         }))
+        dispatch(setReduxState({
+            key: 'initialPlayerList',
+            data: playersResp.data
+        }))
         setShowModal(false)
     }
 
-    const handleDeletePlayer = ({ player, team }) => {
+    const handleDeletePlayer = async ({ player, team }) => {
+        console.log('hex: ', team, player)
         dispatch(deletePlayer({ player, team }))
+
+        if (team?._id && player?._id) {
+
+            await updateTeamList({
+                data: [{
+                    singlePlayer: true,
+                    playerDeleteFlow: true,
+                    teamId: team._id,
+                    playerId: player._id,
+                    Amount_Used: (team.Amount_Used ?? 0) - player.soldFor
+                }]
+            })
+            await updatePlayerList({
+                data: [{
+                    _id: player._id,
+                    SoldFor: 0
+                }]
+
+            })
+            const teamsResp = await getTeams()
+            const playersResp = await getPlayers()
+
+            dispatch(setReduxState({
+                key: 'initialTeamList',
+                data: teamsResp.data
+            }))
+            dispatch(setReduxState({
+                key: 'initialPlayerList',
+                data: playersResp.data
+            }))
+        }
+       
         setDeleteModal(null)
     }
 
@@ -353,84 +395,92 @@ const TeamButtons = () => {
             </div>}
             <div class="team-buttons">
 
-                {currentTeamList.map((team) => (
-                    <div class="main-col team-col pr-0">
+                {currentTeamList.map((team) => {
+                    console.log('hex: ', currentPlayer)
+                    const alreadySoldPlayer = currentPlayer?.soldFor
+                    const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
+                    const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")
+                    const alreadyHasGameChanger = currentPlayer?.GameChanger && team?.Players.some((obj) => obj?.GameChanger)
+                    const alreadyBoughtPlayer = currentPlayer?._id && team?.Players.some((obj) => obj?._id === currentPlayer?._id)
+
+                    return <div class="main-col team-col pr-0">
+                    <div class="">
                         <div class="">
-                            <div class="">
-                                <button
-                                    type="button"
-                                    class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
-                                        }`}
-                                    disabled={currentBidPrice <= 0 || (
-                                        MAX_AMOUNT - team.Amount_Used < currentBidPrice
-                                    ) || (
-                                            checkFemaleOrSenior({
-                                                currentTeam: team,
-                                                teams: currentTeamList,
-                                                currentPlayer: currentPlayer
-                                            })
-                                        )
-                                        // || (
-                                        //     isSelfSenior({
-                                        //         currentTeam: team,
-                                        //         currentPlayer: currentPlayer
-                                        //     })
-                                        // )
-                                    }
-                                    name={team.Name}
-                                    style={{
-                                        backgroundColor: team.Color,
-                                        borderColor: team.Color
-                                    }}
-                                    onClick={e => handleClickBuyTeam(e, team)}
-                                >
-                                    <div class="team-btn-row">
-                                        <div class="team-name text-left">
-                                            {team.Name}
-                                        </div>
-                                        <div class="team-coins text-right pl-0">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="team-coins-spent">
-                                                        {
-                                                            parseInt(team.Amount_Used)
-                                                        }
-                                                    </span>/
-                                                    <span class="team-coins-total">
-                                                        {
-                                                            team.Amount_Assigned
-                                                        }
-                                                    </span>
-                                                </div>
+                            <button
+                                type="button"
+                                class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
+                                    }`}
+                                disabled={currentBidPrice <= 0 || (
+                                    MAX_AMOUNT - team.Amount_Used < currentBidPrice
+                                ) || (
+                                        checkFemaleOrSenior({
+                                            currentTeam: team,
+                                            teams: currentTeamList,
+                                            currentPlayer: currentPlayer
+                                        })
+                                    ) ||
+                                    alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
+                                    // || (
+                                    //     isSelfSenior({
+                                    //         currentTeam: team,
+                                    //         currentPlayer: currentPlayer
+                                    //     })
+                                    // )
+                                }
+                                name={team.Name}
+                                style={{
+                                    backgroundColor: team.Color,
+                                    borderColor: team.Color
+                                }}
+                                onClick={e => handleClickBuyTeam(e, team)}
+                            >
+                                <div class="team-btn-row">
+                                    <div class="team-name text-left">
+                                        {team.Name}
+                                    </div>
+                                    <div class="team-coins text-right pl-0">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="team-coins-spent">
+                                                    {
+                                                        parseInt(team.Amount_Used)
+                                                    }
+                                                </span>/
+                                                <span class="team-coins-total">
+                                                    {
+                                                        team.Amount_Assigned
+                                                    }
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="team-player-list row">
-                            <div class="col">
-                                {
-                                    true &&
-                                    // team.Players.map((player, index) => (
-                                    <RenderPlayersAndSlots
-                                        // player={player}
-                                        team={team}
-                                        setDeleteModal={setDeleteModal}
-                                    />
-                                    // ))
-                                }
-
-                            </div>
+                                </div>
+                            </button>
                         </div>
                     </div>
-                ))}
+                    <div class="team-player-list row">
+                        <div class="col">
+                            {
+                                true &&
+                                // team.Players.map((player, index) => (
+                                <RenderPlayersAndSlots
+                                    // player={player}
+                                    team={team}
+                                    setDeleteModal={setDeleteModal}
+                                />
+                                // ))
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                })}
             </div>
         </div>
     );
 };
 
-const RenderPlayersAndSlots = (team, setDeleteModal) => {
+const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
 
     /** @param renderPlayers => used to render empty list placeholder in UI  */
     let renderPlayers = team.Players ? [...team.Players] : []
@@ -440,12 +490,17 @@ const RenderPlayersAndSlots = (team, setDeleteModal) => {
         const placeHolderArr = new Array(MIN_PLAYER_COUNT).fill(0)
 
         placeHolderArr.forEach((item, index) => {
-            if (!renderPlayers?.[index] && index <= MIN_PLAYER_COUNT) {
+            if (!renderPlayers?.[index] && (index < MIN_PLAYER_COUNT)) {
                 arrWithEmptyPlayerSlots.push({
                     key: 'empty'
                 })
+
+                // arrWithEmptyPlayerSlots[index] = {
+                //     key: 'empty'
+                // }
             } else {
                 arrWithEmptyPlayerSlots.push(renderPlayers?.[index])
+                // arrWithEmptyPlayerSlots = renderPlayers?.[index]
             }
         })
 
@@ -462,8 +517,6 @@ const RenderPlayersAndSlots = (team, setDeleteModal) => {
         renderPlayers = cloneDeep(arrWithEmptyPlayerSlots)
     }
 
-    console.log('hex:', renderPlayers)
-
     return <>
         {
             renderPlayers.map((player, index) => {
@@ -475,7 +528,7 @@ const RenderPlayersAndSlots = (team, setDeleteModal) => {
                     </div>
                 }
 
-                if (player?.id) {
+                if (player?._id) {
                     return <div class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
                         player.Gender === 'S' ? 'green-bg' : ''
                         }`}>

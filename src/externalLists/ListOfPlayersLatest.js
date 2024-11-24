@@ -14,6 +14,7 @@ const players2 = [
         "Captain": true,
         "Age": 30,
         "Photo": "./Photo/Aniket.jpg",
+        "Video": "./Profiles/Niraj.mp4",
         "id": 1
     },
     {
@@ -22,6 +23,7 @@ const players2 = [
         "Age": 29,
         "Captain": true,
         "Photo": "./Photo/Siddhesh.jpg",
+        "Video": "./Profiles/Niraj.mp4",
         "id": 2
     },
     {

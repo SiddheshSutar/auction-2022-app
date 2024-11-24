@@ -63,6 +63,12 @@ export const storeSlice = createSlice({
                 SoldFor: state.currentBidPrice
               })
               state.soldPlayers.push(playerObj)
+
+              // assign currentPlayer the sold price
+              state.currentPlayer = {
+                ...playerObj,
+                soldFor: state.currentBidPrice
+              }
               
               team.Amount_Used = team.Amount_Used + state.currentBidPrice
 

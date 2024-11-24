@@ -227,7 +227,7 @@ export const generateMatches = (matchesPassed) => {
         
         return teams.find(item => item.TeamName === name)
     }
-    console.log('hex: ', b)
+
     /** css specific */
     // b = b.map((item, index) => {
     b = staticMatches.map((item, index) => {

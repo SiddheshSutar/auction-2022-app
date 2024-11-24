@@ -3,8 +3,9 @@ import styles from './index.module.css'
 import { Button, Dropdown, DropdownButton, Form, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { DEFAULT_BID_PRICE, MAX_AMOUNT } from '../../helpers';
-import { handleDirectPlayerAdd } from '../../redux/storeSlice';
+import { handleDirectPlayerAdd, setReduxState } from '../../redux/storeSlice';
 import players2 from '../../externalLists/ListOfPlayersLatest';
+import { getTeams, updatePlayerList, updateTeamList } from '../../services';
 
 const AssignDirectModal = ({
     show,
@@ -30,18 +31,45 @@ const AssignDirectModal = ({
 ]
     
     const [selectedPlayerId, setSelectedPlayerId] = useState(null)
+    const [selectedPlayerObj, setSelectedPlayerObj] = useState(null)
     const [selectedTeamId, setSelectedTeamId] = useState(null)
+    const [selectedTeamObj, setSelectedTeamObj] = useState(null)
     const [selectedTeamAmountUsed, setSelectedTeamAmountUsed] = useState(MAX_AMOUNT)
     const [soldFor, setSoldFor] = useState(DEFAULT_BID_PRICE)
 
     const canBuyPlayer = soldFor <= (MAX_AMOUNT - selectedTeamAmountUsed)
     
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         
         if(selectedPlayerId && selectedTeamId && soldFor) {
             dispatch(handleDirectPlayerAdd({
                 selectedTeamId, selectedPlayerId, soldFor
+            }))
+
+            if (selectedTeamObj?._id && selectedPlayerObj?._id) {
+
+                await updateTeamList({
+                    data: [{
+                        singlePlayer: true,
+                        teamId: selectedTeamObj._id,
+                        playerId: selectedPlayerObj._id,
+                        Amount_Used: (selectedTeamObj.Amount_Used ?? 0) + soldFor
+                    }]
+                })
+                await updatePlayerList({
+                    data: [{
+                        _id: selectedPlayerObj._id,
+                        SoldFor: soldFor
+                    }]
+
+                })
+            }
+
+            const teamsResp = await getTeams()
+            dispatch(setReduxState({
+                key: 'initialTeamList',
+                data: teamsResp.data
             }))
             setShowModal(false)
         } else {
@@ -67,6 +95,10 @@ const AssignDirectModal = ({
                         <Form.Label className={`${styles['form-label']}`}>Select player to be assigned</Form.Label>
                         <Form.Control className={`${styles['fs-2']}`} as="select" value={selectedPlayerId} onChange={e => {
                             setSelectedPlayerId(e.target.value)
+
+                            const selectedPlayerObj = initialPlayerList.find((obj) => obj.Name === e.target.value)
+
+                            setSelectedPlayerObj(selectedPlayerObj)
                             
                             // dispatch(handleDirectPlayerAdd({
                             //     selectedPlayerId: e.target.value
@@ -91,11 +123,14 @@ const AssignDirectModal = ({
                         selectedPlayerId && <Form.Group className={`${styles['form-group']} mb-4`}>
                             <Form.Label className={`${styles['form-label']}`}>Assign to which team ?</Form.Label>
                             <Form.Control className={`${styles['fs-2']}`} as="select" value={selectedTeamId} onChange={e => {
+                                const selectedTeamObj = initialTeamList.find((obj) => obj.Name === e.target.value)
+
                                 setSelectedTeamId(e.target.value)
+                                setSelectedTeamObj(selectedTeamObj)
                                 
                                 /** Set max amount which team can use */
                                 setSelectedTeamAmountUsed(
-                                    initialTeamList.find((item) => item.id === parseInt(e.target.value)).Amount_Used
+                                    initialTeamList.find((item) => item._id === selectedTeamObj._id).Amount_Used
                                 )
                             }}>
                                 <option>--select--</option>
@@ -104,6 +139,7 @@ const AssignDirectModal = ({
 
                                         return <option key={index} value={item.id}
                                             onClick={e => {
+                                                
                                             }}
                                         >
                                             {item.Name}
@@ -149,7 +185,7 @@ const AssignDirectModal = ({
                     }
                     {
                         selectedPlayerId && selectedTeamId && canBuyPlayer && <>
-                            <Button type="submit">Submit form</Button>
+                            <Button type="submit">Submit</Button>
                         </>
                     }
                 </Form>

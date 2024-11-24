@@ -63,11 +63,25 @@
     padding-left: 2px;
 }
 
+.team-player-list.row .pale-yellow-bg .player-name,
+.team-player-list.row .green-bg .player-name {
+    color: #000;
+}
+
+.team-player-list.row .pale-yellow-bg .player-coins,
+.team-player-list.row .green-bg .player-coins {
+    color: #002183;
+}
+
 .player-coins {
     color:  #e2f79c;
     padding-left: 0 !important;
     font-weight: bold;
     text-align: right;
+}
+
+.team-player-list.row .pale-yellow-bg .player-name {
+    color: #000;
 }
 
 .team-btn-row {
@@ -163,8 +177,15 @@
 .btn.team-action-button {
     font-size: 1.1rem;
     padding-inline: 4px;
+    transition: all 0.25s linear;
 }
 
+.team-action-button:hover {
+    transform: scale(1.06);
+}
+.team-action-button:disabled {
+    opacity: 0.4 !important;
+}
 .team-action-button:disabled:hover {
     cursor: not-allowed;
 }

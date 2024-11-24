@@ -245,7 +245,7 @@
     width: 12rem;
     height: 12rem;
     top: 0;
-    right: 0;
+    left: 0;
     z-index: 2;
     background-image: url('../../public/Images/star.png');
     background-repeat: no-repeat;

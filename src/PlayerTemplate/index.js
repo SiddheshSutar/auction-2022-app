@@ -75,8 +75,7 @@ const PlayerCard = () => {
 	const disableNextRedux = useSelector((state) => state.store.disableNext)
 	const doneFetchingFromLocalRedux = useSelector((state) => state.store.doneFetchingFromLocal)
 	const pendingPlayersRedux = useSelector((state) => state.store.pendingPlayers)
-	const {
-	} = useSelector((state) => state.store)
+	const { previousBidPrice } = useSelector((state) => state.store)
 
 	const [playersgenerated, setPlayersGenerated] = useState([])
 	const [shouldStartPending, setshouldStartPending] = useState(false)
@@ -165,22 +164,28 @@ const PlayerCard = () => {
 	// }, [])
 
 	if (!currentPlayer) return <></>
-	console.log('hex: ', currentPlayer)
+
 	const playerHasProfileVideo = currentPlayer?.Video
 
 
-	if (playerHasProfileVideo) {
-		return <VideoUpperRow playerHasProfileVideo={playerHasProfileVideo} />
-	}
+	// if (playerHasProfileVideo) {
+	// 	return <VideoUpperRow playerHasProfileVideo={playerHasProfileVideo} />
+	// }
 
 	return (
 		<div class="container left-c" style={{
 			paddingTop: "10px"
 		}}>
-			<div class="rowX upper-row">
-				<div>
+			<div className={`rowX upper-row ${playerHasProfileVideo ? ' upper-has-video' : ''}`}>
+				{
+					playerHasProfileVideo ?
+					<VideoUpperRow
+						playerHasProfileVideo={playerHasProfileVideo}
+					/> :
+					<div>
 					<div className='current-bid-price'>
-						{currentBidPrice}
+						{/* {currentBidPrice} */}
+						<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} />
 					</div>
 					<div id="player-image-div" class={`pr-0 ${currentPlayer.GameChanger ? ' game-changer' : ''
 						}`}>
@@ -192,19 +197,20 @@ const PlayerCard = () => {
 						></img>
 					</div>
 				</div>
+				}
 				<div class="col player-info pl-0 ">
-					<Row className='align-items-center'>
+					{false && <Row className='align-items-center'>
 						<Col>
 							<Row>
-								<Col className='p-0'>
+								{!playerHasProfileVideo && <Col className='p-0'>
 									<div class="info-row name mb-2">{currentPlayer.Name}</div>
-								</Col>
+								</Col>}
 							</Row>
 						</Col>
 						<Col sm={1}>
 							<MoreOption />
 						</Col>
-					</Row>
+					</Row>}
 					{/* <div class="info-row info-row-dark age mb-2">{
                             currentPlayer.Gender === 'S' ? 'Senior member' : 'Player'
                         }</div> */}
@@ -212,6 +218,50 @@ const PlayerCard = () => {
 					{/* <div class="info-row number mb-4"> Number</div> */}
 					{/* <div class="info-row add-on-info mb-4"> add-on-info</div> */}
 					<Row className='slider-btns mb-4'>
+						<Col className=" numeric-row">
+							<Row className='gap-1 btns-c'>
+								<Col sm={1}>
+									<MoreOption playerHasProfileVideo />
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
+										-10
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
+										-5
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+										-
+									</Button>
+								</Col>
+								{/* <Col className='horiz-btn-col px-0'>
+																	<div className='current-bid-price-sm'>
+																			{currentBidPrice}
+																	</div>
+															</Col> */}
+								<Col className='horiz-btn-col px-0'>
+									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+										+
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
+										+5
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
+										+10
+									</Button>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+					{false && <Row className='slider-btns mb-4'>
 						<Col className=" numeric-row">
 							<Row className='gap-1'>
 								<Col className='horiz-btn-col px-0'>
@@ -251,8 +301,8 @@ const PlayerCard = () => {
 								</Col>
 							</Row>
 						</Col>
-					</Row>
-					<Row className='slider-btns'>
+					</Row>}
+					{false && <Row className='slider-btns'>
 						<Col>
 							<Button className="bg-color-faint" onClick={e => setShowModal(true)}>
 								Fetch From history ?
@@ -269,7 +319,19 @@ const PlayerCard = () => {
 								Next Player
 							</Button>
 						</Col>
-					</Row>
+					</Row>}
+					<div className="add-on-btns-row">
+						<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
+							Fetch From history ?
+						</Button>
+						<Button size='sm' className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+							Start pending player's auction
+						</Button>
+						{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+						<Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+							Next Player
+						</Button>
+					</div>
 					<Row className='slider-btns mt-2'>
 
 						{
@@ -331,6 +393,16 @@ const VideoUpperRow = ({
 	const handlePendingListStartClick = (e) => {
 		dispatch(handlePendingList())
 	}
+
+	return <div className='react-player-wrapper'>
+		<VideoPlayer
+			playerHasProfileVideo={playerHasProfileVideo}
+		/>
+		<div className='current-bid-price'>
+			<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} />
+			{/* {currentBidPrice} */}
+		</div>
+	</div>
 
 	return (
 		<div class="left-c upper-has-video" style={{
