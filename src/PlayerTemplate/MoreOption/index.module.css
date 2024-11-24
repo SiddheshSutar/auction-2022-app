@@ -30,6 +30,9 @@
 .find.has-video {
     background-color: white;
     border-radius: 10px;
+    width: 2rem;
+    height: 2rem;
+    padding: 4px;
 }
 
 .red {

@@ -168,57 +168,81 @@ const PlayerCard = () => {
 	const playerHasProfileVideo = currentPlayer?.Video
 
 	const VideoUpperRow = () => {
+		const [playing, setPlaying] = useState(false);
+
+		useEffect(() => {
+			const timer = setTimeout(() => {
+				setPlaying(true);
+			}, 1500);
+
+			return () => clearTimeout(timer);
+		}, []);
 
 		return (
 			<div class="left-c upper-has-video" style={{
 				paddingTop: "10px"
 			}}>
 				<div class="video-upper-row">
-					{/* <div className='current-bid-price'>
-						{currentBidPrice}
-					</div> */}
-					<div className=''>
+					
+					<div className='react-player-wrapper'>
 						<ReactPlayer
 							url={playerHasProfileVideo}
-							playing={true}  // Autoplay video
 							muted={true}    // Mute video
 							controls={false} // Hide controls
+							playing={playing}
 							width="100%"
 							height="450px"
 						/>
+						<div className='current-bid-price'>
+							{currentBidPrice}
+						</div>
 					</div>
 					<div class="player-info ">
-						<Row className='align-items-center'>
-							<Col sm={1}>
-								<MoreOption playerHasProfileVideo/>
-							</Col>
-						</Row>
 						<Row className='slider-btns mb-4'>
 							<Col className=" numeric-row">
-								<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
-									-10
-								</Button>
-								<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
-									-5
-								</Button>
-								<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
-									-
-								</Button>
-								<div className='current-bid-price-sm'>
-									{currentBidPrice}
-								</div>
-								<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
-									+
-								</Button>
-								<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
-									+5
-								</Button>
-								<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
-									+10
-								</Button>
+								<Row className='gap-1 btns-c'>
+									<Col sm={1}>
+										<MoreOption playerHasProfileVideo />
+									</Col>
+									<Col className='horiz-btn-col px-0'>
+										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
+											-10
+										</Button>
+									</Col>
+									<Col className='horiz-btn-col px-0'>
+										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
+											-5
+										</Button>
+									</Col>
+									<Col className='horiz-btn-col px-0'>
+										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+											-
+										</Button>
+									</Col>
+									{/* <Col className='horiz-btn-col px-0'>
+                                    <div className='current-bid-price-sm'>
+                                        {currentBidPrice}
+                                    </div>
+                                </Col> */}
+									<Col className='horiz-btn-col px-0'>
+										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+											+
+										</Button>
+									</Col>
+									<Col className='horiz-btn-col px-0'>
+										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
+											+5
+										</Button>
+									</Col>
+									<Col className='horiz-btn-col px-0'>
+										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
+											+10
+										</Button>
+									</Col>
+								</Row>
 							</Col>
 						</Row>
-						<div className='slider-btns'>
+						<div className="add-on-btns-row">
 							<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
 								Fetch From history ?
 							</Button>

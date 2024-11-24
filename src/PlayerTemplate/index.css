@@ -17,6 +17,7 @@
 }
 .player-info {
     margin: 4px;
+    margin-top: 120px;
 }
 
 .player-info .info-row {
@@ -87,10 +88,10 @@
     font-size: 75px;
     line-height: 92px;
     font-weight: bolder;
-    padding: 20px;
-    padding-block: 30px;
+    padding: 32px;
+    padding-block: 21px;
     /* border: 1px solid rgb(193, 193, 193); */
-    top: 0;
+    bottom: -100px;
     right: 0;
     z-index: 2;
     background-color: rgb(0, 50, 135);
@@ -111,8 +112,17 @@
 }
 
 .video-upper-row {
-    display: grid;
-    grid-template-columns: 0.8fr 0.2fr;
+    /* display: grid;
+    grid-template-columns: 0.8fr 0.2fr; */
+}
+.react-player-wrapper {
+    position: relative;
+}
+.react-player-wrapper video {
+    transform: scale(1.33);
+    /* padding-bottom: 30px; */
+    position: relative;
+    top: 30px;
 }
 .info-row {
     border-bottom: 1px solid #f44646;
@@ -125,6 +135,26 @@
     border-bottom: transparent;
 }
 .horiz-btn-col > * {
+    width: 100%;
+}
+
+.upper-has-video .slider-btns {
+    position: relative;
+    left: 10px;
+    margin-top: 10px;
+}
+
+.add-on-btns-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.add-on-btns-row > * {
+    font-size: 10px;
+}
+
+.slider-btns.row {
     width: 100%;
 }
 .slider-btns .col button {
