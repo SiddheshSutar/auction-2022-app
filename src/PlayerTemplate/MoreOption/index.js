@@ -158,7 +158,9 @@ const AssignDirectModal = ({
     </>
 }
 
-const MoreOption = () => {
+const MoreOption = ({
+    playerHasProfileVideo
+}) => {
     const [moreOptionsList, openMoreOptionsList] = useState(false)
 
     return (
@@ -166,7 +168,7 @@ const MoreOption = () => {
             <img
                 src='./Images/find.png'
                 alt='find'
-                className={`${styles['find']}`}
+                className={`${styles['find']} ${playerHasProfileVideo ? styles['has-video'] : ''}`}
                 title="Find Player"
                 onClick={e => {
                     openMoreOptionsList(true)

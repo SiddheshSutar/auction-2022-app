@@ -18,8 +18,9 @@
 
 .page-c {
   display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
+  grid-template-rows: 1fr 1fr;
   gap: 10px;
+  height: 100vh;
 }
 
 .App-header {

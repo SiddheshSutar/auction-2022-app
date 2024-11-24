@@ -4,7 +4,8 @@ const players2 = [
         "Name": "Niraj Gupta",
         "Age": 27,
         "Captain": true,
-        "Photo": "./Photo/Niraj.JPEG",
+        "Photo": "./Photo/Niraj.jpg",
+        "Video": "./Profiles/Niraj.mp4",
         "id": 0
     },
     {

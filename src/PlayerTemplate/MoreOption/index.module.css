@@ -27,6 +27,11 @@
     cursor: pointer;
 }
 
+.find.has-video {
+    background-color: white;
+    border-radius: 10px;
+}
+
 .red {
     color: red;
     font-weight: bold;
