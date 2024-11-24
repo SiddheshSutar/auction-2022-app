@@ -41,6 +41,11 @@
     border: 1px solid black;
 }
 
+.player-entry.empty-row {
+    background-color: #ffffffb1;
+    min-height: 1.5rem;
+}
+
 .row.team-buttons button {
     width: inherit !important;
     font-size: 1.45em;
@@ -53,7 +58,7 @@
 .team-player-list.row .player-name {
     text-align: left;
     color: #fff;
-    font-size: 1rem;
+    font-size: 15px;
     padding-right: 0;
     padding-left: 2px;
 }
@@ -156,7 +161,7 @@
 }
 
 .btn.team-action-button {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding-inline: 4px;
 }
 
@@ -165,7 +170,7 @@
 }
 
 .player-entry, .player-entry.row {
-    font-size: 1.1rem;
+    font-size: 16px;
     line-height: 1.5;
 }
 

@@ -18,6 +18,8 @@ export const checkIfBought = (playerObj, teamList) => {
 
 }
 
+export const MIN_PLAYER_COUNT = 7
+
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
 
 // function swap(array) {

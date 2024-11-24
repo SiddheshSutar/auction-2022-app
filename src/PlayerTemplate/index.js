@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useCallback, useEffect, useState } from 'react';
 import './index.css'
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import players_array from '../externalLists/ListOfPlayers';
@@ -10,6 +10,7 @@ import {
 import axios from 'axios';
 import MoreOption from './MoreOption';
 import ReactPlayer from 'react-player';
+import CountUp from 'react-countup';
 
 
 const ConfirmfetchHistoryModal = ({
@@ -167,122 +168,9 @@ const PlayerCard = () => {
 	console.log('hex: ', currentPlayer)
 	const playerHasProfileVideo = currentPlayer?.Video
 
-	const VideoUpperRow = () => {
-		const [playing, setPlaying] = useState(false);
-
-		useEffect(() => {
-			const timer = setTimeout(() => {
-				setPlaying(true);
-			}, 1500);
-
-			return () => clearTimeout(timer);
-		}, []);
-
-		return (
-			<div class="left-c upper-has-video" style={{
-				paddingTop: "10px"
-			}}>
-				<div class="video-upper-row">
-					
-					<div className='react-player-wrapper'>
-						<ReactPlayer
-							url={playerHasProfileVideo}
-							muted={true}    // Mute video
-							controls={false} // Hide controls
-							playing={playing}
-							width="100%"
-							height="450px"
-						/>
-						<div className='current-bid-price'>
-							{currentBidPrice}
-						</div>
-					</div>
-					<div class="player-info ">
-						<Row className='slider-btns mb-4'>
-							<Col className=" numeric-row">
-								<Row className='gap-1 btns-c'>
-									<Col sm={1}>
-										<MoreOption playerHasProfileVideo />
-									</Col>
-									<Col className='horiz-btn-col px-0'>
-										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
-											-10
-										</Button>
-									</Col>
-									<Col className='horiz-btn-col px-0'>
-										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
-											-5
-										</Button>
-									</Col>
-									<Col className='horiz-btn-col px-0'>
-										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
-											-
-										</Button>
-									</Col>
-									{/* <Col className='horiz-btn-col px-0'>
-                                    <div className='current-bid-price-sm'>
-                                        {currentBidPrice}
-                                    </div>
-                                </Col> */}
-									<Col className='horiz-btn-col px-0'>
-										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
-											+
-										</Button>
-									</Col>
-									<Col className='horiz-btn-col px-0'>
-										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
-											+5
-										</Button>
-									</Col>
-									<Col className='horiz-btn-col px-0'>
-										<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
-											+10
-										</Button>
-									</Col>
-								</Row>
-							</Col>
-						</Row>
-						<div className="add-on-btns-row">
-							<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
-								Fetch From history ?
-							</Button>
-							<Button size='sm' className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
-								Start pending player's auction
-							</Button>
-							{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-							<Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
-								Next Player
-							</Button>
-						</div>
-						<Row className='slider-btns mt-2'>
-
-							{
-								showModal &&
-								<ConfirmfetchHistoryModal
-									show={showModal}
-									handleYes={e => handleHistoryFetch(e)}
-									handleNo={() => setShowModal(false)}
-									setShowModal={setShowModal}
-								/>
-							}
-							{
-								showNextFetchModal &&
-								<ConfirmFetchNextModal
-									show={showNextFetchModal}
-									handleYes={e => handleNextPlayer(e, tempPlayerList)}
-									handleNo={() => setShowNextFetchModal(false)}
-									setShowModal={setShowNextFetchModal}
-								/>
-							}
-						</Row>
-					</div>
-				</div>
-			</div>
-		);
-	}
 
 	if (playerHasProfileVideo) {
-		return <VideoUpperRow />
+		return <VideoUpperRow playerHasProfileVideo={playerHasProfileVideo} />
 	}
 
 	return (
@@ -290,17 +178,19 @@ const PlayerCard = () => {
 			paddingTop: "10px"
 		}}>
 			<div class="rowX upper-row">
-				<div className='current-bid-price'>
-					{currentBidPrice}
-				</div>
-				<div id="player-image-div" class={`pr-0 ${currentPlayer.GameChanger ? ' game-changer' : ''
-					}`}>
-					{/* <img id="player-photo" src={'./SatishDesai.jpg'} */}
-					<img id="player-photo"
-						className={currentPlayer.GameChanger ? 'game-changer' : ''}
-						src={currentPlayer.Photo}
-						loading='eager'
-					></img>
+				<div>
+					<div className='current-bid-price'>
+						{currentBidPrice}
+					</div>
+					<div id="player-image-div" class={`pr-0 ${currentPlayer.GameChanger ? ' game-changer' : ''
+						}`}>
+						{/* <img id="player-photo" src={'./SatishDesai.jpg'} */}
+						<img id="player-photo"
+							className={currentPlayer.GameChanger ? 'game-changer' : ''}
+							src={currentPlayer.Photo}
+							loading='eager'
+						></img>
+					</div>
 				</div>
 				<div class="col player-info pl-0 ">
 					<Row className='align-items-center'>
@@ -406,5 +296,141 @@ const PlayerCard = () => {
 		</div>
 	);
 }
+
+
+const VideoUpperRow = ({
+	playerHasProfileVideo,
+
+}) => {
+	const dispatch = useDispatch()
+	const initialPlayerListRedux = useSelector((state) => state.store.initialPlayerList)
+	const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
+	const shouldStartForPendingRedux = useSelector((state) => state.store.shouldStartForPending)
+	const disableNextRedux = useSelector((state) => state.store.disableNext)
+	const { previousBidPrice
+	} = useSelector((state) => state.store)
+
+	const [showModal, setShowModal] = useState(false)
+	const [showNextFetchModal, setShowNextFetchModal] = useState(false)
+
+	const [currentAuctionPlayerList, setcurrentAuctionPlayerList] = useState(initialPlayerListRedux)
+	const [tempPlayerList, setTempPlayerList] = useState(initialPlayerListRedux)
+
+	const TriggerFetchConfirmationModal = (e, currentAuctionPlayerListPassed) => {
+		e.preventDefault && e.preventDefault()
+
+		setShowNextFetchModal(true)
+		setTempPlayerList(currentAuctionPlayerListPassed)
+
+	}
+
+	useEffect(() => {
+
+	}, [currentBidPrice])
+
+	const handlePendingListStartClick = (e) => {
+		dispatch(handlePendingList())
+	}
+
+	return (
+		<div class="left-c upper-has-video" style={{
+			paddingTop: "10px"
+		}}>
+			<div class="video-upper-row">
+				<div className='react-player-wrapper'>
+					<VideoPlayer
+						playerHasProfileVideo={playerHasProfileVideo}
+					/>
+					<div className='current-bid-price'>
+						<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} />
+						{/* {currentBidPrice} */}
+					</div>
+				</div>
+				<div class="player-info ">
+					<Row className='slider-btns mb-4'>
+						<Col className=" numeric-row">
+							<Row className='gap-1 btns-c'>
+								<Col sm={1}>
+									<MoreOption playerHasProfileVideo />
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
+										-10
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 5)) }}>
+										-5
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+										-
+									</Button>
+								</Col>
+								{/* <Col className='horiz-btn-col px-0'>
+																	<div className='current-bid-price-sm'>
+																			{currentBidPrice}
+																	</div>
+															</Col> */}
+								<Col className='horiz-btn-col px-0'>
+									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+										+
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
+										+5
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
+										+10
+									</Button>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+					<div className="add-on-btns-row">
+						<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
+							Fetch From history ?
+						</Button>
+						<Button size='sm' className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+							Start pending player's auction
+						</Button>
+						{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+						<Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+							Next Player
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+const VideoPlayer = ({
+	playerHasProfileVideo
+}) => {
+	const [playing, setPlaying] = useState(false);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setPlaying(true);
+		}, 1500);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	return <ReactPlayer
+		url={playerHasProfileVideo}
+		muted={true}    // Mute video
+		controls={false} // Hide controls
+		playing={playing}
+		width="100%"
+		height="450px"
+	/>
+}
+
 
 export default PlayerCard;

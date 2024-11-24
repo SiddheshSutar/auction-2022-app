@@ -4,10 +4,11 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '../redux/storeSlice'
-import { MAX_AMOUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
+import { MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
 import { getTeams, updatePlayerList, updateTeamList } from "../services";
+import { cloneDeep } from "lodash";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -44,10 +45,10 @@ const ConfirmDeletePlayerModal = ({
     handleNo,
     setShowModal,
 }) => {
-    const {team, player} = show
-    
-    if(!team || !player) return <></>
-    
+    const { team, player } = show
+
+    if (!team || !player) return <></>
+
     return <>
         <Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
             <Modal.Header className="justify-content-center">
@@ -61,7 +62,7 @@ const ConfirmDeletePlayerModal = ({
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
-                <Button className="fs-2" variant="primary" onClick={e => handleYes({team, player})}>yes</Button>
+                <Button className="fs-2" variant="primary" onClick={e => handleYes({ team, player })}>yes</Button>
                 <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
@@ -73,15 +74,15 @@ const MatchListModal = ({
     handleNo,
     setShowModal,
 }) => {
-    
+
     const { storedMatches } = useSelector(state => state.store)
 
     const [matches, setMatches] = useState(storedMatches.length > 0 ? storedMatches : generateMatches())
-    
+
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
-        
+
         /** Store in redux when unmounting */
         return () => {
             dispatch(storeMatches(matches))
@@ -126,24 +127,24 @@ const CaptainsModal = ({
     handleNo,
     setShowModal,
 }) => {
-    
+
     // const { storedMatches } = useSelector(state => state.store)
 
     // const [matches, setMatches] = useState(storedMatches.length > 0 ? storedMatches : generateMatches())
-    
+
     // const dispatch = useDispatch()
-    
+
     // useEffect(() => {
-        
+
     //     /** Store in redux when unmounting */
     //     return () => {
     //         dispatch(storeMatches(matches))
     //     }
     // }, [matches])
-    
+
     const [captains, setCaptains] = useState(
         players2.filter(item => item.Captain)
-            .map(item => ({ ...item, show: false}))
+            .map(item => ({ ...item, show: false }))
     )
 
     return <>
@@ -155,33 +156,33 @@ const CaptainsModal = ({
             <Modal.Body>
                 <div className="matches-row">
                     <div className="captains-row">
-                    {
-                        captains.map((captain, index) => {
-                            return <div className={
-                                `cap cap-show ${captain.show ? 'show' : ''}`
-                            } key={index}
-                                onClick={e => {
-                                    let allCaptains = [...captains]
-                                    
-                                    allCaptains = allCaptains.map(item => {
-                                        
-                                        if(item.Name === captain.Name) {
-                                            return {
-                                                ...item,
-                                                show: !item.show
+                        {
+                            captains.map((captain, index) => {
+                                return <div className={
+                                    `cap cap-show ${captain.show ? 'show' : ''}`
+                                } key={index}
+                                    onClick={e => {
+                                        let allCaptains = [...captains]
+
+                                        allCaptains = allCaptains.map(item => {
+
+                                            if (item.Name === captain.Name) {
+                                                return {
+                                                    ...item,
+                                                    show: !item.show
+                                                }
                                             }
-                                        }
-                                        
-                                        return item
-                                    })
-                                    
-                                    setCaptains(allCaptains)
-                                }}
-                            >
-                                {captain.Name}
-                            </div>
-                        })
-                    }
+
+                                            return item
+                                        })
+
+                                        setCaptains(allCaptains)
+                                    }}
+                                >
+                                    {captain.Name}
+                                </div>
+                            })
+                        }
                     </div>
                 </div>
             </Modal.Body>
@@ -195,14 +196,14 @@ const TeamButtons = () => {
     const [openMatchListModal, toggleMatchListModal] = useState(false)
     const [openCaptainsModal, toggleCaptainsModal] = useState(false)
     const [openGameChangersModal, toggleGameChangersModal] = useState(false)
-    
+
     const currentPlayer = useSelector((state) => state.store.currentPlayer)
     const currentTeamList = useSelector((state) => state.store.initialTeamList)
     const currentBidPrice = useSelector((state) => state.store.currentBidPrice)
-    
+
     const [teamClicked, setTeamClicked] = useState(null)
     const [teamIdClicked, setTeamIdClicked] = useState(null)
-    
+
     const dispatch = useDispatch()
 
     const handleClickBuyTeam = (e, teamObj) => {
@@ -214,7 +215,7 @@ const TeamButtons = () => {
     const handleBuyPlayer = async () => {
         // alert('success: ', JSON.stringify(currentPlayer))
         // console.log('Team player:',currentPlayer )
-        dispatch(assignteamToPlayer({teamClicked, currentPlayer}))
+        dispatch(assignteamToPlayer({ teamClicked, currentPlayer }))
 
         await updateTeamList({
             data: [{
@@ -228,10 +229,10 @@ const TeamButtons = () => {
                 _id: currentPlayer._id,
                 SoldFor: currentBidPrice
             }]
-            
+
         })
-        
-        
+
+
         const teamsResp = await getTeams()
         dispatch(setReduxState({
             key: 'initialTeamList',
@@ -240,18 +241,19 @@ const TeamButtons = () => {
         setShowModal(false)
     }
 
-    const handleDeletePlayer = ({player, team}) => {
-        dispatch(deletePlayer({player, team}))
+    const handleDeletePlayer = ({ player, team }) => {
+        dispatch(deletePlayer({ player, team }))
         setDeleteModal(null)
     }
 
     useEffect(() => {
         //reset team once player bought
-        if(!showModal) {
+        if (!showModal) {
             setTeamClicked(null)
             setTeamIdClicked(null)
         }
     }, [showModal])
+
 
     return (
         <div class="container-tb right-c team-buttons-cntr">
@@ -265,45 +267,45 @@ const TeamButtons = () => {
                     currentBidPrice={currentBidPrice}
                     teamNamePassed={teamClicked}
                     currentPlayer={currentPlayer}
-                /> 
+                />
             }
             {
                 (Boolean(openDeleteModal)) &&
                 <ConfirmDeletePlayerModal
                     show={openDeleteModal}
-                    handleYes={({player, team}) => handleDeletePlayer({player, team})}
+                    handleYes={({ player, team }) => handleDeletePlayer({ player, team })}
                     handleNo={() => setDeleteModal(null)}
                     setShowModal={setDeleteModal}
-                /> 
+                />
             }
             {
                 (openMatchListModal) &&
                 <MatchListModal
                     show={openMatchListModal}
-                    handleYes={() => {}}
+                    handleYes={() => { }}
                     handleNo={() => toggleMatchListModal(null)}
                     setShowModal={toggleMatchListModal}
-                /> 
+                />
             }
             {
                 (openCaptainsModal) &&
                 <CaptainsModal
                     show={openCaptainsModal}
-                    handleYes={() => {}}
+                    handleYes={() => { }}
                     handleNo={() => toggleCaptainsModal(null)}
                     setShowModal={toggleCaptainsModal}
-                /> 
+                />
             }
             {
                 (openGameChangersModal) &&
                 <MatchListModal
                     show={openGameChangersModal}
-                    handleYes={() => {}}
+                    handleYes={() => { }}
                     handleNo={() => toggleGameChangersModal(null)}
                     setShowModal={toggleGameChangersModal}
-                /> 
+                />
             }
-           {false && <div class="row title">
+            {false && <div class="row title">
                 <div className="showCaptainSlots">
                     {/* <a
                         style={{
@@ -350,32 +352,31 @@ const TeamButtons = () => {
                 </div>
             </div>}
             <div class="team-buttons">
-                
+
                 {currentTeamList.map((team) => (
                     <div class="main-col team-col pr-0">
                         <div class="">
                             <div class="">
                                 <button
                                     type="button"
-                                    class={`btn btn-primary team-action-button fs-1dot5 ${
-                                        team.Color
-                                    }`}
+                                    class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
+                                        }`}
                                     disabled={currentBidPrice <= 0 || (
                                         MAX_AMOUNT - team.Amount_Used < currentBidPrice
                                     ) || (
-                                        checkFemaleOrSenior({
-                                            currentTeam: team,
-                                            teams: currentTeamList,
-                                            currentPlayer: currentPlayer
-                                        })
-                                    ) 
-                                    // || (
-                                    //     isSelfSenior({
-                                    //         currentTeam: team,
-                                    //         currentPlayer: currentPlayer
-                                    //     })
-                                    // )
-                                }
+                                            checkFemaleOrSenior({
+                                                currentTeam: team,
+                                                teams: currentTeamList,
+                                                currentPlayer: currentPlayer
+                                            })
+                                        )
+                                        // || (
+                                        //     isSelfSenior({
+                                        //         currentTeam: team,
+                                        //         currentPlayer: currentPlayer
+                                        //     })
+                                        // )
+                                    }
                                     name={team.Name}
                                     style={{
                                         backgroundColor: team.Color,
@@ -410,36 +411,14 @@ const TeamButtons = () => {
                         <div class="team-player-list row">
                             <div class="col">
                                 {
-                                    team.Players.map((player, index) => (
-                                        player ?
-                                            <div class={`player-entry row mx-1 ${
-                                                player.Gender === 'F' ? 'pale-yellow-bg' :
-                                                player.Gender === 'S' ? 'green-bg' : ''
-                                            }`}>
-                                                <div class="player-name col col-9 text-align-left pr-0">{
-                                                    player.Name.length < 20 ? player.Name : player.Name.substring(0,20) + '...'
-                                                }&nbsp;&nbsp;<span className="icon-wrap">
-                                                    {
-                                                        player.Captain ? <span className="captain"></span> : 
-                                                         player.GameChanger ? <span className="star"></span>: ''
-                                                    }
-                                                    </span>
-                                                    </div>
-                                                <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
-                                                <div className="del-btn display-none col col-1"
-                                                    onClick={e => {
-                                                        e.preventDefault()
-                                                        setDeleteModal({team, player})
-                                                    }}
-                                                >
-                                                    X
-                                                </div>
-                                            </div> :
-                                            <div class="player-entry row mx-1" style={{ minHeight: '30px' }}>
-                                                <div class="player-name col col-9 "></div>
-                                                <div class="player-coins col col-3 text-right pl-0"></div>
-                                            </div>
-                                    ))
+                                    true &&
+                                    // team.Players.map((player, index) => (
+                                    <RenderPlayersAndSlots
+                                        // player={player}
+                                        team={team}
+                                        setDeleteModal={setDeleteModal}
+                                    />
+                                    // ))
                                 }
 
                             </div>
@@ -450,5 +429,82 @@ const TeamButtons = () => {
         </div>
     );
 };
+
+const RenderPlayersAndSlots = (team, setDeleteModal) => {
+
+    /** @param renderPlayers => used to render empty list placeholder in UI  */
+    let renderPlayers = team.Players ? [...team.Players] : []
+
+    if (true) {
+        let arrWithEmptyPlayerSlots = []
+        const placeHolderArr = new Array(MIN_PLAYER_COUNT).fill(0)
+
+        placeHolderArr.forEach((item, index) => {
+            if (!renderPlayers?.[index] && index <= MIN_PLAYER_COUNT) {
+                arrWithEmptyPlayerSlots.push({
+                    key: 'empty'
+                })
+            } else {
+                arrWithEmptyPlayerSlots.push(renderPlayers?.[index])
+            }
+        })
+
+        // renderPlayers = renderPlayers.forEach((item, index) => {
+        //     if (!item?.id && index <= MIN_PLAYER_COUNT) {
+        //         arrWithEmptyPlayerSlots.push({
+        //             key: 'empty'
+        //         })
+        //     } else {
+        //         arrWithEmptyPlayerSlots.push(item)
+        //     }
+        // })
+
+        renderPlayers = cloneDeep(arrWithEmptyPlayerSlots)
+    }
+
+    console.log('hex:', renderPlayers)
+
+    return <>
+        {
+            renderPlayers.map((player, index) => {
+
+                if (player?.key === "empty") {
+                    return <div class="player-entry empty-row row mx-1">
+                        <div class="player-name col col-9 "></div>
+                        <div class="player-coins col col-3 text-right pl-0"></div>
+                    </div>
+                }
+
+                if (player?.id) {
+                    return <div class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
+                        player.Gender === 'S' ? 'green-bg' : ''
+                        }`}>
+                        <div class="player-name col col-9 text-align-left pr-0">{
+                            player.Name.length < 20 ? player.Name : player.Name.substring(0, 20) + '...'
+                        }&nbsp;&nbsp;<span className="icon-wrap">
+                                {
+                                    player.Captain ? <span className="captain"></span> :
+                                        player.GameChanger ? <span className="star"></span> : ''
+                                }
+                            </span>
+                        </div>
+                        <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
+                        <div className="del-btn display-none col col-1"
+                            onClick={e => {
+                                e.preventDefault()
+                                setDeleteModal({ team, player })
+                            }}
+                        >
+                            X
+                        </div>
+                    </div>
+                }
+
+
+                return <></>
+            })
+        }
+    </>
+}
 
 export default TeamButtons;

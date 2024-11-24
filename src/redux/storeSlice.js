@@ -10,6 +10,7 @@ const initialState = {
   initialPlayerList: [],
 
   currentBidPrice: DEFAULT_BID_PRICE,
+  previousBidPrice: DEFAULT_BID_PRICE,
   playerIndexFromJson: 0,
   shouldStartForPending: false,
   lastPlayerBought: null,
@@ -29,7 +30,10 @@ export const storeSlice = createSlice({
       state[action.payload.key] = action.payload.data
     },
     setCurrentBidPrice: (state, action) => {
-      if (action.payload >= 0) state.currentBidPrice = action.payload
+      if (action.payload >= 0) {
+        state.previousBidPrice = state.currentBidPrice
+        state.currentBidPrice = action.payload
+      }
     },
     assignteamToPlayer: (state, action) => { // ({teamClicked, currentPlayer})
       // assign teamname in player obj in playerlist
@@ -69,6 +73,7 @@ export const storeSlice = createSlice({
 
               // reset displayed bid price
               state.currentBidPrice = DEFAULT_BID_PRICE
+              state.previousBidPrice = 0
             }
           })
         }
@@ -215,6 +220,7 @@ export const storeSlice = createSlice({
 
         //reset bid price being shown]
         state.currentBidPrice = DEFAULT_BID_PRICE
+        state.previousBidPrice = 0
 
         
         // console.log('pen Player: ', arr.concat(parseStringifyArray(state.currentPlayer)))
@@ -319,6 +325,7 @@ export const storeSlice = createSlice({
         state.initialTeamList = newState.initialTeamList
         state.initialPlayerList = newState.initialPlayerList
         state.currentBidPrice = newState.currentBidPrice
+        state.previousBidPrice = newState.previousBidPrice
 
         state.playerIndexFromJson = 
         // newState.playerIndexFromJson > 0 ?

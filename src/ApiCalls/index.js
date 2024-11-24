@@ -42,14 +42,14 @@ const ApiCalls = () => {
         }))
         dispatch(setReduxState({
             key: 'initialPlayerList',
-            // data: playersResp.data
-            data: players_array
+            data: playersResp.data
+            // data: players_array
         }))
         
         playersGenerated.length <=0 && dispatch(setReduxState({ /** Initially set 1st player as generated player*/
             key: 'playersGenerated',
-            // data: [playersResp.data[0]]
-            data: [players_array[0]]
+            data: [playersResp.data[0]]
+            // data: [players_array[0]]
         }))
         
         /** Check sold players and accordingly set playerIndexFromJson */
@@ -63,8 +63,8 @@ const ApiCalls = () => {
             
             !currentPlayer && dispatch(setReduxState({ /** Initially set 1st player */
                 key: 'currentPlayer',
-                // data: playersResp.data[playerIndexToResumeFrom]
-                data:players_array[playerIndexToResumeFrom]
+                data: playersResp.data[playerIndexToResumeFrom]
+                // data:players_array[playerIndexToResumeFrom]
             }))
         }
         
