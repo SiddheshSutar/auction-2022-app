@@ -27,7 +27,6 @@ export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
 //     let count = 0
 //     while(start < end ) {
 //         if((count%2 === 0)) {
-//             console.log('hex: ', start, end, count)
 //             let temp = array[start];
 //             array[start] = array[end]
 //             array[end] = temp
@@ -201,7 +200,6 @@ export const generateMatches = (matchesPassed) => {
     //     let newMatchesPassed = [matchesPassed.pop(), ...matchesPassed]
     //     newMatchesPassed = sect(newMatchesPassed)
     //     newMatchesPassed = shuffle(newMatchesPassed)
-    // console.log('hex: ', newMatchesPassed)
         
     //     return newMatchesPassed
     // } 
