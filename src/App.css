@@ -92,11 +92,13 @@
 .width-inherit {
   width: inherit;
 }
-.pale-yellow-bg {
+.pale-yellow-bg,
+.pale-yellow-bg.player-entry {
   background-color: #fcfaaf;
   border-color: #fcfaaf;
 }
-.green-bg {
+.green-bg,
+.green-bg.player-entry {
   background-color: #6ff16f;
   border-color: #6ff16f;
 }

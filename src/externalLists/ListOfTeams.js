@@ -12,7 +12,7 @@ const teams = [
     },
     {
         "Name" : "Ninad Kudalkar",
-        "TeamName" : "Desi 007",
+        "TeamName" : "SHiv Shambhu",
         "Players" : [],
         "Amount_Used" : 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -65,7 +65,7 @@ const teams = [
         "id": 6
     },
     {
-        "Name" : "Sunita Sawant",
+        "Name" : "Akhil Palkar",
         "TeamName" : "Red Wings",
         "Players" : [],
         "Amount_Used" : 0,

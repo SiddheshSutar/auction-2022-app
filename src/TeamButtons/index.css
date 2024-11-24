@@ -41,11 +41,13 @@
     border: 1px solid black;
 }
 
-.player-entry.empty-row {
+.player-entry {
     background-color: #ffffffb1;
     min-height: 1.5rem;
 }
-
+.player-name {
+    text-align: left;
+}
 .row.team-buttons button {
     width: inherit !important;
     font-size: 1.45em;
@@ -74,7 +76,7 @@
 }
 
 .player-coins {
-    color:  #e2f79c;
+    color:  #002183;
     padding-left: 0 !important;
     font-weight: bold;
     text-align: right;

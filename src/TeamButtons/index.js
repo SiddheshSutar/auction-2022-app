@@ -525,8 +525,8 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
 
                 if (player?.key === "empty") {
                     return <div class="player-entry empty-row row mx-1">
-                        <div class="player-name col col-9 "></div>
-                        <div class="player-coins col col-3 text-right pl-0"></div>
+                        <div class="player-name col col-10 text-left "></div>
+                        <div class="player-coins col col-2 text-right pl-0"></div>
                     </div>
                 }
 
@@ -534,7 +534,7 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                     return <div class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
                         player.Gender === 'S' ? 'green-bg' : ''
                         }`}>
-                        <div class="player-name col col-9 text-align-left pr-0">{
+                        <div class="player-name col col-10 text-align-left pr-0">{
                             player.Name.length < 20 ? player.Name : player.Name.substring(0, 20) + '...'
                         }&nbsp;&nbsp;<span className="icon-wrap">
                                 {
@@ -543,7 +543,7 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                                 }
                             </span>
                         </div>
-                        <div class="player-coins col col-3 text-right pl-0">{player.SoldFor}</div>
+                        <div class="player-coins col col-2 text-right pl-0">{player.SoldFor}</div>
                         <div className="del-btn display-none col col-1"
                             onClick={e => {
                                 e.preventDefault()
