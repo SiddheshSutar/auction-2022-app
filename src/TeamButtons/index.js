@@ -4,7 +4,7 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '../redux/storeSlice'
-import { MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
+import { API_BASED_APP, MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
 import { getPlayers, getTeams, updatePlayerList, updateTeamList } from "../services";
@@ -217,44 +217,45 @@ const TeamButtons = () => {
     const handleBuyPlayer = async () => {
         // alert('success: ', JSON.stringify(currentPlayer))
         // console.log('Team player:',currentPlayer )
-        dispatch(assignteamToPlayer({ teamClicked, currentPlayer }))
+        dispatch(assignteamToPlayer({ teamClicked: teamClickedObj.Name, currentPlayer }))
 
-        await updateTeamList({
-            data: [{
-                singlePlayer: true,
-                teamId: teamIdClicked,
-                playerId: currentPlayer._id,
-                Amount_Used: (teamClickedObj?.Amount_Used ?? 0) + currentBidPrice
-            }]
-        })
-        await updatePlayerList({
-            data: [{
-                _id: currentPlayer._id,
-                SoldFor: currentBidPrice
-            }]
-
-        })
-
-
-        const teamsResp = await getTeams()
-        const playersResp = await getPlayers()
-
-        dispatch(setReduxState({
-            key: 'initialTeamList',
-            data: teamsResp.data
-        }))
-        dispatch(setReduxState({
-            key: 'initialPlayerList',
-            data: playersResp.data
-        }))
+        if (API_BASED_APP) {
+            await updateTeamList({
+                data: [{
+                    singlePlayer: true,
+                    teamId: teamIdClicked,
+                    playerId: currentPlayer._id,
+                    Amount_Used: (teamClickedObj?.Amount_Used ?? 0) + currentBidPrice
+                }]
+            })
+            await updatePlayerList({
+                data: [{
+                    _id: currentPlayer._id,
+                    SoldFor: currentBidPrice
+                }]
+    
+            })
+    
+    
+            const teamsResp = await getTeams()
+            const playersResp = await getPlayers()
+    
+            dispatch(setReduxState({
+                key: 'initialTeamList',
+                data: teamsResp.data
+            }))
+            dispatch(setReduxState({
+                key: 'initialPlayerList',
+                data: playersResp.data
+            }))
+        }
         setShowModal(false)
     }
 
     const handleDeletePlayer = async ({ player, team }) => {
-        console.log('hex: ', team, player)
         dispatch(deletePlayer({ player, team }))
 
-        if (team?._id && player?._id) {
+        if (team?._id && player?._id && API_BASED_APP) {
 
             await updateTeamList({
                 data: [{
@@ -396,7 +397,6 @@ const TeamButtons = () => {
             <div class="team-buttons">
 
                 {currentTeamList.map((team) => {
-                    console.log('hex: ', currentPlayer)
                     const alreadySoldPlayer = currentPlayer?.soldFor
                     const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
                     const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")

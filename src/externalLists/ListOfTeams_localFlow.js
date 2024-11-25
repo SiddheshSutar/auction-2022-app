@@ -2,7 +2,7 @@ import { MAX_AMOUNT } from "../helpers"
 
 const teams = [
     {
-        "id": "0",
+        "_id": "0",
         "Name": "Shashi Amin",
         "TeamName": "Mumbai Mafia",
         "Players": [],
@@ -11,7 +11,7 @@ const teams = [
         "Color": "#272e9b"
     },
     {
-        "id": "1",
+        "_id": "1",
         "Name": "Ninad Kudalkar",
         "TeamName": "SHiv Shambhu",
         "Players": [],
@@ -20,7 +20,7 @@ const teams = [
         "Color": "#21bd21"
     },
     {
-        "id": "2",
+        "_id": "2",
         "Name": "Ravindra Mane",
         "TeamName": "Old Fox",
         "Players": [],
@@ -29,7 +29,7 @@ const teams = [
         "Color": "#a3a304"
     },
     {
-        "id": "3",
+        "_id": "3",
         "Name": "Pravin Sawant",
         "TeamName": "DSP Sky",
         "Players": [],
@@ -38,7 +38,7 @@ const teams = [
         "Color": "#a63def"
     },
     {
-        "id": "4",
+        "_id": "4",
         "Name": "Manisha Mhapralkar",
         "TeamName": "Power Hitters",
         "Players": [],
@@ -47,7 +47,7 @@ const teams = [
         "Color": "#14a5f9"
     },
     {
-        "id": "5",
+        "_id": "5",
         "Name": "Pradeep Gode",
         "TeamName": "7 Wonders",
         "Players": [],
@@ -56,7 +56,7 @@ const teams = [
         "Color": "#f95d12"
     },
     {
-        "id": "6",
+        "_id": "6",
         "Name": "Sudhakar Gosavi",
         "TeamName": "Sai Prasad",
         "Players": [],
@@ -65,7 +65,7 @@ const teams = [
         "Color": "#004c5a"
     },
     {
-        "id": "7",
+        "_id": "7",
         "Name": "Akhil Palkar",
         "TeamName": "Red Wings",
         "Players": [],

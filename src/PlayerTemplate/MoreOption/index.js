@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './index.module.css'
 import { Button, Dropdown, DropdownButton, Form, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { DEFAULT_BID_PRICE, MAX_AMOUNT } from '../../helpers';
+import { API_BASED_APP, DEFAULT_BID_PRICE, MAX_AMOUNT } from '../../helpers';
 import { handleDirectPlayerAdd, setReduxState } from '../../redux/storeSlice';
 import players2 from '../../externalLists/ListOfPlayersLatest';
 import { getTeams, updatePlayerList, updateTeamList } from '../../services';
@@ -47,30 +47,32 @@ const AssignDirectModal = ({
                 selectedTeamId, selectedPlayerId, soldFor
             }))
 
-            if (selectedTeamObj?._id && selectedPlayerObj?._id) {
+            if (API_BASED_APP) {
+                if (selectedTeamObj?._id && selectedPlayerObj?._id) {
 
-                await updateTeamList({
-                    data: [{
-                        singlePlayer: true,
-                        teamId: selectedTeamObj._id,
-                        playerId: selectedPlayerObj._id,
-                        Amount_Used: (selectedTeamObj.Amount_Used ?? 0) + soldFor
-                    }]
-                })
-                await updatePlayerList({
-                    data: [{
-                        _id: selectedPlayerObj._id,
-                        SoldFor: soldFor
-                    }]
+                    await updateTeamList({
+                        data: [{
+                            singlePlayer: true,
+                            teamId: selectedTeamObj._id,
+                            playerId: selectedPlayerObj._id,
+                            Amount_Used: (selectedTeamObj.Amount_Used ?? 0) + soldFor
+                        }]
+                    })
+                    await updatePlayerList({
+                        data: [{
+                            _id: selectedPlayerObj._id,
+                            SoldFor: soldFor
+                        }]
 
-                })
+                    })
+                }
+
+                const teamsResp = await getTeams()
+                dispatch(setReduxState({
+                    key: 'initialTeamList',
+                    data: teamsResp.data
+                }))
             }
-
-            const teamsResp = await getTeams()
-            dispatch(setReduxState({
-                key: 'initialTeamList',
-                data: teamsResp.data
-            }))
             setShowModal(false)
         } else {
             alert('Some error occured while assigning player')

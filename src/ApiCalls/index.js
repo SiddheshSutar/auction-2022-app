@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPlayers, getTeams, setPlayer, setTeam } from "../services";
 import teams from "../externalLists/ListOfTeams";
 import players_array from "../externalLists/ListOfPlayersLatest";
-import { removeIdKeyFromArry } from "../helpers";
+import { API_BASED_APP, removeIdKeyFromArry } from "../helpers";
 import { cloneDeep } from "lodash";
 import { setReduxState } from "../redux/storeSlice";
 
@@ -29,8 +29,8 @@ const ApiCalls = () => {
         })
         
         
-        const teamsResp = await getTeams()
-        const playersResp = await getPlayers()
+        const teamsResp = API_BASED_APP ? await getTeams() : { success: true, data: teams }
+        const playersResp = API_BASED_APP ? await getPlayers() : { success: true, data: players_array }
 
         if(!teamsResp.success || !playersResp.success) { /** Alert used in case API fails to access BE  */
             alert('Sync failed ! Using local state..')

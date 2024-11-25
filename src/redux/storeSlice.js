@@ -273,12 +273,14 @@ export const storeSlice = createSlice({
       
       state.initialTeamList = currentTeamList.map((teamObj) => {
         
-        if(team._id === parseInt(teamObj._id)) {
+        // if(team._id === parseInt(teamObj._id)) {
+        if(team._id === teamObj._id) {
 
           teamObj = {
             ...teamObj,
             Amount_Used: teamObj.Amount_Used - (player.soldFor ?? DEFAULT_BID_PRICE),
-            Players: teamObj.Players.filter(item => item._id !== parseInt(player._id))
+            // Players: teamObj.Players.filter(item => item._id !== parseInt(player._id))
+            Players: teamObj.Players.filter(item => item._id !== player._id)
           }
           
           return teamObj
@@ -286,13 +288,15 @@ export const storeSlice = createSlice({
         
         return teamObj
       })
-      state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj._id !== parseInt(player._id))
+      // state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj._id !== parseInt(player._id))
+      state.soldPlayers = currentSoldPlayers.filter((playerObj) => playerObj._id !== player._id)
       
       // state.initialPlayerList = [
       //   player, ...currentPlayerList
       // ]
       
-      currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item._id !== parseInt(player._id))
+      // currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item._id !== parseInt(player._id))
+      currentGeneratedPlayerList = currentGeneratedPlayerList.filter(item => item._id !== player._id)
       if(currentGeneratedPlayerList.length > 0) {
         currentGeneratedPlayerList = currentGeneratedPlayerList.slice(0, currentGeneratedPlayerList.length - 1)
       }

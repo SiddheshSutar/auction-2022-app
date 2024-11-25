@@ -1,4 +1,5 @@
 import teams from "./externalLists/ListOfTeams";
+import { v4 as uuidv4 } from 'uuid';
 
 export const checkIfBought = (playerObj, teamList) => {
 
@@ -19,6 +20,7 @@ export const checkIfBought = (playerObj, teamList) => {
 }
 
 export const MIN_PLAYER_COUNT = 7
+export const API_BASED_APP = true
 
 export const parseStringifyArray = input => JSON.parse(JSON.stringify(input))
 
@@ -268,6 +270,20 @@ export const removeIdKeyFromArry = arr => {
         
         return newObj
     })
+}
+
+const mapIdToUnderscoreId = () => {
+    let pp = []
+
+    let pq= pp.map((obj) => {
+        const newObj = ({
+            _id: obj?.id ?? uuidv4(),
+            ...obj
+        })
+        delete newObj.id
+        return newObj
+    })
+    console.log(pq)
 }
 
 export const MAX_AMOUNT = 1000
