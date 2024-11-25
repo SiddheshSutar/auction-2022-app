@@ -529,7 +529,7 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                         <div class="player-coins col col-2 text-right pl-0"></div>
                     </div>
                 }
-
+ 
                 if (player?._id) {
                     return <div class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
                         player.Gender === 'S' ? 'green-bg' : ''
