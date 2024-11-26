@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-image: url('../public/Images/waveBg.svg');
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
 }

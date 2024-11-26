@@ -167,7 +167,6 @@ const PlayerCard = () => {
 
 	const playerHasProfileVideo = currentPlayer?.Video
 
-
 	// if (playerHasProfileVideo) {
 	// 	return <VideoUpperRow playerHasProfileVideo={playerHasProfileVideo} />
 	// }
@@ -185,7 +184,7 @@ const PlayerCard = () => {
 					<div>
 					<div className='current-bid-price'>
 						{/* {currentBidPrice} */}
-						<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} />
+						<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} duration={2} />
 					</div>
 					<div id="player-image-div" class={`pr-0 ${currentPlayer.GameChanger ? ' game-changer' : ''
 						}`}>
@@ -309,7 +308,9 @@ const PlayerCard = () => {
 							</Button>
 						</Col>
 						<Col>
-							<Button className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+							<Button className="bg-color-faint" 
+								disabled={!shouldStartForPendingRedux}
+							 onClick={e => handlePendingListStartClick(e)}>
 								Start pending player's auction
 							</Button>
 						</Col>
@@ -324,7 +325,9 @@ const PlayerCard = () => {
 						<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
 							Fetch From history ?
 						</Button>
-						<Button size='sm' className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+						<Button size='sm' className="bg-color-faint" 
+						disabled={!shouldStartForPendingRedux}
+						 onClick={e => handlePendingListStartClick(e)}>
 							Start pending player's auction
 						</Button>
 						{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
@@ -399,7 +402,7 @@ const VideoUpperRow = ({
 			playerHasProfileVideo={playerHasProfileVideo}
 		/>
 		<div className='current-bid-price'>
-			<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} />
+			<CountUp start={previousBidPrice ?? 0} end={currentBidPrice} duration={2} />
 			{/* {currentBidPrice} */}
 		</div>
 	</div>
