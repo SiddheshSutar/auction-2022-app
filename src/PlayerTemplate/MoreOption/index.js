@@ -61,7 +61,8 @@ const AssignDirectModal = ({
                     await updatePlayerList({
                         data: [{
                             _id: selectedPlayerObj._id,
-                            SoldFor: soldFor
+                            SoldFor: soldFor,
+                            pending: false
                         }]
 
                     })

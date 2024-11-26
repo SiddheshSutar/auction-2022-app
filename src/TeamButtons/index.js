@@ -33,7 +33,7 @@ const ConfirmBuyPlayerModal = ({
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
-                <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>yes</Button>
+                <Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>Yes</Button>
                 <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
@@ -62,7 +62,7 @@ const ConfirmDeletePlayerModal = ({
             </Modal.Body>
 
             <Modal.Footer className="justify-content-center">
-                <Button className="fs-2" variant="primary" onClick={e => handleYes({ team, player })}>yes</Button>
+                <Button className="fs-2" variant="primary" onClick={e => handleYes({ team, player })}>Yes</Button>
                 <Button className="fs-2" variant="secondary" onClick={handleNo}>no</Button>
             </Modal.Footer>
         </Modal>
@@ -231,7 +231,8 @@ const TeamButtons = () => {
             await updatePlayerList({
                 data: [{
                     _id: currentPlayer._id,
-                    SoldFor: currentBidPrice
+                    SoldFor: currentBidPrice,
+                    pending: false
                 }]
     
             })
@@ -269,7 +270,8 @@ const TeamButtons = () => {
             await updatePlayerList({
                 data: [{
                     _id: player._id,
-                    SoldFor: 0
+                    SoldFor: 0,
+                    pending: false
                 }]
 
             })

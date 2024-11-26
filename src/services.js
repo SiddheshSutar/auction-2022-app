@@ -15,6 +15,10 @@ export const getPlayers = () => axios.get(
     `${BASE_URL}get-player-list`
 ).then(response => response.data)
 
+export const getPendingPlayers = () => axios.get(
+    `${BASE_URL}get-player-list?pending=true`
+).then(response => response.data)
+
 export const getTeams = () => axios.get(
     `${BASE_URL}get-team-list`
 ).then(response => response.data)

@@ -11,6 +11,8 @@ import axios from 'axios';
 import MoreOption from './MoreOption';
 import ReactPlayer from 'react-player';
 import CountUp from 'react-countup';
+import { API_BASED_APP } from '../helpers';
+import { getPendingPlayers, getTeams, updatePlayerList } from '../services';
 
 
 const ConfirmfetchHistoryModal = ({
@@ -43,6 +45,8 @@ const ConfirmFetchNextModal = ({
 	handleNo,
 	setShowModal
 }) => {
+	const currentPlayer = useSelector((state) => state.store.currentPlayer)
+
 	return <>
 		<Modal className="text-center" show={show} onHide={() => setShowModal(false)} >
 			<Modal.Header className="justify-content-center">
@@ -50,11 +54,12 @@ const ConfirmFetchNextModal = ({
 			</Modal.Header>
 
 			<Modal.Body>
-				<p className="fs-2">Show next player ?</p>
+					<p className="fs-2">Skip this player ?</p>
+					<p className="fs-2 fw-bold "><span className="clr-primary">{currentPlayer?._id ? currentPlayer.Name : 'Crrent Player'}</span></p>
 			</Modal.Body>
 
 			<Modal.Footer className="justify-content-center">
-				<Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>yes</Button>
+				<Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>Yes</Button>
 				<Button className="fs-2" variant="secondary" onClick={handleNo}>No</Button>
 			</Modal.Footer>
 		</Modal>
@@ -131,11 +136,20 @@ const PlayerCard = () => {
 		}
 	}, [doneFetchingFromLocalRedux])
 
-	const handleNextPlayer = (e, playerList) => {
+	const handleNextPlayer = async (e, playerList) => {
 		e.preventDefault && e.preventDefault()
 		dispatch(nextPlayerAction({
 			playerList
 		}))
+
+		if (API_BASED_APP) {
+			await updatePlayerList({
+				data: [{
+					_id: currentPlayer._id,
+					pending: true
+				}]
+			})
+		}
 		dispatch(setLocalStorage())
 		showNextFetchModal && setShowNextFetchModal(false)
 	}
@@ -148,8 +162,21 @@ const PlayerCard = () => {
 
 	}
 
-	const handlePendingListStartClick = (e) => {
-		dispatch(handlePendingList())
+	const handlePendingListStartClick = async (e) => {
+
+		if (API_BASED_APP) {
+			const resp = await getPendingPlayers()
+
+			if (!resp.success) {
+				alert('Error in fetching pending players from mongo !')
+				return 
+			}
+
+			dispatch(handlePendingList(resp.data))
+
+		} else {
+			dispatch(handlePendingList())
+		}
 	}
 
 	const handleHistoryFetch = e => {

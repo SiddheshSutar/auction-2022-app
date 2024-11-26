@@ -305,11 +305,13 @@ export const storeSlice = createSlice({
       state.playerIndexFromJson -= 1
     },
     handlePendingList: (state, action) => {
-      console.log('pen Player: ', parseStringifyArray(state.pendingPlayers))
+      /** action.payload comes in case of API based results */
+      const pendingPlayers = parseStringifyArray(action.payload ? action.payload : state.pendingPlayers)
+      console.log('pen Player: ', parseStringifyArray(action.payload ? action.payload : state.pendingPlayers))
 
       //assigning pendig to initial to-do : have some diff list
-      state.initialPlayerList = parseStringifyArray(state.pendingPlayers)
-      state.currentPlayer = parseStringifyArray(state.pendingPlayers)[0]
+      state.initialPlayerList = parseStringifyArray(pendingPlayers)
+      state.currentPlayer = parseStringifyArray(pendingPlayers)[0]
       state.playersGenerated = []
       state.playerIndexFromJson = 0
       state.pendingPlayers = []
