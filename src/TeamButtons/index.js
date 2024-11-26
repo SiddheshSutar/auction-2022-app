@@ -8,7 +8,7 @@ import { API_BASED_APP, MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, gener
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
 import { getPlayers, getTeams, updatePlayerList, updateTeamList } from "../services";
-import { cloneDeep } from "lodash";
+import { cloneDeep, first } from "lodash";
 
 const ConfirmBuyPlayerModal = ({
     show,
@@ -533,12 +533,36 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                 }
  
                 if (player?._id) {
-                    return <div class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
+                    const firstName = player.Name.split(' ')[0]
+                    const lastName = player.Name.split(' ')[1]
+
+                    return <div
+                        class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
                         player.Gender === 'S' ? 'green-bg' : ''
-                        }`}>
-                        <div class="player-name col col-10 text-align-left pr-0">{
-                            player.Name.length < 20 ? player.Name : player.Name.substring(0, 20) + '...'
-                        }&nbsp;&nbsp;<span className="icon-wrap">
+                        }`}
+                            style={{
+                                background: `linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 74%, ${team.Color} 100%)`
+                            }}
+                        >
+                        <div class="player-name col col-10 text-align-left pr-0">
+                            <span className="first-name"
+                            style={{
+                                color: team.Color
+                            }}
+                            >{
+                            firstName
+                        }
+                            <span className="first-name-bg"
+                                style={{
+                                    color: team.Color
+                                }}
+                            ></span>
+                        </span>
+                        &nbsp;
+                        <span>
+                            {lastName.length < 10 ? lastName : lastName.substring(0, 10) + '...'}
+                        </span>
+                        &nbsp;&nbsp;<span className="icon-wrap">
                                 {
                                     player.Captain ? <span className="captain"></span> :
                                         player.GameChanger ? <span className="star"></span> : ''

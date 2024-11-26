@@ -11,6 +11,17 @@
   
 }
 
+@font-face {
+  font-family: 'revolution-regular';
+  src: url('../public/fonts/ProtestRevolution-Regular.ttf');
+  
+}
+
+.revo-regular {
+  font-family: 'revolution-regular';
+  font-weight: 100;
+}
+
 .rock-salt-regular {
   font-family: 'rock-salt-regular';
   font-weight: 100;

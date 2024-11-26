@@ -35,6 +35,10 @@
 
 .team-action-button {
     width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .btn.btn-light {
@@ -42,12 +46,58 @@
 }
 
 .player-entry {
-    background-color: #ffffffb1;
+    /* background-color: #fffffff5; */
+
     min-height: 1.5rem;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    transform: rotateZ(0.7deg);
+    z-index: 2;
+    position: relative;
 }
+.player-entry:not(:last-child) {
+    margin-bottom: 3px;
+}
+/* .player-entry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 101%;
+    height: 80%;
+    z-index: -2;
+    background-color: #ffffff;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    transform: rotateZ(0.9deg);
+} */
 .player-name {
     text-align: left;
 }
+
+.first-name {
+    font-family: 'revolution-regular';
+    font-size: 1.3rem;
+    line-height: 1;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 0 2px #fff, 1px 1px 3px #000;
+}
+
+/* .first-name-bg {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 110%;
+    height: 120%;
+    z-index: -1;
+} */
+
 .row.team-buttons button {
     width: inherit !important;
     font-size: 1.45em;
@@ -76,7 +126,7 @@
 }
 
 .player-coins {
-    color:  #002183;
+    color:  #fff;
     padding-left: 0 !important;
     font-weight: bold;
     text-align: right;
@@ -186,7 +236,8 @@
     transform: scale(1.06);
 }
 .team-action-button:disabled {
-    opacity: 0.4 !important;
+    /* opacity: 0.4 !important; */
+    cursor: not-allowed;
 }
 .team-action-button:disabled:hover {
     cursor: not-allowed;
