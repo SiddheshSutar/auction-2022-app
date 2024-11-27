@@ -214,7 +214,7 @@ const players2 = [
         "Timestamp": "2024/01/20 9:45:28 pm GMT+5:30",
         "Name": "Ankit Warang",
         "Age": 36,
-        "Photo": "./Photo/AnkitW.jpg"
+        "Photo": "./Photo/Ankit.jpg"
     },
     {
         "id": "27",
@@ -235,7 +235,7 @@ const players2 = [
         "Timestamp": "2024/01/23 9:32:23 pm GMT+5:30",
         "Name": "Shaurya Sutar",
         "Age": 19,
-        "Photo": "./Photo/ShauryaS.jpg"
+        "Photo": "./Photo/Shaurya.jpg"
     },
     {
         "id": "30",
@@ -361,7 +361,7 @@ const players2 = [
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
         "Name": "Aditya Kudalkar",
         "Age": "",
-        "Photo": "./Photo/Aadu.jpg"
+        "Photo": "./Photo/Aditya.jpg"
     },
     {
         "id": "48",

@@ -264,7 +264,7 @@ const TeamButtons = () => {
                     playerDeleteFlow: true,
                     teamId: team._id,
                     playerId: player._id,
-                    Amount_Used: (team.Amount_Used ?? 0) - player.soldFor
+                    Amount_Used: (team.Amount_Used ?? 0) - player.SoldFor
                 }]
             })
             await updatePlayerList({
@@ -280,11 +280,11 @@ const TeamButtons = () => {
 
             dispatch(setReduxState({
                 key: 'initialTeamList',
-                data: teamsResp.data
+                data: cloneDeep(teamsResp.data)
             }))
             dispatch(setReduxState({
                 key: 'initialPlayerList',
-                data: playersResp.data
+                data: cloneDeep(playersResp.data)
             }))
         }
        
@@ -399,7 +399,7 @@ const TeamButtons = () => {
             <div class="team-buttons">
 
                 {currentTeamList.map((team) => {
-                    const alreadySoldPlayer = currentPlayer?.soldFor
+                    const alreadySoldPlayer = currentPlayer?.SoldFor
                     const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
                     const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")
                     const alreadyHasGameChanger = currentPlayer?.GameChanger && team?.Players.some((obj) => obj?.GameChanger)
@@ -541,7 +541,7 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                         player.Gender === 'S' ? 'green-bg' : ''
                         }`}
                             style={{
-                                background: `linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 74%, ${team.Color} 100%)`
+                                background: `linear-gradient(90deg, ${player.Gender === "F" ? '#fcc9f6' : player.Gender === "S" ? '#83f771' : 'rgba(255,255,255,1)' } 0%, rgba(255,255,255,1) 74%, ${team.Color} 100%)`
                             }}
                         >
                         <div class="player-name col col-10 text-align-left pr-0">
@@ -558,8 +558,12 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                                 }}
                             ></span>
                         </span>
-                        &nbsp;
-                        <span>
+                        &nbsp;&nbsp;
+                        <span
+                            className={
+                                `${player.Gender === 'F' ? 'female-lastname' : ''}`
+                            }
+                        >
                             {lastName.length < 10 ? lastName : lastName.substring(0, 10) + '...'}
                         </span>
                         &nbsp;&nbsp;<span className="icon-wrap">

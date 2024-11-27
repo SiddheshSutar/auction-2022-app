@@ -67,7 +67,7 @@ export const storeSlice = createSlice({
               // assign currentPlayer the sold price
               state.currentPlayer = {
                 ...playerObj,
-                soldFor: state.currentBidPrice
+                SoldFor: state.currentBidPrice
               }
               
               team.Amount_Used = team.Amount_Used + state.currentBidPrice
@@ -278,7 +278,7 @@ export const storeSlice = createSlice({
 
           teamObj = {
             ...teamObj,
-            Amount_Used: teamObj.Amount_Used - (player.soldFor ?? DEFAULT_BID_PRICE),
+            Amount_Used: teamObj.Amount_Used - (player.SoldFor ?? DEFAULT_BID_PRICE),
             // Players: teamObj.Players.filter(item => item._id !== parseInt(player._id))
             Players: teamObj.Players.filter(item => item._id !== player._id)
           }
