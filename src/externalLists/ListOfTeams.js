@@ -4,6 +4,7 @@ const teams = [
     {
         "id": "0",
         "Name": "Shashi Amin",
+        "Logo": "./NonBg/MumbaiMafia.png",        
         "TeamName": "Mumbai Mafia",
         "Players": [],
         "Amount_Used": 0,
@@ -13,7 +14,8 @@ const teams = [
     {
         "id": "1",
         "Name": "Ninad Kudalkar",
-        "TeamName": "SHiv Shambhu",
+        "Logo": "./NonBg/ShivShambhu.png",        
+        "TeamName": "Shiv Shambhu",
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
@@ -22,6 +24,7 @@ const teams = [
     {
         "id": "2",
         "Name": "Ravindra Mane",
+        "Logo": "./NonBg/OldFox.png",        
         "TeamName": "Old Fox",
         "Players": [],
         "Amount_Used": 0,
@@ -31,6 +34,7 @@ const teams = [
     {
         "id": "3",
         "Name": "Pravin Sawant",
+        "Logo": "./NonBg/DSPSky.png",        
         "TeamName": "DSP Sky",
         "Players": [],
         "Amount_Used": 0,
@@ -40,6 +44,7 @@ const teams = [
     {
         "id": "4",
         "Name": "Manisha Mhapralkar",
+        "Logo": "./NonBg/MM7.png",        
         "TeamName": "Power Hitters",
         "Players": [],
         "Amount_Used": 0,
@@ -49,6 +54,7 @@ const teams = [
     {
         "id": "5",
         "Name": "Pradeep Gode",
+        "Logo": "./NonBg/SevenWonders.png",        
         "TeamName": "7 Wonders",
         "Players": [],
         "Amount_Used": 0,
@@ -58,6 +64,7 @@ const teams = [
     {
         "id": "6",
         "Name": "Sudhakar Gosavi",
+        "Logo": "./NonBg/SaiPrasad.png",        
         "TeamName": "Sai Prasad",
         "Players": [],
         "Amount_Used": 0,
@@ -67,6 +74,7 @@ const teams = [
     {
         "id": "7",
         "Name": "Akhil Palkar",
+        "Logo": "./NonBg/RedWings.png",        
         "TeamName": "Red Wings",
         "Players": [],
         "Amount_Used": 0,

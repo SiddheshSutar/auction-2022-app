@@ -241,6 +241,8 @@ export const generateMatches = (matchesPassed) => {
 export const checkFemaleOrSenior = ({
     currentTeam, teams, currentPlayer
 }) => {
+    if (!currentPlayer) return false
+
     return (
         currentPlayer.Gender === 'S' && currentTeam.Players.length > 0 && currentTeam.Players.some((player) => player.Gender === 'S')
     ) || (

@@ -234,13 +234,13 @@ const TeamButtons = () => {
                     SoldFor: currentBidPrice,
                     pending: false
                 }]
-    
+
             })
-    
-    
+
+
             const teamsResp = await getTeams()
             const playersResp = await getPlayers()
-    
+
             dispatch(setReduxState({
                 key: 'initialTeamList',
                 data: teamsResp.data
@@ -287,7 +287,7 @@ const TeamButtons = () => {
                 data: cloneDeep(playersResp.data)
             }))
         }
-       
+
         setDeleteModal(null)
     }
 
@@ -406,85 +406,94 @@ const TeamButtons = () => {
                     const alreadyBoughtPlayer = currentPlayer?._id && team?.Players.some((obj) => obj?._id === currentPlayer?._id)
 
                     return <div class="main-col team-col pr-0">
-                    <div class="">
                         <div class="">
-                            <button
-                                type="button"
-                                class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
-                                    }`}
-                                disabled={currentBidPrice <= 0 || (
-                                    MAX_AMOUNT - team.Amount_Used < currentBidPrice
-                                ) || (
-                                        checkFemaleOrSenior({
-                                            currentTeam: team,
-                                            teams: currentTeamList,
-                                            currentPlayer: currentPlayer
-                                        })
-                                    ) ||
-                                    alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
-                                    // || (
-                                    //     isSelfSenior({
-                                    //         currentTeam: team,
-                                    //         currentPlayer: currentPlayer
-                                    //     })
-                                    // )
-                                }
-                                name={team.Name}
-                                style={{
-                                    backgroundColor: team.Color,
-                                    borderColor: team.Color
-                                }}
-                                onClick={e => handleClickBuyTeam(e, team)}
-                            >
-                                <div class="team-btn-row">
-                                    <div class="team-name text-left">
-                                        {team.Name}
-                                    </div>
-                                    <div class="team-coins text-right pl-0">
-                                        <div class="rodw">
-                                            <div class="col">
-                                               <div>
-                                               <span class="team-coins-spent">
-                                                    {
-                                                        parseInt(team.Amount_Used)
-                                                    }
-                                                </span>/
-                                                <span class="team-coins-total">
-                                                    {
-                                                        team.Amount_Assigned
-                                                    }
-                                                </span>
-                                               </div>
+                            <div class="">
+                                <button
+                                    type="button"
+                                    class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
+                                        }`}
+                                    disabled={currentBidPrice <= 0 || (
+                                        MAX_AMOUNT - team.Amount_Used < currentBidPrice
+                                    ) || (
+                                            checkFemaleOrSenior({
+                                                currentTeam: team,
+                                                teams: currentTeamList,
+                                                currentPlayer: currentPlayer
+                                            })
+                                        ) ||
+                                        alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
+                                        // || (
+                                        //     isSelfSenior({
+                                        //         currentTeam: team,
+                                        //         currentPlayer: currentPlayer
+                                        //     })
+                                        // )
+                                    }
+                                    name={team.Name}
+                                    style={{
+                                        backgroundColor: team.Color,
+                                        borderColor: team.Color
+                                    }}
+                                    onClick={e => handleClickBuyTeam(e, team)}
+                                >
+                                    <div class="team-btn-row">
+                                        <div class="team-name text-left">
+                                            {team.Name}
+                                        </div>
+                                        <div class="team-coins text-right pl-0">
+                                            <div class="rodw">
+                                                <div class="col">
+                                                    <div>
+                                                        <span class="team-coins-spent">
+                                                            {
+                                                                parseInt(team.Amount_Used)
+                                                            }
+                                                        </span>/
+                                                        <span class="team-coins-total">
+                                                            {
+                                                                team.Amount_Assigned
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </button>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="team-player-list">
-                        <div class="">
-                            {
-                                true &&
-                                // team.Players.map((player, index) => (
-                                <RenderPlayersAndSlots
-                                    // player={player}
-                                    team={team}
-                                    setDeleteModal={setDeleteModal}
-                                />
-                                // ))
-                            }
+                        <div class="team-player-list">
+                            <div class="team-players-bg"
+                                style={{
+                                    backgroundImage: `url(${team.Logo})`
+                                    // backgroundImage: `url('./NonBg/OldFox.png')`
+                                }}
+                            >
+                            </div>
+                            <div className="team-players-bg-fill">
+                            </div>
+                            <div class="">
+                                {
+                                    true &&
+                                    // team.Players.map((player, index) => (
+                                    <RenderPlayersAndSlots
+                                        // player={player}
+                                        team={team}
+                                        setDeleteModal={setDeleteModal}
+                                    />
+                                    // ))
+                                }
 
+                            </div>
                         </div>
                     </div>
-                </div>
                 })}
             </div>
         </div>
     );
 };
 
-const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
+const RenderPlayersAndSlots = ({ team, setDeleteModal }) => {
 
     /** @param renderPlayers => used to render empty list placeholder in UI  */
     let renderPlayers = team.Players ? [...team.Players] : []
@@ -531,42 +540,42 @@ const RenderPlayersAndSlots = ({team, setDeleteModal}) => {
                         <div class="player-coins col col-2 text-right pl-0"></div>
                     </div>
                 }
- 
+
                 if (player?._id) {
                     const firstName = player.Name.split(' ')[0]
                     const lastName = player.Name.split(' ')[1]
 
                     return <div
                         class={`player-entry row mx-1 ${player.Gender === 'F' ? 'pale-yellow-bg' :
-                        player.Gender === 'S' ? 'green-bg' : ''
-                        }`}
-                            style={{
-                                background: `linear-gradient(90deg, ${player.Gender === "F" ? '#fcc9f6' : player.Gender === "S" ? '#83f771' : 'rgba(255,255,255,1)' } 0%, rgba(255,255,255,1) 74%, ${team.Color} 100%)`
-                            }}
-                        >
+                            player.Gender === 'S' ? 'green-bg' : ''
+                            }`}
+                        style={{
+                            background: `linear-gradient(90deg, ${player.Gender === "F" ? 'rgba(252,201,246,0.5215336134453781)' : player.Gender === "S" ? 'rgba(131,247,113,0.5691526610644257)' : 'rgba(255,255,255,0.75)'} 0%, rgba(255,255,255,0.75) 74%, ${team.Color} 100%)`
+                        }}
+                    >
                         <div class="player-name col col-10 text-align-left pr-0">
                             <span className="first-name"
-                            style={{
-                                color: team.Color
-                            }}
-                            >{
-                            firstName
-                        }
-                            <span className="first-name-bg"
                                 style={{
                                     color: team.Color
                                 }}
-                            ></span>
-                        </span>
-                        &nbsp;&nbsp;
-                        <span
-                            className={
-                                `${player.Gender === 'F' ? 'female-lastname' : ''}`
-                            }
-                        >
-                            {lastName.length < 10 ? lastName : lastName.substring(0, 10) + '...'}
-                        </span>
-                        &nbsp;&nbsp;<span className="icon-wrap">
+                            >{
+                                    firstName
+                                }
+                                <span className="first-name-bg"
+                                    style={{
+                                        color: team.Color
+                                    }}
+                                ></span>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span
+                                className={
+                                    `${player.Gender === 'F' ? 'female-lastname' : ''}`
+                                }
+                            >
+                                {lastName.length < 10 ? lastName : lastName.substring(0, 10) + '...'}
+                            </span>
+                            &nbsp;&nbsp;<span className="icon-wrap">
                                 {
                                     player.Captain ? <span className="captain"></span> :
                                         player.GameChanger ? <span className="star"></span> : ''
