@@ -243,18 +243,18 @@ const PlayerCard = () => {
                     </Row>
                     <Row className='slider-btns'>
                         <Col>
-                            <Button className="bg-color-faint" onClick={e => setShowModal(true)}>
+                            <Button className="bg-color-secn-btn" onClick={e => setShowModal(true)}>
                                 Fetch From history ?
                             </Button>
                         </Col>
                         <Col>
-                            <Button className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+                            <Button className="bg-color-secn-btn" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
                                 Start pending player's auction
                             </Button>
                         </Col>
                         <Col className="">
-                            {/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-                            <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+                            {/* <Button className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+                            <Button className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
                                 Next Player
                             </Button>
                         </Col>

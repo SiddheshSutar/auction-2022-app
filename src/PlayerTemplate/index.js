@@ -59,8 +59,8 @@ const ConfirmFetchNextModal = ({
 			</Modal.Body>
 
 			<Modal.Footer className="justify-content-center">
-				<Button className="fs-2" variant="primary" onClick={e => handleYes(e)}>Yes</Button>
-				<Button className="fs-2" variant="secondary" onClick={handleNo}>No</Button>
+				<Button size='sm' className="fs-2" variant="primary" onClick={e => handleYes(e)}>Yes</Button>
+				<Button size='sm' className="fs-2" variant="secondary" onClick={handleNo}>No</Button>
 			</Modal.Footer>
 		</Modal>
 	</>
@@ -330,39 +330,39 @@ const PlayerCard = () => {
 					</Row>}
 					{false && <Row className='slider-btns'>
 						<Col>
-							<Button className="bg-color-faint" onClick={e => setShowModal(true)}>
+							<Button className="bg-color-secn-btn" onClick={e => setShowModal(true)}>
 								Fetch From history ?
 							</Button>
 						</Col>
 						<Col>
-							<Button className="bg-color-faint" 
+							<Button className="bg-color-secn-btn" 
 								disabled={!shouldStartForPendingRedux}
 							 onClick={e => handlePendingListStartClick(e)}>
 								Start pending player's auction
 							</Button>
 						</Col>
 						<Col className="">
-							{/* <Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-							<Button className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+							{/* <Button className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+							<Button className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
 								Next Player
 							</Button>
 						</Col>
 					</Row>}
 					<div className="add-on-btns-row">
-						<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
+						<Button size='sm' className="bg-color-secn-btn" onClick={e => setShowModal(true)}>
 							Fetch From history ?
 						</Button>
-						<Button size='sm' className="bg-color-faint" 
+						<Button size='sm' className="bg-color-secn-btn" 
 						disabled={!shouldStartForPendingRedux}
 						 onClick={e => handlePendingListStartClick(e)}>
 							Start pending player's auction
 						</Button>
-						{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-						<Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+						{/* <Button size='sm' className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+						<Button size='sm' className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
 							Next Player
 						</Button>
 					</div>
-					<Row className='slider-btns mt-2'>
+					<Row className='mt-2'>
 
 						{
 							showModal &&
@@ -494,14 +494,14 @@ const VideoUpperRow = ({
 						</Col>
 					</Row>
 					<div className="add-on-btns-row">
-						<Button size='sm' className="bg-color-faint" onClick={e => setShowModal(true)}>
+						<Button size='sm' className="bg-color-secn-btn" onClick={e => setShowModal(true)}>
 							Fetch From history ?
 						</Button>
-						<Button size='sm' className="bg-color-faint" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
+						<Button size='sm' className="bg-color-secn-btn" disabled={!shouldStartForPendingRedux} onClick={e => handlePendingListStartClick(e)}>
 							Start pending player's auction
 						</Button>
-						{/* <Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
-						<Button size='sm' className="bg-color-faint width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
+						{/* <Button size='sm' className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => handleNextPlayer(e, currentAuctionPlayerList)}> */}
+						<Button size='sm' className="bg-color-secn-btn width-inherit" disabled={disableNextRedux} onClick={e => TriggerFetchConfirmationModal(e, currentAuctionPlayerList)}>
 							Next Player
 						</Button>
 					</div>

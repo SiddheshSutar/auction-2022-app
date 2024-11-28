@@ -5,7 +5,8 @@ const players2 = [
         "Name": "Hemant Palav",
         "Age": 39,
         "Captain": true,
-        "Photo": "./Photo/Hemant.jpg"
+        "Photo": "./Photo/Hemant.jpg",
+        "Video": "./Cards/Hemant Palav.mp4"
     },
     {
         "id": "1",
@@ -13,7 +14,8 @@ const players2 = [
         "Name": "Dhiraj Amin",
         "Age": 34,
         "Captain": true,
-        "Photo": "./Photo/Dhiraj.jpg"
+        "Photo": "./Photo/Dhiraj.jpg",
+        "Video": "./Cards/Dhiraj Amin.mp4"
     },
     {
         "id": "2",
@@ -22,7 +24,7 @@ const players2 = [
         "Age": 29,
         "Captain": true,
         "Photo": "./Photo/Siddhesh.jpg",
-        "Video": "./Profiles/Niraj.mp4"
+        "Video": "./Cards/Raj Sutar.mp4"
     },
     {
         "id": "3",
@@ -30,7 +32,8 @@ const players2 = [
         "Name": "Pranay Ramane",
         "Age": 25,
         "Captain": true,
-        "Photo": "./Photo/Pranay.jpg"
+        "Photo": "./Photo/Pranay.jpg",
+        "Video": "./Cards/Pranay Ramane.mp4"
     },
     {
         "id": "4",
@@ -38,7 +41,8 @@ const players2 = [
         "Name": "Sagar Kuveskar",
         "Age": 34,
         "Captain": true,
-        "Photo": "./Photo/Sagar.jpg"
+        "Photo": "./Photo/Sagar.jpg",
+        "Video": "./Cards/Sagar Kuveskar.mp4"
     },
     {
         "id": "5",
@@ -47,7 +51,7 @@ const players2 = [
         "Captain": true,
         "Age": 30,
         "Photo": "./Photo/Aniket.jpg",
-        "Video": "./Profiles/Niraj.mp4"
+        "Video": "./Cards/Aniket Bagkar.mp4"
     },
     {
         "id": "6",
@@ -55,7 +59,8 @@ const players2 = [
         "Name": "Sanket Nandgaonkar",
         "Age": 27,
         "Captain": true,
-        "Photo": "./Photo/Sanket.jpg"
+        "Photo": "./Photo/Sanket.jpg",
+        "Video": "./Cards/Sanket Nandgaonkar.mp4"
     },
     {
         "id": "7",
@@ -63,7 +68,8 @@ const players2 = [
         "Name": "Omkar Chavan",
         "Age": "",
         "Captain": true,
-        "Photo": "./Photo/OmkarChavan.jpg"
+        "Photo": "./Photo/OmkarChavan.jpg",
+        "Video": "./Cards/Omkar Chavan.mp4"
     },
     {
         "id": "8",
@@ -71,7 +77,8 @@ const players2 = [
         "Name": "Manali Mhapralkar",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Manali.jpg"
+        "Photo": "./Photo/Manali.jpg",
+        "Video": "./Cards/Manali Mhapralkar.mp4"
     },
     {
         "id": "9",
@@ -79,7 +86,8 @@ const players2 = [
         "Name": "Disha Amin",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/DishaA.jpg"
+        "Photo": "./Photo/DishaA.jpg",
+        "Video": "./Cards/Disha Amin.mp4"
     },
     {
         "id": "10",
@@ -87,7 +95,8 @@ const players2 = [
         "Name": "Mitali Dhamnaskar",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Mitali.jpg"
+        "Photo": "./Photo/Mitali.jpg",
+        "Video": "./Cards/Mitali Dhamnaskar.mp4"
     },
     {
         "id": "11",
@@ -95,7 +104,8 @@ const players2 = [
         "Name": "Disha Desai",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/DishaD.jpg"
+        "Photo": "./Photo/DishaD.jpg",
+        "Video": "./Cards/Disha Desai.mp4"
     },
     {
         "id": "12",
@@ -103,15 +113,17 @@ const players2 = [
         "Name": "Ashwini Kudalkar",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Ashwini.jpg"
+        "Photo": "./Photo/Ashwini.jpg",
+        "Video": "./Cards/Ashwini Kudalkar.mp4"
     },
     {
         "id": "13",
         "Timestamp": "2024/01/21 9:40:12 pm GMT+5:30",
-        "Name": "Shital Nhivekar",
+        "Name": "Sheetal Nhivekar",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Shital.jpg"
+        "Photo": "./Photo/Shital.jpg",
+        "Video": "./Cards/Sheetal Nhivekar.mp4"
     },
     {
         "id": "14",
@@ -119,7 +131,8 @@ const players2 = [
         "Name": "Rutuja kalambate",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Rutuja.jpg"
+        "Photo": "./Photo/Rutuja.jpg",
+        "Video": "./Cards/Rutuja kalambate.mp4"
     },
     {
         "id": "15",
@@ -127,7 +140,8 @@ const players2 = [
         "Name": "Kimaya Palav",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Kimaya.jpg"
+        "Photo": "./Photo/Kimaya.jpg",
+        "Video": "./Cards/Kimaya Palav.mp4"
     },
     {
         "id": "16",
@@ -136,7 +150,8 @@ const players2 = [
         "Age": "",
         "Gender": "S",
         "Owner": true,
-        "Photo": "./Photo/Pradeep.jpg"
+        "Photo": "./Photo/Pradeep.jpg",
+        "Video": "./Cards/Pradeep Gode.mp4"
     },
     {
         "id": "17",
@@ -144,7 +159,8 @@ const players2 = [
         "Name": "Satish Desai",
         "Age": 57,
         "Gender": "S",
-        "Photo": "./Photo/Satish.jpg"
+        "Photo": "./Photo/Satish.jpg",
+        "Video": "./Cards/Satish Desai.mp4"
     },
     {
         "id": "18",
@@ -152,7 +168,8 @@ const players2 = [
         "Name": "Ajit Palav",
         "Age": 42,
         "Gender": "S",
-        "Photo": "./Photo/AjitP.jpg"
+        "Photo": "./Photo/AjitP.jpg",
+        "Video": "./Cards/Ajit Palav.mp4"
     },
     {
         "id": "19",
@@ -160,7 +177,8 @@ const players2 = [
         "Name": "Milind Sawant",
         "Age": 55,
         "Gender": "S",
-        "Photo": "./Photo/Milind.jpg"
+        "Photo": "./Photo/Milind.jpg",
+        "Video": "./Cards/Milind Sawant.mp4"
     },
     {
         "id": "20",
@@ -168,7 +186,8 @@ const players2 = [
         "Name": "Sunil Sawant",
         "Age": 48,
         "Gender": "S",
-        "Photo": "./Photo/SunilS.jpg"
+        "Photo": "./Photo/SunilS.jpg",
+        "Video": "./Cards/Sunil Sawant.mp4"
     },
     {
         "id": "21",
@@ -177,7 +196,8 @@ const players2 = [
         "Age": "",
         "Gender": "S",
         "Owner": true,
-        "Photo": "./Photo/Sudhakar.jpg"
+        "Photo": "./Photo/Sudhakar.jpg",
+        "Video": "./Cards/Sudhakar Gosavi.mp4"
     },
     {
         "id": "22",
@@ -185,7 +205,8 @@ const players2 = [
         "Name": "Indradev Gupta",
         "Age": "",
         "Gender": "S",
-        "Photo": "./Photo/Indru.jpg"
+        "Photo": "./Photo/Indru.jpg",
+        "Video": "./Cards/Indradev Gupta.mp4"
     },
     {
         "id": "23",
@@ -193,175 +214,200 @@ const players2 = [
         "Name": "Ravi Mane",
         "Age": "",
         "Gender": "S",
-        "Photo": "./Photo/Ravi.jpg"
+        "Photo": "./Photo/Ravi.jpg",
+        "Video": "./Cards/Ravi Mane.mp4"
     },
     {
         "id": "24",
         "Timestamp": "2024/01/21 8:56:34 pm GMT+5:30",
         "Name": "Durvesh Sawant",
         "Age": 18,
-        "Photo": "./Photo/Durvesh.jpg"
+        "Photo": "./Photo/Durvesh.jpg",
+        "Video": "./Cards/Durvesh Sawant.mp4"
     },
     {
         "id": "25",
         "Timestamp": "2024/01/20 9:31:03 pm GMT+5:30",
-        "Name": "Ashish more",
+        "Name": "Ashish More",
         "Age": 40,
-        "Photo": "./Photo/AshishM.jpg"
+        "Photo": "./Photo/AshishM.jpg",
+        "Video": "./Cards/Ashish More.mp4"
     },
     {
         "id": "26",
         "Timestamp": "2024/01/20 9:45:28 pm GMT+5:30",
         "Name": "Ankit Warang",
         "Age": 36,
-        "Photo": "./Photo/Ankit.jpg"
+        "Photo": "./Photo/Ankit.jpg",
+        "Video": "./Cards/Ankit Warang.mp4"
     },
     {
         "id": "27",
         "Timestamp": "2024/01/20 9:51:00 pm GMT+5:30",
         "Name": "Yash Sawant",
         "Age": 23,
-        "Photo": "./Photo/Yash.jpg"
+        "Photo": "./Photo/Yash.jpg",
+        "Video": "./Cards/Yash Sawant.mp4"
     },
     {
         "id": "28",
         "Timestamp": "2024/01/20 9:38:05 pm GMT+5:30",
         "Name": "Sameer Chalke",
         "Age": 29,
-        "Photo": "./Photo/Sameer.jpg"
+        "Photo": "./Photo/Sameer.jpg",
+        "Video": "./Cards/Sameer Chalke.mp4"
     },
     {
         "id": "29",
         "Timestamp": "2024/01/23 9:32:23 pm GMT+5:30",
         "Name": "Shaurya Sutar",
         "Age": 19,
-        "Photo": "./Photo/Shaurya.jpg"
+        "Photo": "./Photo/Shaurya.jpg",
+        "Video": "./Cards/Shaurya Sutar.mp4"
     },
     {
         "id": "30",
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
         "Name": "Pramod Belekar",
         "Age": "",
-        "Photo": "./Photo/Pramod.jpg"
+        "Photo": "./Photo/Pramod.jpg",
+        "Video": "./Cards/Pramod Belekar.mp4"
     },
     {
         "id": "31",
         "Timestamp": "2024/01/21 8:09:10 pm GMT+5:30",
         "Name": "Dipesh Panchal",
         "Age": 18,
-        "Photo": "./Photo/Dipesh.jpg"
+        "Photo": "./Photo/Dipesh.jpg",
+        "Video": "./Cards/Dipesh Panchal.mp4"
     },
     {
         "id": "32",
         "Timestamp": "2024/01/21 8:47:03 pm GMT+5:30",
         "Name": "Rakesh Raorane",
         "Age": 37,
-        "Photo": "./Photo/Tatya.jpg"
+        "Photo": "./Photo/Tatya.jpg",
+        "Video": "./Cards/Rakesh Raorane.mp4"
     },
     {
         "id": "33",
         "Timestamp": "2024/01/21 8:58:26 pm GMT+5:30",
         "Name": "Tanmay Sane",
         "Age": 27,
-        "Photo": "./Photo/Tanmay.jpg"
+        "Photo": "./Photo/Tanmay.jpg",
+        "Video": "./Cards/Tanmay Sane.mp4"
     },
     {
         "id": "34",
         "Timestamp": "2024/01/21 8:53:08 pm GMT+5:30",
         "Name": "Chirag Gupta",
         "Age": 21,
-        "Photo": "./Photo/Chirag.jpg"
+        "Photo": "./Photo/Chirag.jpg",
+        "Video": "./Cards/Chirag Gupta.mp4"
     },
     {
         "id": "35",
         "Timestamp": "2024/01/22 12:16:15 am GMT+5:30",
         "Name": "Hrishikesh Kudalkar",
         "Age": "",
-        "Photo": "./Photo/Hrishi.jpg"
+        "Photo": "./Photo/Hrishi.jpg",
+        "Video": "./Cards/Hrishikesh Kudalkar.mp4"
     },
     {
         "id": "36",
         "Timestamp": "2024/01/21 9:36:09 pm GMT+5:30",
-        "Name": "Prathmesh Kulkar",
+        "Name": "Prathamesh Kulkar",
         "Age": 32,
-        "Photo": "./Photo/Pintya.jpg"
+        "Photo": "./Photo/Pintya.jpg",
+        "Video": "./Cards/Prathamesh Kulkar.mp4"
     },
     {
         "id": "37",
         "Timestamp": "2024/01/21 9:36:09 pm GMT+5:30",
-        "Name": "Neeladhar Poojari",
+        "Name": "Niladhar Pujari",
         "Age": 32,
-        "Photo": "./Photo/Neeladhar.jpg"
+        "Photo": "./Photo/Neeladhar.jpg",
+        "Video": "./Cards/Niladhar Pujari.mp4"
     },
     {
         "id": "38",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Avishkar Chavan",
         "Age": "",
-        "Photo": "./Photo/Avishkar.jpg"
+        "Photo": "./Photo/Avishkar.jpg",
+        "Video": "./Cards/Avishkar Chavan.mp4"
     },
     {
         "id": "39",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Soham Patil",
         "Age": "",
-        "Photo": "./Photo/Soham.jpg"
+        "Photo": "./Photo/Soham.jpg",
+        "Video": "./Cards/Soham Patil.mp4"
     },
     {
         "id": "40",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Saish Rahate",
         "Age": "",
-        "Photo": "./Photo/Saish.jpg"
+        "Photo": "./Photo/Saish.jpg",
+        "Video": "./Cards/Saish Rahate.mp4"
     },
     {
         "id": "41",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Shreshth Yadav",
         "Age": "",
-        "Photo": "./Photo/Shreshth.jpg"
+        "Photo": "./Photo/Shreshth.jpg",
+        "Video": "./Cards/Shreshth Yadav.mp4"
     },
     {
         "id": "42",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Devarya Kalambate",
         "Age": "",
-        "Photo": "./Photo/Devarya.jpg"
+        "Photo": "./Photo/Devarya.jpg",
+        "Video": "./Cards/Devarya Kalambate.mp4"
     },
     {
         "id": "43",
         "Timestamp": "2024/01/21 9:24:26 pm GMT+5:30",
         "Name": "Vicky Parmar",
         "Age": "",
-        "Photo": "./Photo/Vicky.jpg"
+        "Photo": "./Photo/Vicky.jpg",
+        "Video": "./Cards/Vicky Parmar.mp4"
     },
     {
         "id": "44",
         "Timestamp": "2024/01/24 8:40:17 pm GMT+5:30",
         "Name": "Harshad Amrute",
         "Age": "",
-        "Photo": "./Photo/Harshad.jpg"
+        "Photo": "./Photo/Harshad.jpg",
+        "Video": "./Cards/Harshad Amrute.mp4"
     },
     {
         "id": "45",
         "Timestamp": "2024/01/21 8:25:22 pm GMT+5:30",
         "Name": "Nikhil Tandel",
         "Age": 27,
-        "Photo": "./Photo/Nikhil.jpg"
+        "Photo": "./Photo/Nikhil.jpg",
+        "Video": "./Cards/Nikhil Tandel.mp4"
     },
     {
         "id": "46",
         "Timestamp": "2024/01/21 9:43:53 pm GMT+5:30",
         "Name": "Pankaj Jadhav",
         "Age": "",
-        "Photo": "./Photo/Pankaj.jpg"
+        "Photo": "./Photo/Pankaj.jpg",
+        "Video": "./Cards/Pankaj Jadhav.mp4"
     },
     {
         "id": "47",
         "Timestamp": "2024/01/25 7:26:11 pm GMT+5:30",
         "Name": "Aditya Kudalkar",
         "Age": "",
-        "Photo": "./Photo/Aditya.jpg"
+        "Photo": "./Photo/Aditya.jpg",
+        "Video": "./Cards/Aditya Kudalkar.mp4"
     },
     {
         "id": "48",
@@ -369,7 +415,8 @@ const players2 = [
         "Name": "Santosh Tawade",
         "Age": "46",
         "GameChanger": true,
-        "Photo": "./Photo/Santosh.jpg"
+        "Photo": "./Photo/Santosh.jpg",
+        "Video": "./Cards/Santosh Tawade.mp4"
     },
     {
         "id": "49",
@@ -377,7 +424,8 @@ const players2 = [
         "Name": "Pratik Ramane",
         "Age": "46",
         "GameChanger": true,
-        "Photo": "./Photo/Santosh.jpg"
+        "Photo": "./Photo/Santosh.jpg",
+        "Video": "./Cards/Pratik Ramane.mp4"
     },
     {
         "id": "50",
@@ -385,7 +433,8 @@ const players2 = [
         "Name": "Ajit Yadav",
         "GameChanger": true,
         "Age": "",
-        "Photo": "./Photo/AjitY.jpg"
+        "Photo": "./Photo/AjitY.jpg",
+        "Video": "./Cards/Ajit Yadav.mp4"
     },
     {
         "id": "51",
@@ -393,7 +442,8 @@ const players2 = [
         "Name": "Gautam Yadav",
         "Age": "",
         "GameChanger": true,
-        "Photo": "./Photo/Gautam.jpg"
+        "Photo": "./Photo/Gautam.jpg",
+        "Video": "./Cards/Gautam Yadav.mp4"
     },
     {
         "id": "52",
@@ -401,7 +451,8 @@ const players2 = [
         "Name": "Omkar Gujrathi",
         "Age": 43,
         "GameChanger": true,
-        "Photo": "./Photo/OmkarG.jpg"
+        "Photo": "./Photo/OmkarG.jpg",
+        "Video": "./Cards/Omkar Gujrathi.mp4"
     },
     {
         "id": "53",
@@ -409,7 +460,8 @@ const players2 = [
         "Name": "Mahesh Rahate",
         "Age": "",
         "GameChanger": true,
-        "Photo": "./Photo/MaheshR.jpg"
+        "Photo": "./Photo/MaheshR.jpg",
+        "Video": "./Cards/Mahesh Rahate.mp4"
     },
     {
         "id": "54",
@@ -417,7 +469,8 @@ const players2 = [
         "Name": "Prasad Gosavi",
         "Age": 28,
         "GameChanger": true,
-        "Photo": "./Photo/Prasad.jpg"
+        "Photo": "./Photo/Prasad.jpg",
+        "Video": "./Cards/Prasad Gosavi.mp4"
     },
     {
         "id": "55",
@@ -425,7 +478,8 @@ const players2 = [
         "Name": "Niraj Gupta",
         "Age": 28,
         "GameChanger": true,
-        "Photo": "./Photo/Niraj.jpg"
+        "Photo": "./Photo/Niraj.jpg",
+        "Video": "./Cards/Niraj Gupta.mp4"
     }
 ]
 export default players2

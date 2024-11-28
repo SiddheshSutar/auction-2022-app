@@ -6,7 +6,8 @@
 }
 
 .right-c {
-    background: rgba(105, 0, 84, 0.5);
+    background: rgb(105 31 0 / 50%);
+    /* background: rgba(105, 0, 84, 0.5); */
 }
 
 .team-buttons-cntr {

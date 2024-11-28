@@ -399,11 +399,12 @@ const TeamButtons = () => {
             <div class="team-buttons">
 
                 {currentTeamList.map((team) => {
-                    const alreadySoldPlayer = currentPlayer?.SoldFor
+                    const alreadySoldPlayer = Boolean(currentPlayer?.SoldFor)
                     const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
                     const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")
                     const alreadyHasGameChanger = currentPlayer?.GameChanger && team?.Players.some((obj) => obj?.GameChanger)
                     const alreadyBoughtPlayer = currentPlayer?._id && team?.Players.some((obj) => obj?._id === currentPlayer?._id)
+                    console.log('hex: ', team?.Name, currentPlayer?.SoldFor)
 
                     return <div class="main-col team-col pr-0">
                         <div class="">
@@ -550,7 +551,7 @@ const RenderPlayersAndSlots = ({ team, setDeleteModal }) => {
                             player.Gender === 'S' ? 'green-bg' : ''
                             }`}
                         style={{
-                            background: `linear-gradient(90deg, ${player.Gender === "F" ? 'rgba(252,201,246,0.5215336134453781)' : player.Gender === "S" ? 'rgba(131,247,113,0.5691526610644257)' : 'rgba(255,255,255,0.75)'} 0%, rgba(255,255,255,0.75) 74%, ${team.Color} 100%)`
+                            background: `linear-gradient(90deg, ${player.Gender === "F" ? 'rgba(252,201,246,0.9)' : player.Gender === "S" ? 'rgba(131,247,113,0.9)' : 'rgba(255,255,255,0.9)'} 0%, rgba(255,255,255,0.9) 74%, ${team.Color} 100%)`
                         }}
                     >
                         <div class="player-name col col-10 text-align-left pr-0">

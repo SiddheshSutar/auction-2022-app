@@ -106,7 +106,7 @@
     box-shadow: 0 0 50px 22px rgba(0, 49, 135, 0.8);
 }
 .upper-has-video .current-bid-price {
-    bottom: -100px;
+    bottom: -107px;
     top: unset;
 }
 
@@ -129,7 +129,7 @@
     transform: scale(1.33);
     /* padding-bottom: 30px; */
     position: relative;
-    top: 30px;
+    top: 60px;
 }
 .info-row {
     border-bottom: 1px solid #f44646;
@@ -148,7 +148,15 @@
 .upper-has-video .slider-btns {
     position: relative;
     left: 10px;
-    margin-top: 10px;
+    margin-top: 40px;
+}
+
+.upper-has-video > .player-info > .slider-btns {
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px #000, inset 0 0 10px 2px #b3b3b3;
+
 }
 
 .add-on-btns-row {
@@ -221,18 +229,18 @@
 }
 
 .one-btn.btn-primary {
-    background-color: #6ff16f;
-    border-color: #6ff16f;
-    color: brown;
+    background-color: #07029e;
+    border-color: #07029e;
+    color: rgb(255, 255, 255);
 }
 .one-btn.btn-primary:hover {
     background-color: #069506;
     border-color: #069506;
 }
 .five-btn.btn-primary {
-    background-color: #f9c462;
-    border-color: #f9c462;
-    color: brown;
+    background-color: #0095da;
+    border-color: #0095da;
+    color: #04015d;
 }
 .five-btn.btn-primary:hover {
     background-color: #f1a00c;

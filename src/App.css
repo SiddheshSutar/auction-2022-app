@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-image: url('../public/Images/waveBg.svg');
+  /* background-image: url('../public/Images/waveBg.svg'); */
+  background-image: url('../public/Images/bg3.jpg');
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
@@ -65,22 +66,22 @@
 .clr-tertiary {
   color: #f1a00c;
 }
-.bg-color-faint,
-.btn.bg-color-faint {
-  background-color: olive;
-  border-color: olive;
+.bg-color-secn-btn,
+.btn.bg-color-secn-btn {
+  background-color: #0e0045;
+  border-color: #0e0045;
 }
-.bg-color-faint:disabled,
-.btn.bg-color-faint:disabled {
-  background-color: #d1d100;
-  border-color: #d1d100;
+.bg-color-secn-btn:disabled,
+.btn.bg-color-secn-btn:disabled {
+  background-color: #3d298e;
+  border-color: #3d298e;
   cursor: not-allowed;
-  color: #363600;
+  color: #9e9e9e;
 }
-.bg-color-faint:hover,
-.btn.bg-color-faint:hover {
-  background-color: #b6b607;
-  border-color: #b6b607;
+.bg-color-secn-btn:hover,
+.btn.bg-color-secn-btn:hover {
+  background-color: #16016a;
+  border-color: #16016a;
 }
 
 .max-width-fit-content{

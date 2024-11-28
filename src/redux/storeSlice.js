@@ -301,7 +301,7 @@ export const storeSlice = createSlice({
         currentGeneratedPlayerList = currentGeneratedPlayerList.slice(0, currentGeneratedPlayerList.length - 1)
       }
       state.playersGenerated = currentGeneratedPlayerList
-      state.currentPlayer = player
+      state.currentPlayer = {...player, SoldFor: 0}
       state.playerIndexFromJson -= 1
     },
     handlePendingList: (state, action) => {
