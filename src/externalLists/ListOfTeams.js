@@ -1,4 +1,4 @@
-import { MAX_AMOUNT } from "../helpers"
+import { CLR_1, CLR_2, CLR_3, CLR_4, CLR_5, CLR_6, CLR_7, CLR_8, MAX_AMOUNT } from "../helpers"
 
 const teams = [
     {
@@ -9,7 +9,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#272e9b"
+        "Color": CLR_1
     },
     {
         "id": "1",
@@ -19,7 +19,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#21bd21"
+        "Color": CLR_2
     },
     {
         "id": "2",
@@ -29,7 +29,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#a3a304"
+        "Color": CLR_3
     },
     {
         "id": "3",
@@ -39,7 +39,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#a63def"
+        "Color": CLR_4
     },
     {
         "id": "4",
@@ -49,7 +49,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#14a5f9"
+        "Color": CLR_5
     },
     {
         "id": "5",
@@ -59,7 +59,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#f95d12"
+        "Color": CLR_6
     },
     {
         "id": "6",
@@ -69,7 +69,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#004c5a"
+        "Color": CLR_7
     },
     {
         "id": "7",
@@ -79,7 +79,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": "#686868"
+        "Color": CLR_8
     }
 ]
 

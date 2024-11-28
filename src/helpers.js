@@ -1,6 +1,15 @@
 import teams from "./externalLists/ListOfTeams";
 import { v4 as uuidv4 } from 'uuid';
 
+export const CLR_1 = "#007fbe"
+export const CLR_2 = "#c6071e"
+export const CLR_3 = "#f19900"
+export const CLR_4 = "#009e8c"
+export const CLR_5 = "#f8e701"
+export const CLR_6 = "#0600b8"
+export const CLR_7 = "#6c00b8"
+export const CLR_8 = "#6cb800"
+
 export const checkIfBought = (playerObj, teamList) => {
 
     //check if some team has bought this player
