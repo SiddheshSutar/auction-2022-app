@@ -250,6 +250,11 @@ const PlayerCard = () => {
 									<MoreOption playerHasProfileVideo />
 								</Col>
 								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 50)) }}>
+										-50
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
 									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 10)) }}>
 										-10
 									</Button>
@@ -260,20 +265,30 @@ const PlayerCard = () => {
 									</Button>
 								</Col>
 								<Col className='horiz-btn-col px-0'>
-									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+									<Row >
+										<Col>
+											<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+												+
+											</Button>
+										</Col>
+										<Col>
+										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
 										-
 									</Button>
+									</Col>
+									</Row>
+									
 								</Col>
 								{/* <Col className='horiz-btn-col px-0'>
 																	<div className='current-bid-price-sm'>
 																			{currentBidPrice}
 																	</div>
 															</Col> */}
-								<Col className='horiz-btn-col px-0'>
+								{/* <Col className='horiz-btn-col px-0'>
 									<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
 										+
 									</Button>
-								</Col>
+								</Col> */}
 								<Col className='horiz-btn-col px-0'>
 									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 5)) }}>
 										+5
@@ -282,6 +297,11 @@ const PlayerCard = () => {
 								<Col className='horiz-btn-col px-0'>
 									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 10)) }}>
 										+10
+									</Button>
+								</Col>
+								<Col className='horiz-btn-col px-0'>
+									<Button className="five-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 50)) }}>
+										+50
 									</Button>
 								</Col>
 							</Row>

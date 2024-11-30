@@ -4,7 +4,7 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '../redux/storeSlice'
-import { API_BASED_APP, MAX_AMOUNT, MIN_PLAYER_COUNT, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
+import { API_BASED_APP, BASE_AMOUNT, CAPTAIN_BASE_PRICE, DEFAULT_BID_PRICE, GAME_CHANGER_BASE_PRICE, MAX_AMOUNT, MIN_PLAYERS, MIN_PLAYER_COUNT, OWNER_BASE_PRICE, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
 import { getPlayers, getTeams, updatePlayerList, updateTeamList } from "../services";
@@ -399,12 +399,111 @@ const TeamButtons = () => {
             <div class="team-buttons">
 
                 {currentTeamList.map((team) => {
+
                     const alreadySoldPlayer = Boolean(currentPlayer?.SoldFor)
                     const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
+                    const isOwnerPlaying = team?.Is_Owner_Playing
                     const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")
                     const alreadyHasGameChanger = currentPlayer?.GameChanger && team?.Players.some((obj) => obj?.GameChanger)
                     const alreadyBoughtPlayer = currentPlayer?._id && team?.Players.some((obj) => obj?._id === currentPlayer?._id)
-                    console.log('hex: ', team?.Name, currentPlayer?.SoldFor)
+
+
+                    const isBtnDisabled = currentBidPrice <= 0 || (
+                        MAX_AMOUNT - team.Amount_Used < currentBidPrice
+                    ) || (
+                            checkFemaleOrSenior({
+                                currentTeam: team,
+                                teams: currentTeamList,
+                                currentPlayer: currentPlayer
+                            })
+                        ) ||
+                        alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
+                    // || (
+                    //     isSelfSenior({
+                    //         currentTeam: team,
+                    //         currentPlayer: currentPlayer
+                    //     })
+                    // )
+
+
+                    // 1000 - 300 - 100 = 600
+                    // 3
+                    // 600/3 = 200
+                    // const amountToBeLeft = team.Amount_Assigned - parseInt(team.Amount_Used) - currentBidPrice
+                    // const playersBoughtCount = team?.Players?.length
+                    // const playersStillNeeded = MIN_PLAYERS - playersBoughtCount
+
+                    /**Needed balance = players count left to be bought * base price 
+                     * MINUS
+                     * if game changer left to be bought, add the diff of GC base price and main base price  
+                     * if captain left to be bought, add the diff of captain base price and main base price  
+                     * if owner is playing, add owner base price
+                     * */
+                    // let upcomingDeductions  = 0
+                    // let playersNeededWithDefaultPrice = playersStillNeeded
+
+                    // if (!alreadyHasGameChanger) { //250
+                    //     upcomingDeductions += GAME_CHANGER_BASE_PRICE
+                    //     playersNeededWithDefaultPrice--
+                    // }
+
+                    // if (!alreadyHasCaptain) { //200
+                    //     upcomingDeductions += CAPTAIN_BASE_PRICE
+                    //     playersNeededWithDefaultPrice--
+                    // }
+
+                    // if (isOwnerPlaying) { //100
+                    //     upcomingDeductions += OWNER_BASE_PRICE
+                    //     playersNeededWithDefaultPrice--
+                    // }
+
+                    // const basePlayerDeductions = BASE_AMOUNT * playersNeededWithDefaultPrice
+
+                    // // upcomingDeductions += BASE_AMOUNT *playersNeededWithDefaultPrice
+                    // const balanceToBeLeft = MAX_AMOUNT - upcomingDeductions
+
+                    // // let cantBuyCurrentPlayer = (amountToBeLeft / playersBoughtCount) < neededBalance
+
+
+                    // // console.log('hex: ', cantBuyCurrentPlayer, team.Name)
+                    // // console.log('hex: ', upcomingDeductions, basePlayerDeductions, team.Name)
+
+                    // 
+                    let predictedAmountSpent = team.Amount_Used
+                    let playersPendingWithDefaultPrice = MIN_PLAYERS
+
+                    
+                    predictedAmountSpent += currentBidPrice
+                    playersPendingWithDefaultPrice--
+
+                    if (!alreadyHasGameChanger) { //250
+                        predictedAmountSpent += GAME_CHANGER_BASE_PRICE
+                        playersPendingWithDefaultPrice--
+                    }
+
+                    if (!alreadyHasCaptain) { //200
+                        predictedAmountSpent += CAPTAIN_BASE_PRICE
+                        playersPendingWithDefaultPrice--
+                    }
+
+                    if (isOwnerPlaying) { //100
+                        predictedAmountSpent += OWNER_BASE_PRICE
+                        playersPendingWithDefaultPrice--
+                    }
+
+                    const basePlayerNewDeductions = playersPendingWithDefaultPrice > 0 ? BASE_AMOUNT * playersPendingWithDefaultPrice : BASE_AMOUNT
+                    predictedAmountSpent += basePlayerNewDeductions
+
+
+                    let cantBuyCurrentPlayer = predictedAmountSpent > MAX_AMOUNT
+                    
+
+                    
+                    
+                    if (isBtnDisabled) {
+                        cantBuyCurrentPlayer = false /** Domt show warning if players are already there in team */
+                    }
+
 
                     return <div class="main-col team-col pr-0">
                         <div class="">
@@ -413,23 +512,7 @@ const TeamButtons = () => {
                                     type="button"
                                     class={`btn btn-primary team-action-button fs-1dot5 ${team.Color
                                         }`}
-                                    disabled={currentBidPrice <= 0 || (
-                                        MAX_AMOUNT - team.Amount_Used < currentBidPrice
-                                    ) || (
-                                            checkFemaleOrSenior({
-                                                currentTeam: team,
-                                                teams: currentTeamList,
-                                                currentPlayer: currentPlayer
-                                            })
-                                        ) ||
-                                        alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
-                                        // || (
-                                        //     isSelfSenior({
-                                        //         currentTeam: team,
-                                        //         currentPlayer: currentPlayer
-                                        //     })
-                                        // )
-                                    }
+                                    disabled={isBtnDisabled}
                                     name={team.Name}
                                     style={{
                                         backgroundColor: team.Color,
@@ -444,7 +527,21 @@ const TeamButtons = () => {
                                         <div class="team-coins text-right pl-0">
                                             <div class="rodw">
                                                 <div class="col">
-                                                    <div>
+                                                    <div className={`${cantBuyCurrentPlayer ? 'cant-buy' : ''}`}>
+                                                        {
+                                                            cantBuyCurrentPlayer &&
+                                                            <span title={
+                                                                "This bid price cant be accomodated"
+                                                            }>
+                                                                    <img
+                                                                        className="warning-icon"
+                                                                        src={`${window.location.href}Images/warning.svg`}
+                                                                        width={20}
+                                                                        height={20}
+                                                                        alt="img"
+                                                                    />
+                                                            </span>
+                                                        }
                                                         <span class="team-coins-spent">
                                                             {
                                                                 parseInt(team.Amount_Used)

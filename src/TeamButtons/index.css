@@ -10,7 +10,11 @@
     /* background: rgba(105, 0, 84, 0.5); */
 }
 
-.team-buttons-cntr {
+.warning-icon {
+    border-radius: 50vw;
+    box-shadow: 0 0 5px 2px #ff0000;
+    position: relative;
+    left: -2px;
 }
 
 .root {

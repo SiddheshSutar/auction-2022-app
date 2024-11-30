@@ -297,6 +297,11 @@ const mapIdToUnderscoreId = () => {
     console.log(pq)
 }
 
+export const MIN_PLAYERS = 7
 export const MAX_AMOUNT = 1000
-export const DEFAULT_BID_PRICE = 30
+export const BASE_AMOUNT = 40
+export const DEFAULT_BID_PRICE = 40
+export const GAME_CHANGER_BASE_PRICE = 250
+export const CAPTAIN_BASE_PRICE = 200
+export const OWNER_BASE_PRICE = 100
 export const BASE_URL = 'http://localhost:8000/'
