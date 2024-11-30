@@ -128,11 +128,11 @@ const players2 = [
     {
         "id": "14",
         "Timestamp": "2024/01/20 9:41:51 pm GMT+5:30",
-        "Name": "Rutuja kalambate",
+        "Name": "Shravani Kotiyan",
         "Gender": "F",
         "Age": "",
-        "Photo": "./Photo/Rutuja.jpg",
-        "Video": "./Cards/Rutuja kalambate.mp4"
+        "Photo": "./Photo/Shravani.jpg",
+        "Video": "./Cards/Shravani Kotiyan.mp4"
     },
     {
         "id": "15",
