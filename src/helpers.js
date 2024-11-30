@@ -297,6 +297,18 @@ const mapIdToUnderscoreId = () => {
     console.log(pq)
 }
 
+export const isCurrentPlayerCondition = (obj, type) => {
+    if(!obj?._id) return false
+
+    if (type === "S") return obj?.Gender === "S"
+    if (type === "F") return obj?.Gender === "F"
+    if (type === "GC") return obj?.GameChanger
+    if (type === "C") return obj?.Captain
+    if (type === "O") return obj?.Owner
+
+    return false
+}
+
 export const MIN_PLAYERS = 7
 export const MAX_AMOUNT = 1000
 export const BASE_AMOUNT = 40

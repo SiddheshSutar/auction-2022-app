@@ -264,20 +264,21 @@ const PlayerCard = () => {
 										-5
 									</Button>
 								</Col>
-								<Col className='horiz-btn-col px-0'>
-									<Row >
-										<Col>
-											<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
-												+
-											</Button>
-										</Col>
-										<Col>
-										<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
-										-
-									</Button>
-									</Col>
-									</Row>
-									
+								<Col className='horiz-btn-col col-2 px-0'>
+									<div>
+										<Row >
+											<Col className='px-0'>
+												<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice - 1)) }}>
+													-
+												</Button>
+											</Col>
+											<Col className='px-0'>
+												<Button className="one-btn" onClick={e => { dispatch(setCurrentBidPrice(currentBidPrice + 1)) }}>
+													+
+												</Button>
+											</Col>
+										</Row>
+									</div>
 								</Col>
 								{/* <Col className='horiz-btn-col px-0'>
 																	<div className='current-bid-price-sm'>

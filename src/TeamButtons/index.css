@@ -11,8 +11,8 @@
 }
 
 .warning-icon {
-    border-radius: 50vw;
-    box-shadow: 0 0 5px 2px #ff0000;
+    /* border-radius: 50vw; */
+    /* box-shadow: 0 0 5px 2px #ff0000; */
     position: relative;
     left: -2px;
 }

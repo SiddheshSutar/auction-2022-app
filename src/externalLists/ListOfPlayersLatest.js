@@ -214,6 +214,7 @@ const players2 = [
         "Name": "Ravi Mane",
         "Age": "",
         "Gender": "S",
+        "Owner": true,
         "Photo": "./Photo/Ravi.jpg",
         "Video": "./Cards/Ravi Mane.mp4"
     },

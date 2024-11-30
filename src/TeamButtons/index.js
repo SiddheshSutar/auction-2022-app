@@ -4,7 +4,7 @@ import teams from "../externalLists/ListOfTeams";
 import { Modal, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { assignteamToPlayer, deletePlayer, setReduxState, storeMatches } from '../redux/storeSlice'
-import { API_BASED_APP, BASE_AMOUNT, CAPTAIN_BASE_PRICE, DEFAULT_BID_PRICE, GAME_CHANGER_BASE_PRICE, MAX_AMOUNT, MIN_PLAYERS, MIN_PLAYER_COUNT, OWNER_BASE_PRICE, checkFemaleOrSenior, generateMatches, isSelfSenior } from "../helpers";
+import { API_BASED_APP, BASE_AMOUNT, CAPTAIN_BASE_PRICE, DEFAULT_BID_PRICE, GAME_CHANGER_BASE_PRICE, MAX_AMOUNT, MIN_PLAYERS, MIN_PLAYER_COUNT, OWNER_BASE_PRICE, checkFemaleOrSenior, generateMatches, isCurrentPlayerCondition, isSelfSenior } from "../helpers";
 import parse from 'html-react-parser'
 import players2 from "../externalLists/ListOfPlayersLatest";
 import { getPlayers, getTeams, updatePlayerList, updateTeamList } from "../services";
@@ -286,6 +286,14 @@ const TeamButtons = () => {
                 key: 'initialPlayerList',
                 data: cloneDeep(playersResp.data)
             }))
+            dispatch(setReduxState({
+                key: 'currentTeamList',
+                data: cloneDeep(teamsResp.data)
+            }))
+            dispatch(setReduxState({
+                key: 'currentPlayerList',
+                data: cloneDeep(playersResp.data)
+            }))
         }
 
         setDeleteModal(null)
@@ -401,10 +409,11 @@ const TeamButtons = () => {
                 {currentTeamList.map((team) => {
 
                     const alreadySoldPlayer = Boolean(currentPlayer?.SoldFor)
-                    const alreadyHasCaptain = currentPlayer?.Captain && team?.Players.some((obj) => obj?.Captain)
+                    const alreadyHasCaptain = team?.Players.some((obj) => obj?.Captain)
+                    const alreadyHasOwner = team?.Players.some((obj) => obj?.Owner)
                     const isOwnerPlaying = team?.Is_Owner_Playing
                     const alreadyHasFemale = currentPlayer?.Gender === "F" && team?.Players.some((obj) => obj?.Gender === "F")
-                    const alreadyHasGameChanger = currentPlayer?.GameChanger && team?.Players.some((obj) => obj?.GameChanger)
+                    const alreadyHasGameChanger = team?.Players.some((obj) => obj?.GameChanger)
                     const alreadyBoughtPlayer = currentPlayer?._id && team?.Players.some((obj) => obj?._id === currentPlayer?._id)
 
 
@@ -417,7 +426,7 @@ const TeamButtons = () => {
                                 currentPlayer: currentPlayer
                             })
                         ) ||
-                        alreadyHasCaptain || alreadyHasFemale || alreadyHasGameChanger || alreadyBoughtPlayer || alreadySoldPlayer
+                        (currentPlayer?.Captain && alreadyHasCaptain) || alreadyHasFemale || (currentPlayer?.GameChanger && alreadyHasGameChanger) || alreadyBoughtPlayer || alreadySoldPlayer
                     // || (
                     //     isSelfSenior({
                     //         currentTeam: team,
@@ -425,79 +434,43 @@ const TeamButtons = () => {
                     //     })
                     // )
 
-
-                    // 1000 - 300 - 100 = 600
-                    // 3
-                    // 600/3 = 200
-                    // const amountToBeLeft = team.Amount_Assigned - parseInt(team.Amount_Used) - currentBidPrice
-                    // const playersBoughtCount = team?.Players?.length
-                    // const playersStillNeeded = MIN_PLAYERS - playersBoughtCount
-
-                    /**Needed balance = players count left to be bought * base price 
-                     * MINUS
-                     * if game changer left to be bought, add the diff of GC base price and main base price  
-                     * if captain left to be bought, add the diff of captain base price and main base price  
-                     * if owner is playing, add owner base price
-                     * */
-                    // let upcomingDeductions  = 0
-                    // let playersNeededWithDefaultPrice = playersStillNeeded
-
-                    // if (!alreadyHasGameChanger) { //250
-                    //     upcomingDeductions += GAME_CHANGER_BASE_PRICE
-                    //     playersNeededWithDefaultPrice--
-                    // }
-
-                    // if (!alreadyHasCaptain) { //200
-                    //     upcomingDeductions += CAPTAIN_BASE_PRICE
-                    //     playersNeededWithDefaultPrice--
-                    // }
-
-                    // if (isOwnerPlaying) { //100
-                    //     upcomingDeductions += OWNER_BASE_PRICE
-                    //     playersNeededWithDefaultPrice--
-                    // }
-
-                    // const basePlayerDeductions = BASE_AMOUNT * playersNeededWithDefaultPrice
-
-                    // // upcomingDeductions += BASE_AMOUNT *playersNeededWithDefaultPrice
-                    // const balanceToBeLeft = MAX_AMOUNT - upcomingDeductions
-
-                    // // let cantBuyCurrentPlayer = (amountToBeLeft / playersBoughtCount) < neededBalance
-
-
-                    // // console.log('hex: ', cantBuyCurrentPlayer, team.Name)
-                    // // console.log('hex: ', upcomingDeductions, basePlayerDeductions, team.Name)
-
                     // 
                     let predictedAmountSpent = team.Amount_Used
-                    let playersPendingWithDefaultPrice = MIN_PLAYERS
+                    let currentTeamPlayersCount = team.Players?.length
+                    let playersPendingWithDefaultPrice = MIN_PLAYERS - currentTeamPlayersCount
 
                     
                     predictedAmountSpent += currentBidPrice
-                    playersPendingWithDefaultPrice--
+                    if(
+                        !(isCurrentPlayerCondition(currentPlayer, "GC") ||
+                        isCurrentPlayerCondition(currentPlayer, "C") ||
+                        isCurrentPlayerCondition(currentPlayer, "O"))
+                    ) {
+                        playersPendingWithDefaultPrice--
+                    }
 
                     if (!alreadyHasGameChanger) { //250
                         predictedAmountSpent += GAME_CHANGER_BASE_PRICE
-                        playersPendingWithDefaultPrice--
                     }
+                    playersPendingWithDefaultPrice--
 
                     if (!alreadyHasCaptain) { //200
                         predictedAmountSpent += CAPTAIN_BASE_PRICE
-                        playersPendingWithDefaultPrice--
                     }
+                    playersPendingWithDefaultPrice--
 
-                    if (isOwnerPlaying) { //100
+                    if (isOwnerPlaying && !alreadyHasOwner) { //100
                         predictedAmountSpent += OWNER_BASE_PRICE
-                        playersPendingWithDefaultPrice--
                     }
+                    playersPendingWithDefaultPrice--
 
-                    const basePlayerNewDeductions = playersPendingWithDefaultPrice > 0 ? BASE_AMOUNT * playersPendingWithDefaultPrice : BASE_AMOUNT
+                    const basePlayerNewDeductions = playersPendingWithDefaultPrice > 0 ? BASE_AMOUNT * playersPendingWithDefaultPrice : 0
                     predictedAmountSpent += basePlayerNewDeductions
 
 
                     let cantBuyCurrentPlayer = predictedAmountSpent > MAX_AMOUNT
                     
-
+                    console.log('hex: ', predictedAmountSpent, team.Name)
                     
                     
                     if (isBtnDisabled) {
