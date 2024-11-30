@@ -432,7 +432,7 @@ const TeamButtons = () => {
                     //         currentTeam: team,
                     //         currentPlayer: currentPlayer
                     //     })
-                    // )
+                    // ) 
 
                     // 
                     let predictedAmountSpent = team.Amount_Used
