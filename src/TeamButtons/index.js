@@ -451,18 +451,18 @@ const TeamButtons = () => {
 
                     if (!alreadyHasGameChanger) { //250
                         predictedAmountSpent += GAME_CHANGER_BASE_PRICE
+                        playersPendingWithDefaultPrice--
                     }
-                    playersPendingWithDefaultPrice--
 
                     if (!alreadyHasCaptain) { //200
                         predictedAmountSpent += CAPTAIN_BASE_PRICE
+                        playersPendingWithDefaultPrice--
                     }
-                    playersPendingWithDefaultPrice--
 
                     if (isOwnerPlaying && !alreadyHasOwner) { //100
                         predictedAmountSpent += OWNER_BASE_PRICE
+                        playersPendingWithDefaultPrice--
                     }
-                    playersPendingWithDefaultPrice--
 
                     const basePlayerNewDeductions = playersPendingWithDefaultPrice > 0 ? BASE_AMOUNT * playersPendingWithDefaultPrice : 0
                     predictedAmountSpent += basePlayerNewDeductions
