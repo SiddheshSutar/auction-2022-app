@@ -6,6 +6,9 @@ import players_array from "../externalLists/ListOfPlayersLatest";
 import { API_BASED_APP, removeIdKeyFromArry } from "../helpers";
 import { cloneDeep } from "lodash";
 import { setReduxState } from "../redux/storeSlice";
+import { teamsFinal } from "../externalLists/teamsFinal";
+import { apiPlayers } from "../externalLists/apiPlayers";
+import { apiTeams } from "../externalLists/apiTeams";
 
 const ApiCalls = () => {
     const { initialPlayerList, initialTeamList, playersGenerated, currentPlayer, playerIndexFromJson } = useSelector(state => state.store)
@@ -14,19 +17,19 @@ const ApiCalls = () => {
     
     const loadJsonIntoDb = async () => {
          /** To insert players when app loads */
-        await setPlayer({
-            data: removeIdKeyFromArry(cloneDeep(
-                players_array.filter((item) => {
-                  return true
-                  // return !item.Captain && !item.GameChanger
-                })
-              ))
-        })
+        // await setPlayer({
+        //     data: removeIdKeyFromArry(cloneDeep(
+        //         players_array.filter((item) => {
+        //           return true
+        //           // return !item.Captain && !item.GameChanger
+        //         })
+        //       ))
+        // })
         
-        /** To insert teams when app loads */
-        await setTeam({
-            data: removeIdKeyFromArry(cloneDeep(teams))
-        })
+        // /** To insert teams when app loads */
+        // await setTeam({
+        //     data: removeIdKeyFromArry(cloneDeep(teams))
+        // })
         
         
         const teamsResp = API_BASED_APP ? await getTeams() : { success: true, data: teams }
@@ -38,12 +41,13 @@ const ApiCalls = () => {
         
         dispatch(setReduxState({
             key: 'initialTeamList',
-            data: teamsResp.data
+            // data: teamsResp.data
+            data: apiTeams
         }))
         dispatch(setReduxState({
             key: 'initialPlayerList',
-            data: playersResp.data
-            // data: players_array
+            // data: playersResp.data
+            data: apiPlayers
         }))
         
         playersGenerated.length <=0 && dispatch(setReduxState({ /** Initially set 1st player as generated player*/

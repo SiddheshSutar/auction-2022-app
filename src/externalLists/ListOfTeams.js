@@ -9,7 +9,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_1
+        "Color": CLR_3
     },
     {
         "id": "1",
@@ -19,7 +19,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_2
+        "Color": CLR_7 
     },
     {
         "id": "2",
@@ -29,7 +29,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_3
+        "Color": CLR_2 
     },
     {
         "id": "3",
@@ -39,7 +39,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_4
+        "Color": CLR_1 
     },
     {
         "id": "4",
@@ -49,7 +49,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_5
+        "Color": CLR_4 
     },
     {
         "id": "5",
@@ -71,7 +71,7 @@ const teams = [
         "Players": [],
         "Amount_Used": 0,
         "Amount_Assigned": MAX_AMOUNT,
-        "Color": CLR_7
+        "Color": CLR_5
     },
     {
         "id": "7",

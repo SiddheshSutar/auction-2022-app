@@ -23,7 +23,7 @@ const AssignDirectModal = ({
     
     const playersToShow = [...initialPlayerList.filter(item => {
         
-        return soldPlayers.every(soldPlrObj => soldPlrObj.id !== item.id) 
+        return soldPlayers.every(soldPlrObj => soldPlrObj._id !== item._id) 
         // &&
         // pendingPlayers.every(pendingPlayrObj => pendingPlayrObj.id !== item.id)
     })
@@ -55,7 +55,7 @@ const AssignDirectModal = ({
                             singlePlayer: true,
                             teamId: selectedTeamObj._id,
                             playerId: selectedPlayerObj._id,
-                            Amount_Used: (selectedTeamObj.Amount_Used ?? 0) + soldFor
+                            Amount_Used: parseInt( (selectedTeamObj.Amount_Used ?? 0) ) + parseInt(soldFor)
                         }]
                     })
                     await updatePlayerList({
