@@ -286,10 +286,11 @@ export const removeIdKeyFromArry = arr => {
 const mapIdToUnderscoreId = () => {
     let pp = []
 
-    let pq= pp.map((obj) => {
+    let pq= pp.map((obj, index) => {
         const newObj = ({
-            _id: obj?.id ?? uuidv4(),
-            ...obj
+            // _id: obj?.id ?? uuidv4(),
+            ...obj,
+            id: index,
         })
         delete newObj.id
         return newObj

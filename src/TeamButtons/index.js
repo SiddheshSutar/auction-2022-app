@@ -535,10 +535,10 @@ const TeamButtons = () => {
                         </div>
                         <div class="team-player-list">
                             <div class="team-players-bg"
-                                style={{
-                                    backgroundImage: `url(${team.Logo})`
-                                    // backgroundImage: `url('./NonBg/OldFox.png')`
-                                }}
+                                // style={{
+                                //     backgroundImage: `url(${team.Logo})`
+                                //     // backgroundImage: `url('./NonBg/OldFox.png')`
+                                // }}
                             >
                             </div>
                             <div className="team-players-bg-fill">
